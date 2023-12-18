@@ -1,0 +1,112 @@
+namespace = galuni
+
+event = {
+	id = galUni.30
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		NOR = {
+			# has_global_flag = nsc_on_press_begin
+			any_country = { is_country_type = galUni_data_storage }
+		}
+	}
+
+	immediate = {
+		# nsc_modmenu_reset_all_settings_effect = yes
+		# nsc_modmenu_open_effect = yes
+	}
+}
+
+country_event = { # impossible to close menu
+	id = galuni.2
+	diplomatic_title = "Da Galactic University Diplo Title"
+	title = "Da Galactic University Title"
+	desc = "Da Galactic DESC"
+	is_triggered_only = yes
+	#picture = GFX_assembling_bg
+	diplomatic = yes
+	custom_gui = "someContainerDiplo"
+
+	picture_event_data = { portrait = root.ruler }
+
+	immediate = {
+		set_global_flag = galUni_hiring_menu_opened
+		set_global_flag = galUni_hiring_phase_one
+	}
+	option = {
+		name = ""
+#		custom_gui = "enclave_funni_button"
+#		set_country_flag = "Bob"
+	} 
+}
+
+
+country_event = {
+	id = galuni.1
+	title = "Leader University"
+	desc = "Our empire has successfully finished building this prestigious university on our capital planet. May it serve for an eternity and beyond!
+	You will now be able to periodically recruit the finest minds to serve under your rule from this premises"
+	picture = GFX_assembling_bg
+	is_triggered_only = yes
+	
+	option = {
+		name = "Hire a random leader with a random amount of traits"
+		custom_tooltip_with_params = {
+			description = "Simply does what it says, a random leader, with a random amount of traits for a cheap cost"
+			description_parameters = { some = 23 }
+		}
+		hidden_effect = {
+			country_event = {
+				id = galuni.3
+				#hide_window = yes
+			}
+		}
+	}
+
+	option = {
+		name = "Hire a leader with traits of your choice"
+		custom_tooltip_with_params = {
+			description = "Hire a leader with traits of your choice, for a higher cost"
+			description_parameters = { some = 23 }
+		}
+		hidden_effect = {
+			country_event = {
+				id = galuni.2
+			}
+		}
+	}
+}
+
+country_event = {
+	id = galuni.3
+	is_triggered_only = yes
+
+	immediate = {
+		@leader_age = 0
+		set_variable_to_random_value = { # no work
+			which = @leader_age
+			min = 20
+			max = 40
+			rounded = no
+		}
+
+		@leader_num_traits = 0
+		set_variable_to_random_value = { # no work
+			which = @leader_num_traits
+			min = 1
+			max = 10
+			rounded = no
+		}
+
+		create_leader = {
+			class = random # work 
+			name = random # work
+			species = root # works
+			skill = random # doesnt work skill is 1
+			set_age = @leader_age # doesnt work age is 0
+			randomize_traits = yes # no traits on leader...
+		}
+	}
+}
+

@@ -1,0 +1,7 @@
+l_english: 
+ # Common
+ galTitle: "Gal Uni stuffs idk"
+ 
+ #############################
+ # University Window
+ #############################

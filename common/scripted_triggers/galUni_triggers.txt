@@ -1,0 +1,10 @@
+galUni_on_trigger = {
+	optimize_memory
+	custom_tooltip = {
+		fail_text = "failed..." #show tooltip only when the global flag is missing
+		OR = {
+#			NOT = { has_global_flag = nsc_on_press_begin } #enables all contents until players press begin button #changed to prevent the bug that the starting starport doesn't have any shipyard
+#			has_global_flag = nsc_modmenu_game_content_$CATEGORY$_$SUBCAT$_$ID$_on
+		}
+	}
+}

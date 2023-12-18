@@ -1,0 +1,335 @@
+guiTypes = {
+
+	@hidden_ui_element_position = 10000
+	
+	containerWindowType = {
+		name = "someContainerDiplo"
+		moveable = yes
+		size = { width = 800 height = 690 } # 974 680 
+		position = {x = 0 y = 0}
+		show_sound = "interface"
+		# animation_time = 2 animation_type = smoothstep
+		orientation = center
+		origo = center
+		background = {	name = "galUni_trait_background" quadTextureSprite = "GFX_tile_large_bg_curator"}
+
+#####################################################################################################################
+################################################ VISIBLE UI #########################################################
+#####################################################################################################################
+
+instantTextBoxType = {
+	name = "galUni_trait_title" 
+	font = "malgun_goth_24" 
+	text = "Galactic University"
+	position = { x = 25 y = 0 } 
+}
+effectButtonType = {
+	name = "galUni_back_button"
+	quadTextureSprite = "GFX_standard_button_200_34_button"
+	buttonFont = "cg_16b"
+	buttonText = "BACK"
+	position = {x = 200 y = 0}
+	orientation = UPPER_LEFT
+	effect = "galUni_leader_back_button_effect"
+}
+effectButtonType = {
+			name = "close" #do not change this name #or it will not function at all #which means players won't be able to close this ui
+			quadTextureSprite = "GFX_close"
+			position = { x = 756 y = 0 }
+			#shortcut = "ESCAPE" #someone asked me to disable this
+			clicksound = "back_click"
+			effect = "galUni_close_button_effect"
+		}
+
+# Phase 1 - Selecting Leader Type
+ @galUni_phase_one_options_x = 0
+ @galUni_phase_one_options_y = 50
+
+# containerWindowType = {
+	# name = "galUni_leader_main"
+	# size = {width = 800 height = 640}
+	# position = {x = @galUni_phase_one_options_x y = @galUni_phase_one_options_y}
+	# background = { name = "galUni_leader_main_background" quadTextureSprite = "GFX_invisible" alwaysTransparent = yes}
+
+	# effectButtonType = {
+	# 	name = "galUni_leader_official_button"
+	# 	quadTextureSprite = "GFX_standard_button_200_34_button"
+	# 	buttonFont = "cg_16b"
+	# 	buttonText = "Official"
+	# 	position = {x = 50 y = -17}
+	# 	orientation = CENTER
+	# 	effect = "galUni_leader_official_button_effect"
+	# }
+
+	# effectButtonType = {
+	# 	name = "galUni_leader_scientist_button"
+	# 	quadTextureSprite = "GFX_standard_button_200_34_button"
+	# 	buttonFont = "cg_16b"
+	# 	buttonText = "Scientist"
+	# 	position = {x = -100 y = -85}
+	# 	orientation = CENTER
+	# 	effect = "galUni_leader_scientist_button_effect"
+	# }
+
+	# effectButtonType = {
+	# 	name = "galUni_leader_commander_button"
+	# 	quadTextureSprite = "GFX_standard_button_200_34_button"
+	# 	buttonFont = "cg_16b"
+	# 	buttonText = "Commander"
+	# 	position = {x = -250 y = -17}
+	# 	orientation = CENTER
+	# 	effect = "galUni_leader_commander_button_effect"
+	# }
+# }
+# Phase 2 - Selecting Traits
+
+ @galUni_trait_main_pos_x = 0
+ @galUni_trait_main_pos_y = 50
+
+containerWindowType = {
+	name = "galUni_trait_main"
+	position = {x = @galUni_trait_main_pos_x y = @galUni_trait_main_pos_y} # 10 64
+	size = {width = 800 height = 500}
+	verticalScrollbar = "right_vertical_slider"
+	clipping = yes
+	background = { name = "galUni_trait_main_background" quadTextureSprite = "GFX_invisible" alwaysTransparent = no}
+	gridBoxType = {
+		name = "galUni_trait_main_box"
+		size = {width = 780 height = 800} # 500 = no scroll bar 
+		slotSize = {width = 780 height = 1400}
+		format = UPPER_LEFT
+	}
+	
+	effectButtonType = {
+		name = "galUni_leader_official_button"
+		quadTextureSprite = "GFX_standard_button_200_34_button"
+		buttonFont = "cg_16b"
+		buttonText = "Official"
+		position = {x = 50 y = -17}
+		orientation = CENTER
+		effect = "galUni_leader_official_button_effect"
+	}
+
+	effectButtonType = {
+		name = "galUni_leader_scientist_button"
+		quadTextureSprite = "GFX_standard_button_200_34_button"
+		buttonFont = "cg_16b"
+		buttonText = "Scientist"
+		position = {x = -100 y = -85}
+		orientation = CENTER
+		effect = "galUni_leader_scientist_button_effect"
+	}
+
+	effectButtonType = {
+		name = "galUni_leader_commander_button"
+		quadTextureSprite = "GFX_standard_button_200_34_button"
+		buttonFont = "cg_16b"
+		buttonText = "Commander"
+		position = {x = -250 y = -17}
+		orientation = CENTER
+		effect = "galUni_leader_commander_button_effect"
+	}
+
+containerWindowType = {name = "galUni_trait_main_body"
+	# BASIC VANILLA TRAITS
+	effectButtonType = {name = "basicCategoryText"
+		font = "cg_16b"
+		position = {x = 0 y = 0} 
+		text = "Basic" 
+		alwaysTransparent = yes
+		no_clicksound = yes
+		effect = "galUni_phase_two_do_nothing_button_effect"
+	}
+
+	# containerWindowType = {name = "galUni_trait_main_body_type_name"
+		effectButtonType = {name = "galUni_traitOn_charismatic_on_off_background"
+			# font = "cg_16b"
+			# text = "balls"
+			position = {x = 0 y = 0}
+			spriteType = "GFX_leader_trait_charismatic" # "GFX_checkbox_20_20_01" # "GFX_leader_trait_charismatic"
+			effect = "galUni_traitOn"
+		}
+	
+		effectButtonType = {
+			name = "galUni_basic_charismatic_on"
+			position = {x = 50 y = 0}
+			spriteType = "GFX_galUni_checkbox_checked"
+			effect = "galUni_basic_charismatic_on_button_effect"
+		}
+	
+		effectButtonType = {
+			name = "galUni_basic_charismatic_off"
+			position = {x = 80 y = 0}
+			spriteType = "GFX_checkbox_20_20_01"
+			effect = "galUni_basic_charismatic_off_button_effect"
+		}
+	# }
+
+	effectButtonType = {name = "specialisedCategoryText"
+		font = "cg_16b"
+		text = "Specialised"
+		position = {x = 0 y = 100}
+		alwaysTransparent = yes
+		no_clicksound = yes
+		effect = "galUni_phase_two_do_nothing_button_effect"
+	}
+
+	effectButtonType = {name = "veteranCategoryText"
+		font = "cg_16b" 
+		text = "Veteran"
+		alwaysTransparent = yes
+		no_clicksound = yes
+		position = { x = 0 y = 200 } 
+		effect = "galUni_phase_two_do_nothing_button_effect"
+	}
+
+	effectButtonType = {name = "destinyCategoryText"
+		font = "cg_16b" 
+		text = "Destiny"
+		position = { x = 0 y = 300 }
+		alwaysTransparent = yes
+		no_clicksound = yes 
+		effect = "galUni_phase_two_do_nothing_button_effect"
+	}
+
+		
+# # effectButtonType = {
+# # 	name = "galUni_basic_charismatic_header"
+# # 	position = {x = 30 y = 30}
+# # 	borderSize = {x = 2 y = 2}
+# # 	spriteType = "GFX_checkbox_20_20_01"
+# # 	text = "Basic"
+# # 	multiline = yes
+# # 	font = "cg_16b"
+# # 	no_clicksound = yes
+# # 	effect = "galUni_basic_charismatic_header_button_effect"
+# # }
+}
+}
+
+#############################################################################################
+################################## HIDDEN UI ################################################
+#############################################################################################
+
+		# background = {
+		# 	name = "background"
+		# 	quadTextureSprite ="GFX_tile_large_bg_curator"
+		# }
+
+		# iconType = {
+		# 	name = "hex_bg"
+		# 	spriteType = "GFX_hex_bg_curator"
+		# 	position = { x = -10 y = -14 } # -10 -14
+		# 	alwaysTransparent = yes
+		# }
+
+		iconType = {name = "empire_header_line" quadTextureSprite = "GFX_line_long_curator" alwaysTransparent = yes 
+			position = { x = @hidden_ui_element_position y = @hidden_ui_element_position }} # 6 22
+		buttonType = {name = "focus_button" orientation = "UPPER_RIGHT" spriteType = "GFX_fleetview_focus_curator" buttonFont = "cg_16b" shortcut = "q" 
+			position = { x = @hidden_ui_element_position y = @hidden_ui_element_position }} # -80 16
+
+		# buttonType = {
+		# 	name = "close"
+		# 	quadTextureSprite = "GFX_main_close_button_curator"
+		# 	position = { x= -45 y = 16 }
+		# 	Orientation = "UPPER_RIGHT"
+		# 	clicksound = "back_click"
+		# }
+
+		instantTextBoxType = {name = "heading" font = "malgun_goth_24" text = "DIPLOMACY" fixedSize = yes alwaysTransparent = yes
+			maxWidth = 543 maxHeight = 22 position = { x = @hidden_ui_element_position y = @hidden_ui_element_position }} # 20 5
+
+		buttonType = {name = "tts_button" spriteType = "GFX_button_tts_start" buttonFont = "cg_16b" shortCut = "t"
+			position = { x = @hidden_ui_element_position y = @hidden_ui_element_position }} # 466 639
+
+		buttonType = { name = "alien_message_background" spriteType = "GFX_tiles_dark_area_cut_8" alwaysTransparent = yes
+			size = { x = 950 y = 210 } # y = 485, 240 default # 950, 210 CURRENT (I SET)
+			position = { x = @hidden_ui_element_position y = @hidden_ui_element_position }} # 11 429
+
+		instantTextBoxType = {name = "alien_message" font = "cg_16b" format = left scrollbartype = "standardtext_slider"
+			position = { x = @hidden_ui_element_position y = @hidden_ui_element_position } # 20 440
+			maxHeight = 220 maxWidth = 930} # originally 465		
+		
+		buttonType = {name = "confirm_button" quadTextureSprite = "GFX_standard_button_142_34_button" Orientation = "UPPER_RIGHT" font = "cg_16b" text = "MESSAGE_OK" clicksound = "confirmation"
+			position = { x = @hidden_ui_element_position y = @hidden_ui_element_position  } # -175 564
+		}
+
+		### PORTRAIT ###
+		containerWindowType = {name = "portrait_background" clipping = yes
+			iconType = { name = "event_picture" spriteType = "GFX_diplomacy_portrait_frame" position = { x = -6 y = -5 }}
+			iconType = {name = "portrait" position = { x = 250 y = 0 } spriteType = "GFX_portrait_character"}	
+			position = { x = @hidden_ui_element_position y = @hidden_ui_element_position } # 17 45
+			size = { width = 964 height = 350 }}
+
+		containerWindowType = {name = "portrait" clipping = yes
+			iconType = {name = "portrait" spriteType = "GFX_portrait_gamesetup_mask" alwaysTransparent = yes}
+			iconType = {name = "black_frame" spriteType = "GFX_diplomacy_portrait_shadow_frame" position = { x = -4 y = -5} alwaysTransparent = yes}
+			iconType = {name = "stripes_1" spriteType = "GFX_diplomacy_stripes_2" alwaysTransparent = yes}
+			iconType = {name = "city_frame" spriteType = "GFX_diplomacy_portrait_frame_curator" position = { x = -6 y = -5 } alwaysTransparent = yes}	
+			position = { x = @hidden_ui_element_position y = @hidden_ui_element_position } # 11 50
+			size = { width = 964 height = 350 }}
+
+		### EMPIRE INFO ###
+
+		iconType = {name = "empire_info_bg" spriteType = "GFX_diplomacy_dark_fade_bg" alwaysTransparent = yes
+			position = { x = @hidden_ui_element_position y = @hidden_ui_element_position }} # 33 69
+
+		instantTextBoxType={name = "empire_name" font = "malgun_goth_24" text = "Kammarian Galactic Concordat" format = LEFT text_color_code = "E" fixedsize = yes
+			maxWidth = 450 maxHeight = 16 position = { x = @hidden_ui_element_position y = @hidden_ui_element_position }} # 45 75
+
+		instantTextBoxType={name = "empire_government_type" font = "cg_16b" text = "Autocracy" format = LEFT fixedsize = yes text_color_code = "Y"
+			maxWidth = 250 maxHeight = 16 position = { x = @hidden_ui_element_position y = @hidden_ui_element_position} } # 45 100
+
+		instantTextBoxType={name = "empire_personality_type" font = "cg_16b"text = "Despicable Neutrals" format = LEFT fixedsize = yes 
+			maxWidth = 250 maxHeight = 16 position = { x = @hidden_ui_element_position y = @hidden_ui_element_position}} # 45 117
+
+		OverlappingElementsBoxType = {name = "empire_ethics_icons" spacing = 2.0 format = left
+			size = { x = 240 y = 30 } position = { x = @hidden_ui_element_position y = @hidden_ui_element_position }} # 45 143
+
+		buttonType = {name = "empire_flag" quadTextureSprite = "GFX_empire_flag_128_curator" orientation = UPPER_LEFT
+			position = { x = @hidden_ui_element_position y = @hidden_ui_element_position }} # 25 240
+
+		containerWindowType = {name = "leader_details"
+			position = { x = @hidden_ui_element_position y = @hidden_ui_element_position } # 25 75
+
+			containerWindowType = {name = "empire_traits_box" background = {name = "ethics_bg" spriteType = "GFX_tiles_dark_area_cut_8"}
+				position = {x = 0 y = -5} size = {width = 210 height = 75}}
+
+			instantTextBoxType = {name = "empire_traits_label" font = "cg_16b" fixedSize = yes format = left text = "RULER_TRAITS" alwaysTransparent = yes
+				position = {x = 214 y = 37} maxWidth = 230 maxHeight = 20}
+
+			overlappingElementsBoxType = {name = "leader_traits" position = {x = 215 y = 55} size = {x = 125 y = 330}}
+
+			instantTextBoxType = {name = "leader_name" font = "cg_16b" fixedSize = yes format = left text = "Leader Name" text_color_code = "E"
+				position = {x = 10 y = 0} maxWidth = 330 maxHeight = 20}
+
+			instantTextBoxType = {name = "leader_species" font = "cg_16b" fixedSize = yes text = "Leader Species" format = left
+				position = {x = 10 y = 18} maxWidth = 330 maxHeight = 20}}
+
+		### OPINION
+		containerWindowType = {name = "opinion_window"
+			size = {width = 94 height = 30} position = {x = @hidden_ui_element_position y = @hidden_ui_element_position} # 27 110
+			
+			# Use this for tooltip area, picture comes from somewhere else
+			background = {name = "opinion_bg" spriteType = "GFX_tiled_window_transparent"}
+
+			iconType = {name = "their_opinion_icon" spriteType = "GFX_diplomacy_opinion" alwaysTransparent = yes
+				position = {x = 7 y = 4}}
+
+			instantTextBoxType = {name = "their_opinion" font = "cg_16b" format = left text = "100" alwaysTransparent = yes
+				maxWidth = 40 position = { x = 40 y = 7 }}}
+
+		### EVENT DIPLO ###
+
+		containerWindowType = {name = "EVENT_DIPLO" moveable = no
+			size = { width=563 height=280 } position = {x = @hidden_ui_element_position y = @hidden_ui_element_position} # 0 400
+			
+			instantTextBoxType = {name = "action_title" font = "malgun_goth_24" format = center alwaysTransparent = yes
+				position = { x = 0 y = 0 } maxWidth = 974}
+
+			instantTextBoxType = {name = "action_desc"font = "malgun_goth_24" Orientation = "UPPER_LEFT" format = center alwaysTransparent = yes text_color_code = "H"
+				position = { x = 490 y = 0 } maxWidth = 500 maxHeight = 180}
+
+			listboxType = {name = "option_list" spacing = 1 scrollbartype = "standardlistbox_slider" Orientation = "UPPER_LEFT"
+			size = {x=450 y=240} borderSize = {x = 0 y = 0} position = {x = 0 y = 240}}}} # pos 500, 20
+}

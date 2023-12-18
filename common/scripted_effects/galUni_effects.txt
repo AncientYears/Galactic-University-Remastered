@@ -1,0 +1,28 @@
+galUni_enable_disable_effect = {
+	optimize_memory
+	$EFFECT$ = galUni_$TYPE$_$ID$_on
+}
+
+galUni_move_to_phase_two = {
+	optimize_memory
+	$EFFECT$ = galUni_$NAME$_$TYPE$
+	remove_global_flag = galUni_hiring_phase_one
+	set_global_flag = galUni_hiring_phase_two
+	# Not working v FIX THAT...or find a different way to display another gui after button click\
+	# set_variable = { which = galUni_trait_main_pos_y value = 64 }
+	# set_variable = { which = galUni_phase_one_options_y value = -10000}
+	# set_variable = { which = galUni_phase_one_options_x value = -10000}
+	# event_target:galUni_data_storage = { set_variable = { which = galUni_trait_main_pos_y value = 64 }}
+	# event_target:galUni_data_storage = { set_variable = { which = galUni_trait_main_pos_x value = 10 }}
+}
+
+galUni_back_to_phase_one = {
+	optimize_memory
+	$EFFECT$ = galUni_$NAME$
+	set_global_flag = galUni_hiring_phase_one
+	remove_global_flag = galUni_hiring_phase_two
+	# set_variable = { which = galUni_trait_main_pos_x value = -10000 }
+	# set_variable = { which = galUni_trait_main_pos_y value = -10000 }
+	# set_variable = { which = galUni_phase_one_options_y value = 620}
+	# set_variable = { which = galUni_phase_one_options_x value = 760}
+}
