@@ -45,46 +45,21 @@ effectButtonType = {
  @galUni_phase_one_options_x = 0
  @galUni_phase_one_options_y = 50
 
-# containerWindowType = {
-	# name = "galUni_leader_main"
-	# size = {width = 800 height = 640}
-	# position = {x = @galUni_phase_one_options_x y = @galUni_phase_one_options_y}
-	# background = { name = "galUni_leader_main_background" quadTextureSprite = "GFX_invisible" alwaysTransparent = yes}
-
-	# effectButtonType = {
-	# 	name = "galUni_leader_official_button"
-	# 	quadTextureSprite = "GFX_standard_button_200_34_button"
-	# 	buttonFont = "cg_16b"
-	# 	buttonText = "Official"
-	# 	position = {x = 50 y = -17}
-	# 	orientation = CENTER
-	# 	effect = "galUni_leader_official_button_effect"
-	# }
-
-	# effectButtonType = {
-	# 	name = "galUni_leader_scientist_button"
-	# 	quadTextureSprite = "GFX_standard_button_200_34_button"
-	# 	buttonFont = "cg_16b"
-	# 	buttonText = "Scientist"
-	# 	position = {x = -100 y = -85}
-	# 	orientation = CENTER
-	# 	effect = "galUni_leader_scientist_button_effect"
-	# }
-
-	# effectButtonType = {
-	# 	name = "galUni_leader_commander_button"
-	# 	quadTextureSprite = "GFX_standard_button_200_34_button"
-	# 	buttonFont = "cg_16b"
-	# 	buttonText = "Commander"
-	# 	position = {x = -250 y = -17}
-	# 	orientation = CENTER
-	# 	effect = "galUni_leader_commander_button_effect"
-	# }
-# }
 # Phase 2 - Selecting Traits
 
  @galUni_trait_main_pos_x = 0
  @galUni_trait_main_pos_y = 50
+
+ effectButtonType = {
+	# Get tooltip to display from galUni.txt event file...
+	name =  "galUni_leader_create_button" # "confirm_button"
+	quadTextureSprite = "GFX_standard_button_200_34_button"
+	buttonFont = "cg_16b"
+	buttonText = "Create"
+	position = {x = -100 y = -58}
+	orientation = CENTER_DOWN
+	effect = "galUni_leader_create_button_effect"
+}
 
 containerWindowType = {
 	name = "galUni_trait_main"
@@ -132,78 +107,67 @@ containerWindowType = {
 
 containerWindowType = {name = "galUni_trait_main_body"
 	# BASIC VANILLA TRAITS
-	effectButtonType = {name = "basicCategoryText"
-		font = "cg_16b"
-		position = {x = 0 y = 0} 
-		text = "Basic" 
-		alwaysTransparent = yes
-		no_clicksound = yes
-		effect = "galUni_phase_two_do_nothing_button_effect"
-	}
+	effectButtonType = {name = "basicCategoryText" spriteType = "basic"	position = {x = 20 y = 0} alwaysTransparent = yes no_clicksound = yes
+		effect = "galUni_phase_two_do_nothing_button_effect"}
 
-	# containerWindowType = {name = "galUni_trait_main_body_type_name"
-		effectButtonType = {name = "galUni_traitOn_charismatic_on_off_background"
-			# font = "cg_16b"
-			# text = "balls"
-			position = {x = 0 y = 0}
-			spriteType = "GFX_leader_trait_charismatic" # "GFX_checkbox_20_20_01" # "GFX_leader_trait_charismatic"
-			effect = "galUni_traitOn"
-		}
-	
-		effectButtonType = {
-			name = "galUni_basic_charismatic_on"
-			position = {x = 50 y = 0}
-			spriteType = "GFX_galUni_checkbox_checked"
-			effect = "galUni_basic_charismatic_on_button_effect"
-		}
-	
-		effectButtonType = {
-			name = "galUni_basic_charismatic_off"
-			position = {x = 80 y = 0}
-			spriteType = "GFX_checkbox_20_20_01"
-			effect = "galUni_basic_charismatic_off_button_effect"
-		}
-	# }
-
-	effectButtonType = {name = "specialisedCategoryText"
-		font = "cg_16b"
-		text = "Specialised"
-		position = {x = 0 y = 100}
-		alwaysTransparent = yes
-		no_clicksound = yes
-		effect = "galUni_phase_two_do_nothing_button_effect"
-	}
-
-	effectButtonType = {name = "veteranCategoryText"
-		font = "cg_16b" 
-		text = "Veteran"
-		alwaysTransparent = yes
-		no_clicksound = yes
-		position = { x = 0 y = 200 } 
-		effect = "galUni_phase_two_do_nothing_button_effect"
-	}
-
-	effectButtonType = {name = "destinyCategoryText"
-		font = "cg_16b" 
-		text = "Destiny"
-		position = { x = 0 y = 300 }
-		alwaysTransparent = yes
-		no_clicksound = yes 
-		effect = "galUni_phase_two_do_nothing_button_effect"
-	}
-
+		containerWindowType = {name = "galUni_trait_main_body_type_name"
+			# background = {name = "soooooooooooooooo" quadTextureSprite = "GFX_invisible"} # to see basic trait container in guibounds
+			size = {width = 760 height = 100}
+			position = {x = 20 y = 50}
 		
-# # effectButtonType = {
-# # 	name = "galUni_basic_charismatic_header"
-# # 	position = {x = 30 y = 30}
-# # 	borderSize = {x = 2 y = 2}
-# # 	spriteType = "GFX_checkbox_20_20_01"
-# # 	text = "Basic"
-# # 	multiline = yes
-# # 	font = "cg_16b"
-# # 	no_clicksound = yes
-# # 	effect = "galUni_basic_charismatic_header_button_effect"
-# # }
+			# Adaptable
+			effectButtonType = {name = "galUni_trait_main_body_basic_adaptable_blank" position = {x = 0 y = 0} spriteType = "blank_trait" scale = 1
+				effect = "galUni_trait_main_body_basic_adaptable_button_effect"}
+	
+			effectButtonType = {name = "galUni_trait_main_body_basic_adaptable" position = {x = 0 y = 0} spriteType = "GFX_leader_trait_adaptable" scale = 1 alwaysTransparent = yes
+				effect = "galUni_phase_two_do_nothing_button_effect"}
+
+			effectButtonType = {name = "galUni_trait_main_body_basic_adaptable_selected" position = {x = 0 y = 0} spriteType = "GFX_traits_selected" scale = 0.85
+				effect = "galUni_trait_main_body_basic_adaptable_selected_button_effect"}
+
+			# Eager 
+			effectButtonType = {name = "galUni_trait_main_body_basic_eager_blank" position = {x = 40 y = 0} spriteType = "blank_trait" scale = 1
+			effect = "galUni_trait_main_body_basic_eager_button_effect"}
+
+			effectButtonType = {name = "galUni_trait_main_body_basic_eager" position = {x = 40 y = 0} spriteType = "GFX_leader_trait_eager" scale = 1 alwaysTransparent = yes
+			effect = "galUni_phase_two_do_nothing_button_effect"}
+
+			effectButtonType = {name = "galUni_trait_main_body_basic_eager_selected" position = {x = 40 y = 0} spriteType = "GFX_traits_selected" scale = 0.85
+			effect = "galUni_trait_main_body_basic_eager_selected_button_effect"}
+		}
+
+	effectButtonType = {name = "specialisedCategoryText" spriteType = "specialised" position = {x = 20 y = 150} alwaysTransparent = yes no_clicksound = yes
+		effect = "galUni_phase_two_do_nothing_button_effect"}
+
+		containerWindowType = {name = "galUni_trait_main_body_specialised_type_name"
+		# background = {name = "soooooooooooooooo" quadTextureSprite = "GFX_invisible"} # to see basic trait container in guibounds
+		size = {width = 760 height = 100} position = {x = 20 y = 200}
+		
+		# probably 3 different container windows or something for each class? idk
+		}
+
+		effectButtonType = {name = "veteranCategoryText" spriteType = "veteran" position = { x = 20 y = 300 } alwaysTransparent = yes no_clicksound = yes
+		effect = "galUni_phase_two_do_nothing_button_effect"}
+		
+		containerWindowType = {name = "galUni_trait_main_body_veteran_type_name"
+		# background = {name = "soooooooooooooooo" quadTextureSprite = "GFX_invisible"} # to see basic trait container in guibounds
+		size = {width = 760 height = 100}
+			position = {x = 20 y = 350}	
+
+			# Adventurous Spirit
+			effectButtonType = {name = "galUni_trait_main_body_basic_adventurous_spirit_blank" position = {x = 0 y = 0} spriteType = "blank_trait" scale = 1
+			effect = "galUni_trait_main_body_basic_adventurous_spirit_button_effect"}
+	
+			effectButtonType = {name = "galUni_trait_main_body_basic_adventurous_spirit" position = {x = 0 y = 0} spriteType = "GFX_leader_trait_adventurous_spirit" scale = 1 alwaysTransparent = yes
+			effect = "galUni_phase_two_do_nothing_button_effect"}
+	
+			effectButtonType = {name = "galUni_trait_main_body_basic_adventurous_spirit_selected" position = {x = 0 y = 0} spriteType = "GFX_traits_selected" scale = 0.85
+			effect = "galUni_trait_main_body_basic_adventurous_spirit_selected_button_effect"}
+		}
+
+	effectButtonType = {name = "destinyCategoryText" spriteType = "destiny" position = { x = 20 y = 450 } alwaysTransparent = yes no_clicksound = yes 
+		effect = "galUni_phase_two_do_nothing_button_effect"}
+		# containerwindow...
 }
 }
 

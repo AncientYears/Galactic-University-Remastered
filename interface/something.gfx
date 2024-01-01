@@ -4,6 +4,13 @@ spriteType = {
 	textureFile = "gfx/interface/testImage.dds"
 }
 
+spriteType = {name = "blank_trait" textureFile = "gfx/interface/blank_trait.dds"}
+spriteType = {name = "basic" textureFile = "gfx/interface/basic.dds"}
+spriteType = {name = "destiny" textureFile = "gfx/interface/destiny.dds"}
+spriteType = {name = "specialised" textureFile = "gfx/interface/specialised.dds"}
+spriteType = {name = "veteran" textureFile = "gfx/interface/veteran.dds"}
+
+
 spriteType = {
 	name = "GFX_event_button_452_curator_better"
 	texturefile = "gfx/interface/buttons/better_button_maybe.dds"

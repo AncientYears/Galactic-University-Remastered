@@ -1,0 +1,22 @@
+﻿l_english:
+ # Common
+ galTitle:0 "Gal Uni stuffs idk"
+
+ #############################
+ # University Window
+ #############################
+ someLoc:0 "[galUni.GetName]"
+ balls:0 "Balls"
+
+ ############################
+ # TRAITS 
+ ###########################
+ totalCost:0 "§R£energy£§$@galUni_hiringCost$§!\nare needed to hire this leader."
+ # Regular Traits
+ galUni_trait_tooltip_leader_trait_basic_adaptable:0 "§H$leader_trait_adaptable$§!\n§cLeader Trait§!\n\n$THIS_LEADER_TXT$:\n$t$$MOD_LEADER_SPECIES_EXP_GAIN$:§G +10%§!\n--------------\n§L$leader_trait_adaptable_desc$§!"
+
+ galUni_trait_tooltip_leader_trait_basic_eager:0 "§H$leader_trait_eager$§!\n§cLeader Trait§!\n\n$THIS_LEADER_TXT$:\n$t$$mod_leaders_cost_mult$: §G-50%§!\n$t$$mod_leaders_upkeep_mult$:§G -5%§!\n\n$t$Does not use Leader Capacity while under Level 4.\n--------------\n§L$leader_trait_eager_desc$§!"
+ 
+ # Veteran Traits 
+ galUni_trait_tooltip_leader_trait_veteran_adventurous_spirit:0 "§H$leader_trait_adventurous_spirit$§!\n§vVeteran Leader Trait§!\n\n$THIS_LEADER_TXT$:\n$t$$mod_leaders_upkeep_mult$:§G -10%§!\n\n$leader_trait_adventurous_spirit_effect$\n--------------\n§L$leader_trait_adventurous_spirit_desc$§!"
+

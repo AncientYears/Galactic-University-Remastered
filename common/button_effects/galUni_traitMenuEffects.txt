@@ -1,29 +1,13 @@
-galUni_phase_two_do_nothing_button_effect = {
-    potential = {has_global_flag = galUni_hiring_phase_two}
-    allow = {always = yes}
-}
-
-galUni_leader_back_button_effect = {
-    potential = {has_global_flag = galUni_hiring_menu_opened}
-    # Add an if variable = -10000... Do nothing, if not set it to -10000 ? Maybe.
-    allow = {}
-    effect = {
-        custom_tooltip = "Go back to leader selection"
-        hidden_effect = {
-            galUni_back_to_phase_one = {EFFECT = set_global_flag NAME = PHASE_ONE}            
-        }
-    }
-    }
-
+# Phase 0 - Close Button
 galUni_close_button_effect = {
     potential = {has_global_flag = galUni_hiring_menu_opened}
     allow = {}
     effect = {
         custom_tooltip = "Close the menu"
         hidden_effect = {
+            galUni_reset_hiring_menu = yes
             remove_global_flag = galUni_hiring_phase_one
             remove_global_flag = galUni_hiring_menu_opened
-            remove_global_flag = galUni_hiring_phase_two
         }
     }
 }
@@ -35,7 +19,10 @@ galUni_leader_official_button_effect = {
     effect = {
         custom_tooltip = "Hire an official"
         hidden_effect = {
-            galUni_move_to_phase_two = {EFFECT = set_global_flag NAME = PHASE_TWO TYPE = OFFICIAL}            
+            remove_global_flag = galUni_hiring_phase_one
+            set_global_flag = galUni_hiring_phase_two
+            galUni_move_to_phase_two = {EFFECT = set_global_flag NAME = PHASE_TWO TYPE = official}            
+            set_variable = {which = galUni_leader_type value = 2}
         }
     }
 }
@@ -46,7 +33,10 @@ galUni_leader_commander_button_effect = {
     effect = {
         custom_tooltip = "Hire a commander"
         hidden_effect = {
-            galUni_move_to_phase_two = {EFFECT = set_global_flag NAME = PHASE_TWO TYPE = COMMANDER}            
+            remove_global_flag = galUni_hiring_phase_one
+            set_global_flag = galUni_hiring_phase_two
+            galUni_move_to_phase_two = {EFFECT = set_global_flag NAME = PHASE_TWO TYPE = commander}            
+            set_variable = {which = galUni_leader_type value = 1}
         }
     }
     }
@@ -57,71 +47,182 @@ galUni_leader_scientist_button_effect = {
     effect = {
         custom_tooltip = "Hire a scientist"
         hidden_effect = {
-            galUni_move_to_phase_two = {EFFECT = set_global_flag NAME = PHASE_TWO TYPE = SCIENTIST}            
+            remove_global_flag = galUni_hiring_phase_one
+            set_global_flag = galUni_hiring_phase_two
+            galUni_move_to_phase_two = {EFFECT = set_global_flag NAME = PHASE_TWO TYPE = scientist} 
+            set_variable = {which = galUni_leader_type value = 0}           
         }
     }
     }
 
+# Phase 2 - Selecting Traits & Back button
+galUni_leader_back_button_effect = {
+    potential = {
+        has_global_flag = galUni_hiring_menu_opened
+        has_global_flag = galUni_hiring_phase_two}
+    allow = {}
+    effect = {
+        custom_tooltip = "Go back to leader selection"
+        hidden_effect = {
+            galUni_reset_hiring_menu = yes
+            set_global_flag = galUni_hiring_phase_one
+        }
+    }
+    }
 
-
-
-
-
-
-
-
-
-
-
+    galUni_phase_two_do_nothing_button_effect = {
+        potential = {has_global_flag = galUni_hiring_phase_two}
+        allow = {always = yes}
+    }
     
-# Phase 2 - Selecting Traits
-galUni_traitOn = {
-	potential = {
-		
-	}
-    #potential = { has_global_flag = nsc_modmenu_ship_class_page_opened }
-    allow = { always = yes }
-}
+    galUni_trait_main_body_basic_adaptable_selected_button_effect = {
+        potential = {
+            has_global_flag = galUni_trait_BASIC_ADAPTABLE_selected
+            has_global_flag = galUni_hiring_phase_two
+        }
+        allow = {always = yes}
+    }
+    
+    galUni_trait_main_body_basic_adaptable_button_effect = {
+        potential = {
+            has_global_flag = galUni_hiring_phase_two
+            # NOT = {has_global_flag = galUni_trait_BASIC_ADAPTABLE_selected}
+        }
+        allow = {always = yes}
+        effect = {
+            custom_tooltip = galUni_trait_tooltip_leader_trait_basic_adaptable
 
-galUni_basic_charismatic_off_button_effect = {
-    potential = {
-        #has_global_flag = nsc_modmenu_ship_class_page_opened
-        NOT = {galUni_on_trigger = { TYPE = basic ID = charismatic }}
+            hidden_effect = {
+                # effect to enable
+                if = {limit = {has_global_flag = galUni_trait_BASIC_ADAPTABLE_selected}
+                    galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = ADAPTABLE}
+                    subtract_variable = {which = galUni_hiringCost value = 1000}
+                    #subtract_variable = {which = galUni_num_traits value = 1}
+                    subtract_variable = {which = galUni_basic_adaptable value = 1}
+                } else = {
+                    galUni_trait_enable_disable_effect = {EFFECT = set_global_flag TYPE = BASIC NAME = ADAPTABLE}   
+                    change_variable = {which = galUni_hiringCost value = 1000}
+                    #change_variable = {which = galUni_num_traits value = 1}
+                    change_variable = {which = galUni_basic_adaptable value = 1}
+                }
+            }
+        }
     }
-    allow = {
-		# nsc_modmenu_mp_host_trigger = yes }
-	}
-		effect = {
-        custom_tooltip = galUni_disable_effect_tooltip
-        hidden_effect = { galUni_enable_disable_effect = { EFFECT = set_global_flag TYPE = basic ID = charismatic } } #click to 'enable' the content
-    }
-}
 
-galUni_basic_charismatic_on_button_effect = {
-    potential = {
-        #has_global_flag = nsc_modmenu_ship_class_page_opened
-        galUni_on_trigger = { TYPE = basic ID = charismatic }
+    galUni_trait_main_body_basic_eager_selected_button_effect = {
+        potential = {
+            has_global_flag = galUni_trait_BASIC_EAGER_selected
+            has_global_flag = galUni_hiring_phase_two
+        }
+        allow = {always = yes}
     }
-    allow = {
-		# nsc_modmenu_mp_host_trigger = yes }
-	}
-		effect = {
-        custom_tooltip = galUni_enable_effect_tooltip
-        hidden_effect = { galUni_enable_disable_effect = { EFFECT = remove_global_flag TYPE = basic ID = charismatic } } #click to 'disable' the content
-    }
-}
 
-galUni_basic_charismatic_header_button_effect = {
-    potential = {
-        #has_global_flag = nsc_modmenu_ship_class_page_opened
-        #galUni_on_trigger = { TYPE = basic ID = charismatic }
+    galUni_trait_main_body_basic_eager_button_effect = {
+        inline_script = {
+            script = galUni_trait_inline
+            trait_tool = galUni_trait_tooltip_leader_trait_basic_eager
+            flag = galUni_trait_BASIC_EAGER_selected
+            type = BASIC
+            trait_name = EAGER
+            trait_id = galUni_basic_eager
+            cost = 1000
+        }
     }
-    allow = {
-        always = yes
-		# nsc_modmenu_mp_host_trigger = yes }
-	}
-		effect = {
-        custom_tooltip = "Charismatic"
-        #hidden_effect = { galUni_enable_disable_effect = { EFFECT = remove_global_flag TYPE = basic ID = charismatic } } #click to 'disable' the content
+
+    galUni_trait_main_body_basic_adventurous_spirit_selected_button_effect = {
+        potential = {
+            has_global_flag = galUni_trait_BASIC_ADVENTUROUS_SPIRIT_selected
+            has_global_flag = galUni_hiring_phase_two
+        }
+        allow = {always = yes}
     }
-}
+    
+    galUni_trait_main_body_basic_adventurous_spirit_button_effect = {
+        potential = {
+            has_global_flag = galUni_hiring_phase_two
+            # NOT = {has_global_flag = galUni_trait_BASIC_ADVENTUROUS_SPIRIT_selected}
+        }
+        allow = {always = yes}
+        effect = {
+            custom_tooltip = galUni_trait_tooltip_leader_trait_veteran_adventurous_spirit
+
+            hidden_effect = {
+                # effect to enable
+                if = {limit = {has_global_flag = galUni_trait_BASIC_ADVENTUROUS_SPIRIT_selected}
+                    galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = ADVENTUROUS_SPIRIT}
+                    subtract_variable = {which = galUni_hiringCost value = 1000}
+                    #subtract_variable = {which = galUni_num_traits value = 1}
+                    subtract_variable = {which = galUni_basic_adventurous_spirit value = 1}
+                } else = {
+                    galUni_trait_enable_disable_effect = {EFFECT = set_global_flag TYPE = BASIC NAME = ADVENTUROUS_SPIRIT}   
+                    change_variable = {which = galUni_hiringCost value = 1000}
+                    #change_variable = {which = galUni_num_traits value = 1}
+                    change_variable = {which = galUni_basic_adventurous_spirit value = 1}
+                }
+            }
+        }
+    }
+
+    # Finally, Create leader...
+    galUni_leader_create_button_effect = {
+        potential = {
+            # has_resource = {type = energy amount > @galUni_hiringCost}
+            has_global_flag = galUni_hiring_phase_two
+            # check_variable = {which = galUni_hiringCost value > 0}
+        }
+        allow = {
+            # custom_tooltip = "work..?"
+            resource_stockpile_compare = {
+				resource = energy
+				value >= galUni_hiringCost
+			}
+            # custom_tooltip = {
+                # fail_text = totalCost
+                # fail_text = "Not enough energy..."
+                # hidden_trigger = {has_resource = {type = energy amount < @galUni_hiringCost}}
+                # hidden_trigger = {check_variable = {which = galUni_hiringCost value > 0}}
+            # }
+        }
+    
+        effect = {
+            custom_tooltip = "create leader (add price here late i guess)"
+            hidden_effect = {
+                create_leader = {name = random
+                    species = owner_main_species
+                    class = random
+                    randomize_traits = no
+                }
+
+                last_created_leader = {
+                    set_variable_to_random_value = {which = leader_skill min = 1 max = 3 rounded = yes}
+                    set_variable_to_random_value = {which = leader_age min = 20 max = 30 rounded = yes}
+                    set_skill = leader_skill
+                    set_age = leader_age
+                    
+                    owner = {
+                    if = {limit = { check_variable = {which = galUni_leader_type value = 0}} 
+                        last_created_leader = {change_leader_class = scientist}
+                    }  else_if = {limit = { check_variable = {which = galUni_leader_type value = 1}}
+                        last_created_leader = {change_leader_class = commander}
+                    } else_if = {limit = { check_variable = {which = galUni_leader_type value = 2}}
+                        last_created_leader = {change_leader_class = official}
+                    }
+                    }
+
+                # Add traits...
+                owner = {
+                    if = {limit = { check_variable = {which = galUni_basic_adaptable value = 1}}
+                        last_created_leader = {add_trait = leader_trait_adaptable}
+                        subtract_variable = {which = galUni_basic_adaptable value = 1}}
+                    if = {limit = { check_variable = {which = galUni_basic_adventurous_spirit value = 1}}
+                        last_created_leader = {add_trait = leader_trait_adventurous_spirit}
+                        subtract_variable = {which = galUni_basic_adventurous_spirit value = 1}}
+                    if = {limit = {check_variable = {which = galUni_basic_eager value = 1}}
+                        last_created_leader = {add_trait = leader_trait_eager}
+                        subtract_variable = {which = galUni_basic_eager value = 1}}
+                    # Same thing for.......every single trait
+                }
+                }
+            }
+        }
+    }

@@ -1,0 +1,23 @@
+potential = {
+	has_global_flag = galUni_hiring_phase_two
+	# NOT = {has_global_flag = galUni_trait_BASIC_ADVENTUROUS_SPIRIT_selected}
+}
+allow = {always = yes}
+effect = {
+	custom_tooltip = $trait_tool$
+
+	hidden_effect = {
+		# effect to enable
+		if = {limit = {has_global_flag = $flag$}
+			galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = $type$ NAME = $trait_name$}
+			subtract_variable = {which = galUni_hiringCost value = $cost$}
+			#subtract_variable = {which = galUni_num_traits value = 1}
+			subtract_variable = {which = $trait_id$ value = 1}
+		} else = {
+			galUni_trait_enable_disable_effect = {EFFECT = set_global_flag TYPE = $type$ NAME = $trait_name$}   
+			change_variable = {which = galUni_hiringCost value = $cost$}
+			#change_variable = {which = galUni_num_traits value = 1}
+			change_variable = {which = $trait_id$ value = 1}
+		}
+	}
+}

@@ -1,0 +1,11 @@
+@galUni_base_basic_price = 1000
+@galUni_base_specialised_price = 2000
+@galUni_base_veteran_price = 5000
+@galUni_base_destiny_price = 10000
+
+@galUni_num_traits = 0
+@galUni_hiringCost = 0
+
+# Traits...
+@galUni_basic_adaptable = 0
+@galUni_basic_adventurous_spirit = 0

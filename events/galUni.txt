@@ -5,12 +5,12 @@ event = {
 	hide_window = yes
 	is_triggered_only = yes
 
-	trigger = {
-		NOR = {
+	# trigger = {
+		# NOR = {
 			# has_global_flag = nsc_on_press_begin
-			any_country = { is_country_type = galUni_data_storage }
-		}
-	}
+			# any_country = { is_country_type = galUni_data_storage }
+		# }
+	# }
 
 	immediate = {
 		# nsc_modmenu_reset_all_settings_effect = yes
@@ -36,6 +36,16 @@ country_event = { # impossible to close menu
 	}
 	option = {
 		name = ""
+		hidden_effect = {
+			# galUni_reset_hiring_menu = yes
+		}
+		# custom_tooltip = "bob probably"
+		# trigger = {
+		# 	check_variable = {
+		# 		which = galUni_hiringCost
+		# 		value > 0
+		# 	}
+		# }
 #		custom_gui = "enclave_funni_button"
 #		set_country_flag = "Bob"
 	} 
@@ -83,17 +93,17 @@ country_event = {
 	is_triggered_only = yes
 
 	immediate = {
-		@leader_age = 0
-		set_variable_to_random_value = { # no work
-			which = @leader_age
-			min = 20
-			max = 40
-			rounded = no
-		}
+		# @leader_age = 0
+		# set_variable_to_random_value = { # no work
+		# 	which = leader_age
+		# 	min = 20
+		# 	max = 40
+		# 	rounded = no
+		# }
 
 		@leader_num_traits = 0
 		set_variable_to_random_value = { # no work
-			which = @leader_num_traits
+			which = leader_num_traits
 			min = 1
 			max = 10
 			rounded = no
@@ -104,7 +114,7 @@ country_event = {
 			name = random # work
 			species = root # works
 			skill = random # doesnt work skill is 1
-			set_age = @leader_age # doesnt work age is 0
+			set_age = 2 # @leader_age # doesnt work age is 0
 			randomize_traits = yes # no traits on leader...
 		}
 	}

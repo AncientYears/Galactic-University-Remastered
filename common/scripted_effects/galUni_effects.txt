@@ -1,28 +1,22 @@
-galUni_enable_disable_effect = {
+galUni_trait_enable_disable_effect = {
 	optimize_memory
-	$EFFECT$ = galUni_$TYPE$_$ID$_on
+	$EFFECT$ = galUni_trait_$TYPE$_$NAME$_selected
 }
 
 galUni_move_to_phase_two = {
 	optimize_memory
 	$EFFECT$ = galUni_$NAME$_$TYPE$
-	remove_global_flag = galUni_hiring_phase_one
-	set_global_flag = galUni_hiring_phase_two
-	# Not working v FIX THAT...or find a different way to display another gui after button click\
-	# set_variable = { which = galUni_trait_main_pos_y value = 64 }
-	# set_variable = { which = galUni_phase_one_options_y value = -10000}
-	# set_variable = { which = galUni_phase_one_options_x value = -10000}
-	# event_target:galUni_data_storage = { set_variable = { which = galUni_trait_main_pos_y value = 64 }}
-	# event_target:galUni_data_storage = { set_variable = { which = galUni_trait_main_pos_x value = 10 }}
 }
 
-galUni_back_to_phase_one = {
+galUni_reset_hiring_menu = {
 	optimize_memory
-	$EFFECT$ = galUni_$NAME$
-	set_global_flag = galUni_hiring_phase_one
+	set_variable = {which = galUni_hiringCost value = 0}
 	remove_global_flag = galUni_hiring_phase_two
-	# set_variable = { which = galUni_trait_main_pos_x value = -10000 }
-	# set_variable = { which = galUni_trait_main_pos_y value = -10000 }
-	# set_variable = { which = galUni_phase_one_options_y value = 620}
-	# set_variable = { which = galUni_phase_one_options_x value = 760}
+	
+	galUni_move_to_phase_two = {EFFECT = remove_global_flag NAME = PHASE_TWO TYPE = official}   
+	galUni_move_to_phase_two = {EFFECT = remove_global_flag NAME = PHASE_TWO TYPE = commander}
+	galUni_move_to_phase_two = {EFFECT = remove_global_flag NAME = PHASE_TWO TYPE = scientist}
+
+	galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = ADAPTABLE} 
+	galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = ADVENTUROUS_SPIRIT}
 }

@@ -1,4 +1,4 @@
-galUni_data_storage = {
+galUni_trait_storage = {
 	playable = no
 	has_pulse_events = no
 	show_in_contacts_list = no
