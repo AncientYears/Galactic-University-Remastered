@@ -118,6 +118,7 @@ containerWindowType = {name = "galUni_trait_main_body"
 			# Adaptable
 			effectButtonType = {name = "galUni_trait_main_body_basic_adaptable_blank" position = {x = 0 y = 0} spriteType = "blank_trait" scale = 1
 				effect = "galUni_trait_main_body_basic_adaptable_button_effect"}
+				# effect = "fakeLeaderThingy"}
 	
 			effectButtonType = {name = "galUni_trait_main_body_basic_adaptable" position = {x = 0 y = 0} spriteType = "GFX_leader_trait_adaptable" scale = 1 alwaysTransparent = yes
 				effect = "galUni_phase_two_do_nothing_button_effect"}

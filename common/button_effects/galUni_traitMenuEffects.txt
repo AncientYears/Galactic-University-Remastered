@@ -89,8 +89,12 @@ galUni_leader_back_button_effect = {
             # NOT = {has_global_flag = galUni_trait_BASIC_ADAPTABLE_selected}
         }
         allow = {always = yes}
-        effect = {
-            custom_tooltip = galUni_trait_tooltip_leader_trait_basic_adaptable
+
+        effect = {            
+            # custom_tooltip = galUni_trait_tooltip_leader_trait_basic_adaptable
+            custom_tooltip = ['trait:leader_trait_adaptable']
+            # custom_tooltip = ['trait:leader_trait_adaptable_effect']
+            custom_tooltip = ['trait:leader_trait_adaptable_desc']
 
             hidden_effect = {
                 # effect to enable
@@ -226,3 +230,34 @@ galUni_leader_back_button_effect = {
             }
         }
     }
+
+    # fakeLeaderThingy = {
+    #     potential = { always = yes }
+
+    #     allow = { always = yes }
+
+    #     effect = {
+    #         custom_tooltip = "abcdefgh" # displays
+
+    #         last_created_leader = {
+    #             # Somehow display only leader trait...
+    #             custom_tooltip = "[trait:leader_trait_adaptable]" # nothing dispalys
+    #             custom_tooltip = "[This.Species]" # nothing displays
+
+    #             custom_tooltip = "[leader_trait_adaptable]" # nohting disaplys
+    #         }
+
+    #         hidden_effect = {
+    #             create_leader = { 
+    #                 class = official
+    #                 traits = { trait = leader_trait_adaptable }
+    #             }
+
+    #             last_created_leader = {
+    #                 # custom_tooltip = "b" does nothing
+    
+    #                 kill_leader = {}
+    #             }
+    #         }
+    #     }
+    # }
