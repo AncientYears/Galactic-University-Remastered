@@ -1,23 +1,113 @@
 potential = {
 	has_global_flag = galUni_hiring_phase_two
+	if = {limit = {$type$ = SPECIALISED}
+		OR = {
+			$leader_type$
+		}
+	}
+
+            # NOT = {has_global_flag = galUni_trait_BASIC_ADAPTABLE_selected}
 	# NOT = {has_global_flag = galUni_trait_BASIC_ADVENTUROUS_SPIRIT_selected}
 }
 allow = {always = yes}
 effect = {
-	custom_tooltip = $trait_tool$
+	tooltip = {add_trait = $trait_tool$}
+	custom_tooltip = "$trait_tool$_desc"
 
-	hidden_effect = {
+	# hidden_effect = {
 		# effect to enable
+					# set_variable = {
+				# which = galUni_hiringCost
+				# value = 0
+			# }
+
 		if = {limit = {has_global_flag = $flag$}
-			galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = $type$ NAME = $trait_name$}
-			subtract_variable = {which = galUni_hiringCost value = $cost$}
+			root = {galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = $type$ NAME = $trait_name$}}
+			root = {subtract_variable = {which = galUni_hiringCost value = $cost$}}
 			#subtract_variable = {which = galUni_num_traits value = 1}
-			subtract_variable = {which = $trait_id$ value = 1}
+			root = {set_variable = {which = $trait_id$ value = 1}}
 		} else = {
-			galUni_trait_enable_disable_effect = {EFFECT = set_global_flag TYPE = $type$ NAME = $trait_name$}   
-			change_variable = {which = galUni_hiringCost value = $cost$}
+			root = {galUni_trait_enable_disable_effect = {EFFECT = set_global_flag TYPE = $type$ NAME = $trait_name$}}   
+			root = {change_variable = {which = galUni_hiringCost value = $cost$}}
 			#change_variable = {which = galUni_num_traits value = 1}
-			change_variable = {which = $trait_id$ value = 1}
-		}
+			root = {set_variable = {which = $trait_id$ value = 1}}
+
+			if = {limit = {$trait_name$ = EAGER} root = {galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = ADVENTUROUS_SPIRIT}}
+			root = {set_variable = {which = galUni_basic_adventurous_spirit value = 0}}}
+
+			if = {limit = {$trait_name$ = ADVENTUROUS_SPIRIT} root = {galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = EAGER}}
+			root = {set_variable = {which = galUni_basic_eager value = 0}}}
+
+			if = {limit = {$trait_name$ = CAPITALIST} root = {
+				galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = PRIVATE_MINES}
+				galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = HOMESTEADER}
+				galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = SCRAPPER}
+				galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = ENTREPRENEUR}
+				galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = VENERATED}}
+				root = {set_variable = {which = galUni_basic_private_mines value = 0}}
+				root = {set_variable = {which = galUni_basic_homesteader value = 0}}
+				root = {set_variable = {which = galUni_basic_scrapper value = 0}}
+				root = {set_variable = {which = galUni_basic_entrepreneur value = 0}}
+				root = {set_variable = {which = galUni_basic_venerated value = 0}}}
+
+			if = {limit = {$trait_name$ = PRIVATE_MINES} root = {
+				galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = CAPITALIST}
+				galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = HOMESTEADER}
+				galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = SCRAPPER}
+				galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = ENTREPRENEUR}
+				galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = VENERATED}}
+				root = {set_variable = {which = galUni_basic_capitalist value = 0}}
+				root = {set_variable = {which = galUni_basic_homesteader value = 0}}
+				root = {set_variable = {which = galUni_basic_scrapper value = 0}}
+				root = {set_variable = {which = galUni_basic_entrepreneur value = 0}}
+				root = {set_variable = {which = galUni_basic_venerated value = 0}}}
+
+			if = {limit = {$trait_name$ = HOMESTEADER} root = {
+				galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = PRIVATE_MINES}
+				galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = CAPITALIST}
+				galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = SCRAPPER}
+				galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = ENTREPRENEUR}
+				galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = VENERATED}}
+				root = {set_variable = {which = galUni_basic_private_mines value = 0}}
+				root = {set_variable = {which = galUni_basic_capitalist value = 0}}
+				root = {set_variable = {which = galUni_basic_scrapper value = 0}}
+				root = {set_variable = {which = galUni_basic_entrepreneur value = 0}}
+				root = {set_variable = {which = galUni_basic_venerated value = 0}}}
+
+			if = {limit = {$trait_name$ = SCRAPPER} root = {
+				galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = PRIVATE_MINES}
+				galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = CAPITALIST}
+				galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = HOMESTEADER}
+				galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = ENTREPRENEUR}
+				galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = VENERATED}}
+				root = {set_variable = {which = galUni_basic_private_mines value = 0}}
+				root = {set_variable = {which = galUni_basic_capitalist value = 0}}
+				root = {set_variable = {which = galUni_basic_homesteader value = 0}}
+				root = {set_variable = {which = galUni_basic_entrepreneur value = 0}}
+				root = {set_variable = {which = galUni_basic_venerated value = 0}}}
+
+			if = {limit = {$trait_name$ = ENTREPRENEUR} root = {
+				galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = PRIVATE_MINES}
+				galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = CAPITALIST}
+				galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = SCRAPPER}
+				galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = HOMESTEADER}
+				galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = VENERATED}}
+				root = {set_variable = {which = galUni_basic_private_mines value = 0}}
+				root = {set_variable = {which = galUni_basic_capitalist value = 0}}
+				root = {set_variable = {which = galUni_basic_scrapper value = 0}}
+				root = {set_variable = {which = galUni_basic_homesteader value = 0}}
+				root = {set_variable = {which = galUni_basic_venerated value = 0}}}
+
+			if = {limit = {$trait_name$ = VENERATED} root = {
+				galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = PRIVATE_MINES}
+				galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = CAPITALIST}
+				galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = SCRAPPER}
+				galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = ENTREPRENEUR}
+				galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = HOMESTEADER}}
+				root = {set_variable = {which = galUni_basic_private_mines value = 0}}
+				root = {set_variable = {which = galUni_basic_capitalist value = 0}}
+				root = {set_variable = {which = galUni_basic_scrapper value = 0}}
+				root = {set_variable = {which = galUni_basic_entrepreneur value = 0}}
+				root = {set_variable = {which = galUni_basic_homesteader value = 0}}}
 	}
 }

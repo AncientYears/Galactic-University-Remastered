@@ -4,11 +4,11 @@ galUni_close_button_effect = {
     allow = {}
     effect = {
         custom_tooltip = "Close the menu"
-        hidden_effect = {
+        # hidden_effect = {
             galUni_reset_hiring_menu = yes
             remove_global_flag = galUni_hiring_phase_one
             remove_global_flag = galUni_hiring_menu_opened
-        }
+        # }
     }
 }
 
@@ -18,12 +18,12 @@ galUni_leader_official_button_effect = {
     allow = {}
     effect = {
         custom_tooltip = "Hire an official"
-        hidden_effect = {
+        # hidden_effect = {
             remove_global_flag = galUni_hiring_phase_one
             set_global_flag = galUni_hiring_phase_two
             galUni_move_to_phase_two = {EFFECT = set_global_flag NAME = PHASE_TWO TYPE = official}            
             set_variable = {which = galUni_leader_type value = 2}
-        }
+        # }
     }
 }
 
@@ -32,12 +32,12 @@ galUni_leader_commander_button_effect = {
     allow = {}
     effect = {
         custom_tooltip = "Hire a commander"
-        hidden_effect = {
+        # hidden_effect = {
             remove_global_flag = galUni_hiring_phase_one
             set_global_flag = galUni_hiring_phase_two
             galUni_move_to_phase_two = {EFFECT = set_global_flag NAME = PHASE_TWO TYPE = commander}            
             set_variable = {which = galUni_leader_type value = 1}
-        }
+        # }
     }
     }
 
@@ -46,12 +46,12 @@ galUni_leader_scientist_button_effect = {
     allow = {}
     effect = {
         custom_tooltip = "Hire a scientist"
-        hidden_effect = {
+        # hidden_effect = {
             remove_global_flag = galUni_hiring_phase_one
             set_global_flag = galUni_hiring_phase_two
             galUni_move_to_phase_two = {EFFECT = set_global_flag NAME = PHASE_TWO TYPE = scientist} 
             set_variable = {which = galUni_leader_type value = 0}           
-        }
+        # }
     }
     }
 
@@ -63,10 +63,10 @@ galUni_leader_back_button_effect = {
     allow = {}
     effect = {
         custom_tooltip = "Go back to leader selection"
-        hidden_effect = {
+        # hidden_effect = {
             galUni_reset_hiring_menu = yes
             set_global_flag = galUni_hiring_phase_one
-        }
+        # }
     }
     }
 
@@ -75,99 +75,593 @@ galUni_leader_back_button_effect = {
         allow = {always = yes}
     }
     
-    galUni_trait_main_body_basic_adaptable_selected_button_effect = {
-        potential = {
-            has_global_flag = galUni_trait_BASIC_ADAPTABLE_selected
-            has_global_flag = galUni_hiring_phase_two
-        }
-        allow = {always = yes}
-    }
-    
-    galUni_trait_main_body_basic_adaptable_button_effect = {
-        potential = {
-            has_global_flag = galUni_hiring_phase_two
-            # NOT = {has_global_flag = galUni_trait_BASIC_ADAPTABLE_selected}
-        }
-        allow = {always = yes}
-
-        effect = {            
-            # custom_tooltip = galUni_trait_tooltip_leader_trait_basic_adaptable
-            custom_tooltip = ['trait:leader_trait_adaptable']
-            # custom_tooltip = ['trait:leader_trait_adaptable_effect']
-            custom_tooltip = ['trait:leader_trait_adaptable_desc']
-
-            hidden_effect = {
-                # effect to enable
-                if = {limit = {has_global_flag = galUni_trait_BASIC_ADAPTABLE_selected}
-                    galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = ADAPTABLE}
-                    subtract_variable = {which = galUni_hiringCost value = 1000}
-                    #subtract_variable = {which = galUni_num_traits value = 1}
-                    subtract_variable = {which = galUni_basic_adaptable value = 1}
-                } else = {
-                    galUni_trait_enable_disable_effect = {EFFECT = set_global_flag TYPE = BASIC NAME = ADAPTABLE}   
-                    change_variable = {which = galUni_hiringCost value = 1000}
-                    #change_variable = {which = galUni_num_traits value = 1}
-                    change_variable = {which = galUni_basic_adaptable value = 1}
-                }
+    # Adaptable
+        galUni_trait_main_body_basic_adaptable_selected_button_effect = {
+            potential = {
+                has_global_flag = galUni_trait_BASIC_ADAPTABLE_selected
+                has_global_flag = galUni_hiring_phase_two
             }
+            allow = {always = yes}
         }
-    }
 
-    galUni_trait_main_body_basic_eager_selected_button_effect = {
+        galUni_trait_main_body_basic_adaptable_disabled_button_effect = {
+            potential = {
+                has_global_flag = galUni_hiring_phase_two
+                OR = {
+                    always = no
+                }
+                NOT = {has_global_flag = galUni_trait_BASIC_ADAPTABLE_selected}
+            }
+            allow = {always = yes}
+        }
+    
+         galUni_trait_main_body_basic_adaptable_button_effect = {
+            # effect = {            
+                # tooltip = {add_trait = leader_trait_adaptable} 
+                # custom_tooltip = "[§L]$leader_trait_adaptable_desc$[§!]"
+                # custom_tooltip = galUni_trait_tooltip_leader
+
+            inline_script = {
+                script = galUni_trait_inline
+                trait_tool = leader_trait_adaptable
+                flag = galUni_trait_BASIC_ADAPTABLE_selected
+                type = BASIC
+                trait_name = ADAPTABLE
+                trait_id = galUni_basic_adaptable
+                cost = 1000
+            }
+         }
+
+    # Eager
+       galUni_trait_main_body_basic_eager_selected_button_effect = {
         potential = {
             has_global_flag = galUni_trait_BASIC_EAGER_selected
             has_global_flag = galUni_hiring_phase_two
         }
         allow = {always = yes}
-    }
+        }
 
-    galUni_trait_main_body_basic_eager_button_effect = {
+        galUni_trait_main_body_basic_eager_disabled_button_effect = {
+        potential = {
+            has_global_flag = galUni_hiring_phase_two
+            OR = {
+                has_global_flag = galUni_trait_BASIC_ADVENTUROUS_SPIRIT_selected
+            }
+            NOT = {has_global_flag = galUni_trait_BASIC_EAGER_selected}
+        }
+        allow = {always = yes}
+        }
+
+        galUni_trait_main_body_basic_eager_button_effect = {
         inline_script = {
             script = galUni_trait_inline
-            trait_tool = galUni_trait_tooltip_leader_trait_basic_eager
+            trait_tool = leader_trait_eager
+            #trait_tool = galUni_trait_tooltip_leader_trait_basic_eager
             flag = galUni_trait_BASIC_EAGER_selected
             type = BASIC
             trait_name = EAGER
             trait_id = galUni_basic_eager
             cost = 1000
         }
-    }
+        }
 
-    galUni_trait_main_body_basic_adventurous_spirit_selected_button_effect = {
+    # Resilient
+        galUni_trait_main_body_basic_resilient_selected_button_effect = {
+            potential = {
+                has_global_flag = galUni_trait_BASIC_RESILIENT_selected
+                has_global_flag = galUni_hiring_phase_two
+            }
+            allow = {always = yes}
+        }
+
+        galUni_trait_main_body_basic_resilient_disabled_button_effect = {
+            potential = {
+                has_global_flag = galUni_hiring_phase_two
+                OR = {
+                    always = no
+                }
+                NOT = {has_global_flag = galUni_trait_BASIC_RESILIENT_selected}
+            }
+            allow = {always = yes}
+        }
+
+        galUni_trait_main_body_basic_resilient_button_effect = {
+        inline_script = {
+            script = galUni_trait_inline
+            trait_tool = leader_trait_resilient
+            flag = galUni_trait_BASIC_RESILIENT_selected
+            type = BASIC
+            trait_name = RESILIENT
+            trait_id = galUni_basic_resilient
+            cost = 1000
+        }
+        }
+
+    # Politician 
+        galUni_trait_main_body_basic_politician_selected_button_effect = {
+        potential = {
+            has_global_flag = galUni_trait_BASIC_POLITICIAN_selected
+            has_global_flag = galUni_hiring_phase_two
+        }
+        allow = {always = yes}
+        }
+
+        galUni_trait_main_body_basic_politician_disabled_button_effect = {
+        potential = {
+            has_global_flag = galUni_hiring_phase_two
+            OR = {
+                always = no
+            }
+            NOT = {has_global_flag = galUni_trait_BASIC_POLITICIAN_selected}
+        }
+        allow = {always = yes}
+        }
+
+        galUni_trait_main_body_basic_politician_button_effect = {
+        inline_script = {
+            script = galUni_trait_inline
+            trait_tool = leader_trait_politician
+            flag = galUni_trait_BASIC_POLITICIAN_selected
+            type = BASIC
+            trait_name = POLITICIAN
+            trait_id = galUni_basic_politician
+            cost = 1000
+        }
+        }
+
+    # Capitalist
+        galUni_trait_main_body_basic_capitalist_selected_button_effect = {
+        potential = {
+            has_global_flag = galUni_trait_BASIC_CAPITALIST_selected
+            has_global_flag = galUni_hiring_phase_two
+        }
+        allow = {always = yes}
+        }
+
+        galUni_trait_main_body_basic_capitalist_disabled_button_effect = {
+        potential = {
+            has_global_flag = galUni_hiring_phase_two
+            OR = {
+                trait_is_wilderness_check = yes
+                has_global_flag = galUni_trait_BASIC_PRIVATE_MINES_selected
+                has_global_flag = galUni_trait_BASIC_HOMESTEADER_selected
+                has_global_flag = galUni_trait_BASIC_SCRAPPER_selected
+                has_global_flag = galUni_trait_BASIC_ENTREPRENEUR_selected
+                has_global_flag = galUni_trait_BASIC_VENERATED_selected
+                
+            }
+            NOT = {has_global_flag = galUni_trait_BASIC_CAPITALIST_selected}
+        }
+        allow = {always = yes}
+        }
+
+        galUni_trait_main_body_basic_capitalist_button_effect = {
+        inline_script = {
+            script = galUni_trait_inline
+            trait_tool = leader_trait_capitalist
+            flag = galUni_trait_BASIC_CAPITALIST_selected
+            type = BASIC
+            trait_name = CAPITALIST
+            trait_id = galUni_basic_capitalist
+            cost = 1000
+        }
+        }
+
+    # Private Mines
+        galUni_trait_main_body_basic_private_mines_selected_button_effect = {
+            potential = {
+                has_global_flag = galUni_trait_BASIC_PRIVATE_MINES_selected
+                has_global_flag = galUni_hiring_phase_two
+            }
+            allow = {always = yes}
+        }
+        
+        galUni_trait_main_body_basic_private_mines_disabled_button_effect = {
+        potential = {
+            has_global_flag = galUni_hiring_phase_two
+            OR = {
+                trait_is_wilderness_check = yes
+                has_global_flag = galUni_trait_BASIC_CAPITALIST_selected
+                has_global_flag = galUni_trait_BASIC_HOMESTEADER_selected
+                has_global_flag = galUni_trait_BASIC_SCRAPPER_selected
+                has_global_flag = galUni_trait_BASIC_ENTREPRENEUR_selected
+                has_global_flag = galUni_trait_BASIC_VENERATED_selected
+            }
+            NOT = {has_global_flag = galUni_trait_BASIC_PRIVATE_MINES_selected}
+        }
+        allow = {always = yes}
+        }
+
+        galUni_trait_main_body_basic_private_mines_button_effect = {
+        inline_script = {
+            script = galUni_trait_inline
+            trait_tool = leader_trait_private_mines
+            flag = galUni_trait_BASIC_PRIVATE_MINES_selected
+            type = BASIC
+            trait_name = PRIVATE_MINES
+            trait_id = galUni_basic_private_mines
+            cost = 1000
+        }
+        }
+
+    # Homesteader
+        galUni_trait_main_body_basic_homesteader_selected_button_effect = {
+        potential = {
+            has_global_flag = galUni_trait_BASIC_HOMESTEADER_selected
+            has_global_flag = galUni_hiring_phase_two
+        }
+        allow = {always = yes}
+        }
+
+        galUni_trait_main_body_basic_homesteader_disabled_button_effect = {
+            potential = {
+                has_global_flag = galUni_hiring_phase_two
+                OR = {
+                trait_is_wilderness_check = yes
+                has_global_flag = galUni_trait_BASIC_PRIVATE_MINES_selected
+                has_global_flag = galUni_trait_BASIC_CAPITALIST_selected
+                has_global_flag = galUni_trait_BASIC_SCRAPPER_selected
+                has_global_flag = galUni_trait_BASIC_ENTREPRENEUR_selected
+                has_global_flag = galUni_trait_BASIC_VENERATED_selected
+		        owner = {country_uses_food = no}
+                }
+                NOT = {has_global_flag = galUni_trait_BASIC_HOMESTEADER_selected}
+            }
+            allow = {always = yes}
+        }
+
+        galUni_trait_main_body_basic_homesteader_button_effect = {
+        inline_script = {
+            script = galUni_trait_inline
+            trait_tool = leader_trait_homesteader
+            flag = galUni_trait_BASIC_HOMESTEADER_selected
+            type = BASIC
+            trait_name = HOMESTEADER
+            trait_id = galUni_basic_homesteader
+            cost = 1000
+        }
+        }
+
+    # Champion of the People
+        galUni_trait_main_body_basic_champion_of_the_people_selected_button_effect = {
+        potential = {
+            has_global_flag = galUni_trait_BASIC_CHAMPION_OF_THE_PEOPLE_selected
+            has_global_flag = galUni_hiring_phase_two
+        }
+        allow = {always = yes}
+        }
+
+        galUni_trait_main_body_basic_champion_of_the_people_disabled_button_effect = {
+            potential = {
+                has_global_flag = galUni_hiring_phase_two
+                OR = {
+                    owner = {is_machine_empire = yes}
+                }
+                NOT = {has_global_flag = galUni_trait_BASIC_CHAMPION_OF_THE_PEOPLE_selected}
+            }
+            allow = {always = yes}
+        }
+
+        galUni_trait_main_body_basic_champion_of_the_people_button_effect = {
+        inline_script = {
+            script = galUni_trait_inline
+            trait_tool = trait_ruler_champion_of_the_people
+            flag = galUni_trait_BASIC_CHAMPION_OF_THE_PEOPLE_selected
+            type = BASIC
+            trait_name = CHAMPION_OF_THE_PEOPLE
+            trait_id = galUni_basic_champion_of_the_people
+            cost = 1000
+        }
+        }
+
+    # Gifted
+        galUni_trait_main_body_basic_gifted_selected_button_effect = {
+        potential = {
+            has_global_flag = galUni_trait_BASIC_GIFTED_selected
+            has_global_flag = galUni_hiring_phase_two
+        }
+        allow = {always = yes}
+        }
+
+        galUni_trait_main_body_basic_gifted_disabled_button_effect = {
+            potential = {
+                has_global_flag = galUni_hiring_phase_two
+                OR = {
+                    always = no
+                }
+                NOT = {has_global_flag = galUni_trait_BASIC_GIFTED_selected}
+            }
+            allow = {always = yes}
+        }
+
+        galUni_trait_main_body_basic_gifted_button_effect = {
+        inline_script = {
+            script = galUni_trait_inline
+            trait_tool = leader_trait_gifted
+            flag = galUni_trait_BASIC_GIFTED_selected
+            type = BASIC
+            trait_name = GIFTED
+            trait_id = galUni_basic_gifted
+            cost = 1000
+        }
+        }
+
+    # Imperial Heir
+        galUni_trait_main_body_basic_imperial_heir_selected_button_effect = {
+        potential = {
+            has_global_flag = galUni_trait_BASIC_IMPERIAL_HEIR_selected
+            has_global_flag = galUni_hiring_phase_two
+        }
+        allow = {always = yes}
+        }
+
+        galUni_trait_main_body_basic_imperial_heir_disabled_button_effect = {
+        potential = {
+            has_global_flag = galUni_hiring_phase_two
+            OR = {
+                always = no
+            }
+            NOT = {has_global_flag = galUni_trait_BASIC_IMPERIAL_HEIR_selected}
+        }
+        allow = {always = yes}
+        }
+
+        galUni_trait_main_body_basic_imperial_heir_button_effect = {
+        inline_script = {
+            script = galUni_trait_inline
+            trait_tool = trait_imperial_heir
+            # trait_tool = imperial_bloodline
+            flag = galUni_trait_BASIC_IMPERIAL_HEIR_selected
+            type = BASIC
+            trait_name = IMPERIAL_HEIR
+            trait_id = galUni_basic_imperial_heir
+            cost = 1000
+        }
+        }
+
+    # Scrapper
+        galUni_trait_main_body_basic_scrapper_selected_button_effect = {
+        potential = {
+            has_global_flag = galUni_trait_BASIC_SCRAPPER_selected
+            has_global_flag = galUni_hiring_phase_two
+        }
+        allow = {always = yes}
+        }
+
+        galUni_trait_main_body_basic_scrapper_disabled_button_effect = {
+        potential = {
+            has_global_flag = galUni_hiring_phase_two
+            OR = {
+                trait_is_wilderness_check = yes
+                has_global_flag = galUni_trait_BASIC_PRIVATE_MINES_selected
+                has_global_flag = galUni_trait_BASIC_HOMESTEADER_selected
+                has_global_flag = galUni_trait_BASIC_CAPITALIST_selected
+                has_global_flag = galUni_trait_BASIC_ENTREPRENEUR_selected
+                has_global_flag = galUni_trait_BASIC_VENERATED_selected
+            }
+            NOT = {has_global_flag = galUni_trait_BASIC_SCRAPPER_selected}
+        }
+        allow = {always = yes}
+        }
+
+        galUni_trait_main_body_basic_scrapper_button_effect = {
+        inline_script = {
+            script = galUni_trait_inline
+            trait_tool = leader_trait_scrapper
+            flag = galUni_trait_BASIC_SCRAPPER_selected
+            type = BASIC
+            trait_name = SCRAPPER
+            trait_id = galUni_basic_scrapper
+            cost = 1000
+        }
+        }
+
+    # Entrepreneur
+        galUni_trait_main_body_basic_entrepreneur_selected_button_effect = {
+        potential = {
+            has_global_flag = galUni_trait_BASIC_ENTREPRENEUR_selected
+            has_global_flag = galUni_hiring_phase_two
+        }
+        allow = {always = yes}
+        }
+
+        galUni_trait_main_body_basic_entrepreneur_disabled_button_effect = {
+        potential = {
+            has_global_flag = galUni_hiring_phase_two
+            OR = {
+                trait_is_wilderness_check = yes
+                has_global_flag = galUni_trait_BASIC_PRIVATE_MINES_selected
+                has_global_flag = galUni_trait_BASIC_HOMESTEADER_selected
+                has_global_flag = galUni_trait_BASIC_SCRAPPER_selected
+                has_global_flag = galUni_trait_BASIC_CAPITALIST_selected
+                has_global_flag = galUni_trait_BASIC_VENERATED_selected
+                owner = {country_uses_consumer_goods = no}
+            }
+            NOT = {has_global_flag = galUni_trait_BASIC_ENTREPRENEUR_selected}
+        }
+        allow = {always = yes}
+        }
+
+        galUni_trait_main_body_basic_entrepreneur_button_effect = {
+        inline_script = {
+            script = galUni_trait_inline
+            trait_tool = leader_trait_entrepreneur
+            flag = galUni_trait_BASIC_ENTREPRENEUR_selected
+            type = BASIC
+            trait_name = ENTREPRENEUR
+            trait_id = galUni_basic_entrepreneur
+            cost = 1000
+        }
+        }
+
+    # Venerated
+        galUni_trait_main_body_basic_venerated_selected_button_effect = {
+        potential = {
+            has_global_flag = galUni_trait_BASIC_VENERATED_selected
+            has_global_flag = galUni_hiring_phase_two
+        }
+        allow = {always = yes}
+        }
+
+        galUni_trait_main_body_basic_venerated_disabled_button_effect = {
+        potential = {
+            has_global_flag = galUni_hiring_phase_two
+            OR = {
+                trait_is_wilderness_check = yes
+                has_global_flag = galUni_trait_BASIC_PRIVATE_MINES_selected
+                has_global_flag = galUni_trait_BASIC_HOMESTEADER_selected
+                has_global_flag = galUni_trait_BASIC_SCRAPPER_selected
+                has_global_flag = galUni_trait_BASIC_ENTREPRENEUR_selected
+                has_global_flag = galUni_trait_BASIC_CAPITALIST_selected
+            }
+            NOT = {has_global_flag = galUni_trait_BASIC_VENERATED_selected}
+        }
+        allow = {always = yes}
+        }
+
+        galUni_trait_main_body_basic_venerated_button_effect = {
+        inline_script = {
+            script = galUni_trait_inline
+            trait_tool = leader_trait_venerated
+            flag = galUni_trait_BASIC_VENERATED_selected
+            type = BASIC
+            trait_name = VENERATED
+            trait_id = galUni_basic_venerated
+            cost = 1000
+        }
+        }
+
+    # Emotional Support Pet
+        galUni_trait_main_body_basic_emotional_support_pet_selected_button_effect = {
+        potential = {
+            has_global_flag = galUni_trait_BASIC_EMOTIONAL_SUPPORT_PET_selected
+            has_global_flag = galUni_hiring_phase_two
+        }
+        allow = {always = yes}
+        }
+
+        galUni_trait_main_body_basic_emotional_support_pet_disabled_button_effect = {
+        potential = {
+            has_global_flag = galUni_hiring_phase_two
+            OR = {
+                owner = { is_machine_empire = yes }
+            }
+            NOT = {has_global_flag = galUni_trait_BASIC_EMOTIONAL_SUPPORT_PET_selected}
+        }
+        allow = {always = yes}
+        }
+
+        galUni_trait_main_body_basic_emotional_support_pet_button_effect = {
+        inline_script = {
+            script = galUni_trait_inline
+            trait_tool = leader_trait_emotional_support_pet
+            flag = galUni_trait_BASIC_EMOTIONAL_SUPPORT_PET_selected
+            type = BASIC
+            trait_name = EMOTIONAL_SUPPORT_PET
+            trait_id = galUni_basic_emotional_support_pet
+            cost = 1000
+        }
+        }
+
+    # = SPECIALISED TRAITS =
+    # Architectural Interest
+        galUni_trait_main_body_specialised_architectural_interest_selected_button_effect = {
+        potential = {
+            has_global_flag = galUni_trait_SPECIALISED_ARCHITECTURAL_INTEREST_selected
+            has_global_flag = galUni_hiring_phase_two
+            OR = {
+                check_variable = {which = galUni_leader_type value = 0}
+                check_variable = {which = galUni_leader_type value = 2}
+            }
+        }
+        allow = {always = yes}
+        }
+
+        galUni_trait_main_body_specialised_architectural_interest_disabled_button_effect = {
+        potential = {
+            has_global_flag = galUni_hiring_phase_two
+            OR = {
+                always = no
+            }
+            NOT = {has_global_flag = galUni_trait_SPECIALISED_ARCHITECTURAL_INTEREST_selected}
+        }
+        allow = {always = yes}
+        }
+
+        galUni_trait_main_body_specialised_architectural_interest_button_effect = {
+        inline_script = {
+            script = galUni_trait_inline
+            trait_tool = leader_trait_architectural_interest
+            flag = galUni_trait_SPECIALISED_ARCHITECTURAL_INTEREST_selected
+            type = SPECIALISED
+            trait_name = ARCHITECTURAL_INTEREST
+            trait_id = galUni_specialised_architectural_interest
+            leader_type = ""
+            cost = 1000
+        }
+        }
+
+    # = VETERAN TRAITS =
+    # Adventurous Spirit
+        galUni_trait_main_body_basic_adventurous_spirit_selected_button_effect = {
         potential = {
             has_global_flag = galUni_trait_BASIC_ADVENTUROUS_SPIRIT_selected
             has_global_flag = galUni_hiring_phase_two
         }
         allow = {always = yes}
-    }
+        }
     
-    galUni_trait_main_body_basic_adventurous_spirit_button_effect = {
+        galUni_trait_main_body_basic_adventurous_spirit_disabled_button_effect = {
         potential = {
             has_global_flag = galUni_hiring_phase_two
-            # NOT = {has_global_flag = galUni_trait_BASIC_ADVENTUROUS_SPIRIT_selected}
+            OR = {
+                has_global_flag = galUni_trait_BASIC_EAGER_selected
+            }
+            NOT = {has_global_flag = galUni_trait_BASIC_ADVENTUROUS_SPIRIT_selected}
         }
         allow = {always = yes}
-        effect = {
-            custom_tooltip = galUni_trait_tooltip_leader_trait_veteran_adventurous_spirit
-
-            hidden_effect = {
-                # effect to enable
-                if = {limit = {has_global_flag = galUni_trait_BASIC_ADVENTUROUS_SPIRIT_selected}
-                    galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = ADVENTUROUS_SPIRIT}
-                    subtract_variable = {which = galUni_hiringCost value = 1000}
-                    #subtract_variable = {which = galUni_num_traits value = 1}
-                    subtract_variable = {which = galUni_basic_adventurous_spirit value = 1}
-                } else = {
-                    galUni_trait_enable_disable_effect = {EFFECT = set_global_flag TYPE = BASIC NAME = ADVENTUROUS_SPIRIT}   
-                    change_variable = {which = galUni_hiringCost value = 1000}
-                    #change_variable = {which = galUni_num_traits value = 1}
-                    change_variable = {which = galUni_basic_adventurous_spirit value = 1}
-                }
-            }
         }
-    }
 
-    # Finally, Create leader...
+        galUni_trait_main_body_basic_adventurous_spirit_button_effect = {
+        inline_script = {
+            script = galUni_trait_inline
+            trait_tool = leader_trait_adventurous_spirit
+            flag = galUni_trait_BASIC_ADVENTUROUS_SPIRIT_selected
+            type = BASIC
+            trait_name = ADVENTUROUS_SPIRIT
+            trait_id = galUni_basic_adventurous_spirit
+            cost = 1000
+        }
+
+        # effect = {
+            # custom_tooltip = ['leader_trait:leader_trait_adventurous_spirit']
+            # custom_tooltip = "[GetAdventurousSpiritEffect]"
+
+
+            # custom_tooltip = [GetTraitTooltip('leader_trait_adaptable')]
+
+            # custom_tooltip = galUni_trait_tooltip_leader_trait_adventurous_spirit
+            # custom_tooltip = galUni_trait_tooltip_leader_trait_veteran_adventurous_spirit
+
+            # hidden_effect = {
+                # effect to enable
+                # if = {limit = {has_global_flag = galUni_trait_BASIC_ADVENTUROUS_SPIRIT_selected}
+                    # galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = ADVENTUROUS_SPIRIT}
+                    # subtract_variable = {which = galUni_hiringCost value = 1000}
+                    #subtract_variable = {which = galUni_num_traits value = 1}
+                    # subtract_variable = {which = galUni_basic_adventurous_spirit value = 1}
+                # } else = {
+                    # galUni_trait_enable_disable_effect = {EFFECT = set_global_flag TYPE = BASIC NAME = ADVENTUROUS_SPIRIT}   
+                    # change_variable = {which = galUni_hiringCost value = 1000}
+                    #change_variable = {which = galUni_num_traits value = 1}
+                    # change_variable = {which = galUni_basic_adventurous_spirit value = 1}
+                # }
+            # }
+        # }
+        }
+    
+   
+        # Finally, Create leader...
     galUni_leader_create_button_effect = {
         potential = {
             # has_resource = {type = energy amount > @galUni_hiringCost}
@@ -189,10 +683,13 @@ galUni_leader_back_button_effect = {
         }
     
         effect = {
-            custom_tooltip = "create leader (add price here late i guess)"
-            hidden_effect = {
-                create_leader = {name = random
-                    species = owner_main_species
+            custom_tooltip = "Hire this leader"
+            # custom_tooltip = "[from.galUni_hiringCost] Energy"
+
+            from = {add_resource = { energy = -1 mult = galUni_hiringCost}}
+            # hidden_effect = {
+                    create_leader = {name = random
+                        species = owner_main_species
                     class = random
                     randomize_traits = no
                 }
@@ -210,24 +707,66 @@ galUni_leader_back_button_effect = {
                         last_created_leader = {change_leader_class = commander}
                     } else_if = {limit = { check_variable = {which = galUni_leader_type value = 2}}
                         last_created_leader = {change_leader_class = official}
-                    }
-                    }
+                    } 
+                    # }
 
                 # Add traits...
-                owner = {
+                # owner = {
                     if = {limit = { check_variable = {which = galUni_basic_adaptable value = 1}}
                         last_created_leader = {add_trait = leader_trait_adaptable}
                         subtract_variable = {which = galUni_basic_adaptable value = 1}}
-                    if = {limit = { check_variable = {which = galUni_basic_adventurous_spirit value = 1}}
-                        last_created_leader = {add_trait = leader_trait_adventurous_spirit}
-                        subtract_variable = {which = galUni_basic_adventurous_spirit value = 1}}
                     if = {limit = {check_variable = {which = galUni_basic_eager value = 1}}
                         last_created_leader = {add_trait = leader_trait_eager}
                         subtract_variable = {which = galUni_basic_eager value = 1}}
+                    if = {limit = {check_variable = {which = galUni_basic_resilient value = 1}}
+                        last_created_leader = {add_trait = leader_trait_resilient}
+                        subtract_variable = {which = galUni_basic_resilient value = 1}}
+                    if = {limit = {check_variable = {which = galUni_basic_politician value = 1}}
+                        last_created_leader = {add_trait = leader_trait_politician}
+                        subtract_variable = {which = galUni_basic_politician value = 1}}
+                    if = {limit = {check_variable = {which = galUni_basic_capitalist value = 1}}
+                        last_created_leader = {add_trait = leader_trait_capitalist}
+                        subtract_variable = {which = galUni_basic_capitalist value = 1}}
+                    if = {limit = {check_variable = {which = galUni_basic_private_mines value = 1}}
+                        last_created_leader = {add_trait = leader_trait_private_mines}
+                        subtract_variable = {which = galUni_basic_private_mines value = 1}}
+                    if = {limit = {check_variable = {which = galUni_basic_homesteader value = 1}}
+                        last_created_leader = {add_trait = leader_trait_homesteader}
+                        subtract_variable = {which = galUni_basic_homesteader value = 1}}
+                    if = {limit = {check_variable = {which = galUni_basic_champion_of_the_people value = 1}}
+                        last_created_leader = {add_trait = trait_ruler_champion_of_the_people}
+                        subtract_variable = {which = galUni_basic_champion_of_the_people value = 1}}
+                    if = {limit = {check_variable = {which = galUni_basic_gifted value = 1}}
+                        last_created_leader = {add_trait = leader_trait_gifted}
+                        subtract_variable = {which = galUni_basic_gifted value = 1}}
+                    if = {limit = {check_variable = {which = galUni_basic_imperial_heir value = 1}}
+                        last_created_leader = {add_trait = trait_imperial_heir}
+                        subtract_variable = {which = galUni_basic_imperial_heir value = 1}}}
+                    if = {limit = {check_variable = {which = galUni_basic_scrapper value = 1}}
+                        last_created_leader = {add_trait = leader_trait_scrapper}
+                        subtract_variable = {which = galUni_basic_scrapper value = 1}}
+                    if = {limit = {check_variable = {which = galUni_basic_entrepreneur value = 1}}
+                        last_created_leader = {add_trait = leader_trait_entrepreneur}
+                        subtract_variable = {which = galUni_basic_entrepreneur value = 1}}
+                    if = {limit = {check_variable = {which = galUni_basic_venerated value = 1}}
+                        last_created_leader = {add_trait = leader_trait_venerated}
+                        subtract_variable = {which = galUni_basic_venerated value = 1}}
+                    if = {limit = {check_variable = {which = galUni_basic_emotional_support_pet value = 1}}
+                        last_created_leader = {add_trait = leader_trait_emotional_support_pet}
+                        subtract_variable = {which = galUni_basic_emotional_support_pet value = 1}}
                     # Same thing for.......every single trait
+                    # Specialised Traits
+                    if = {limit = { check_variable = {which = galUni_specialised_architectural_interest value = 1}}
+                        last_created_leader = {add_trait = leader_trait_architectural_interest}
+                        subtract_variable = {which = galUni_specialised_architectural_interest value = 1}}
+                    # Veteran Traits
+                    if = {limit = { check_variable = {which = galUni_basic_adventurous_spirit value = 1}}
+                        last_created_leader = {add_trait = leader_trait_adventurous_spirit}
+                        subtract_variable = {which = galUni_basic_adventurous_spirit value = 1}}
                 }
-                }
-            }
+                # }
+                galUni_reset_hiring_menu = yes
+            # }
         }
     }
 

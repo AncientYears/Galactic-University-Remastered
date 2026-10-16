@@ -31,13 +31,17 @@ country_event = { # impossible to close menu
 	picture_event_data = { portrait = root.ruler }
 
 	immediate = {
-		set_global_flag = galUni_hiring_menu_opened
-		set_global_flag = galUni_hiring_phase_one
+		galUni_reset_hiring_menu = yes
+		# set_global_flag = galUni_hiring_menu_opened
+		# set_global_flag = galUni_hiring_phase_one
 	}
 	option = {
 		name = ""
+		# custom_gui = "please"
 		hidden_effect = {
 			# galUni_reset_hiring_menu = yes
+			# remove_global_flag = galUni_hiring_menu_opened
+			# remove_global_flag = galUni_hiring_phase_one
 		}
 		# custom_tooltip = "bob probably"
 		# trigger = {
