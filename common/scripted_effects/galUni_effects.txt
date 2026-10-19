@@ -1,3 +1,34 @@
+galUni_create_preview_leader_effect = {
+	optimize_memory
+	if = { limit = { check_variable = { which = galUni_preview_leader_exists value >= 1 } }
+		galUni_destroy_preview_leader_effect = yes
+	}
+	create_leader = {
+		name = random
+		species = owner_main_species
+		class = random
+		randomize_traits = no
+		event_leader = yes
+	}
+	last_created_leader = {
+		set_leader_flag = galUni_preview
+		set_name = "Student"
+		if = { limit = { check_variable = { which = galUni_leader_type value = 0 } } change_leader_class = scientist }
+		else_if = { limit = { check_variable = { which = galUni_leader_type value = 1 } } change_leader_class = commander }
+		else_if = { limit = { check_variable = { which = galUni_leader_type value = 2 } } change_leader_class = official }
+	}
+	set_variable = { which = galUni_preview_leader_exists value = 1 }
+}
+
+galUni_destroy_preview_leader_effect = {
+	optimize_memory
+	every_owned_leader = {
+		limit = { has_leader_flag = galUni_preview }
+		kill_leader = { }
+	}
+	clear_variable = galUni_preview_leader_exists
+}
+
 galUni_trait_enable_disable_effect = {
 	optimize_memory
 	$EFFECT$ = galUni_trait_$TYPE$_$NAME$_selected
@@ -10,17 +41,17 @@ galUni_move_to_phase_two = {
 
 galUni_reset_hiring_menu = {
 	optimize_memory
+	galUni_destroy_preview_leader_effect = yes
 	set_variable = {which = galUni_hiringCost value = 0}
 	set_global_flag = galUni_hiring_phase_one
 	set_global_flag = galUni_hiring_menu_opened
 	remove_global_flag = galUni_hiring_phase_two
-	# remove_global_flag = galUni_hiring_menu_opened
 
-	galUni_move_to_phase_two = {EFFECT = remove_global_flag NAME = PHASE_TWO TYPE = official}   
+	galUni_move_to_phase_two = {EFFECT = remove_global_flag NAME = PHASE_TWO TYPE = official}
 	galUni_move_to_phase_two = {EFFECT = remove_global_flag NAME = PHASE_TWO TYPE = commander}
 	galUni_move_to_phase_two = {EFFECT = remove_global_flag NAME = PHASE_TWO TYPE = scientist}
 
-	galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = ADAPTABLE} 
+	galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = ADAPTABLE}
 	galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = EAGER}
 	galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = RESILIENT}
 	galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = POLITICIAN}
@@ -34,9 +65,23 @@ galUni_reset_hiring_menu = {
 	galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = ENTREPRENEUR}
 	galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = VENERATED}
 	galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = EMOTIONAL_SUPPORT_PET}
-
-	# Specialised
 	galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = SPECIALISED NAME = ARCHITECTURAL_INTEREST}
-	# Veteran
 	galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = ADVENTUROUS_SPIRIT}
+
+	clear_variable = galUni_basic_adaptable
+	clear_variable = galUni_basic_eager
+	clear_variable = galUni_basic_resilient
+	clear_variable = galUni_basic_politician
+	clear_variable = galUni_basic_capitalist
+	clear_variable = galUni_basic_private_mines
+	clear_variable = galUni_basic_homesteader
+	clear_variable = galUni_basic_champion_of_the_people
+	clear_variable = galUni_basic_gifted
+	clear_variable = galUni_basic_imperial_heir
+	clear_variable = galUni_basic_scrapper
+	clear_variable = galUni_basic_entrepreneur
+	clear_variable = galUni_basic_venerated
+	clear_variable = galUni_basic_emotional_support_pet
+	clear_variable = galUni_specialised_architectural_interest
+	clear_variable = galUni_basic_adventurous_spirit
 }

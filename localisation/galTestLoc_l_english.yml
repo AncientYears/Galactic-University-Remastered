@@ -12,9 +12,10 @@
  # TRAITS 
  ###########################
  myTraitTooltip: "test tooltip"
+ galUni_trait_tooltip_separator: "--------------"
  galUni_trait_tooltip_leader: "§L$leader_trait_$trait_tool$_desc$§!"
 
- totalCost: "§R§energy§$@galUni_hiringCost$§!\nare needed to hire this leader."
+ totalCost: "§Y[This.galUni_hiringCost]§! §YEnergy§! is needed to hire this leader."
  # Regular Traits
  # galUni_trait_tooltip_leader_trait_basic_adaptable:0 "Thou shalt get.. ['building:building_system_capital']"
  #  galUni_trait_tooltip_leader_trait_basic_adaptable:0 "Thou shalt get.. ['leader_trait_adaptable']"

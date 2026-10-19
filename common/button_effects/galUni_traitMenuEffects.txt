@@ -23,6 +23,7 @@ galUni_leader_official_button_effect = {
             set_global_flag = galUni_hiring_phase_two
             galUni_move_to_phase_two = {EFFECT = set_global_flag NAME = PHASE_TWO TYPE = official}            
             set_variable = {which = galUni_leader_type value = 2}
+            hidden_effect = { galUni_create_preview_leader_effect = yes }
         # }
     }
 }
@@ -37,6 +38,7 @@ galUni_leader_commander_button_effect = {
             set_global_flag = galUni_hiring_phase_two
             galUni_move_to_phase_two = {EFFECT = set_global_flag NAME = PHASE_TWO TYPE = commander}            
             set_variable = {which = galUni_leader_type value = 1}
+            hidden_effect = { galUni_create_preview_leader_effect = yes }
         # }
     }
     }
@@ -51,6 +53,7 @@ galUni_leader_scientist_button_effect = {
             set_global_flag = galUni_hiring_phase_two
             galUni_move_to_phase_two = {EFFECT = set_global_flag NAME = PHASE_TWO TYPE = scientist} 
             set_variable = {which = galUni_leader_type value = 0}           
+            hidden_effect = { galUni_create_preview_leader_effect = yes }
         # }
     }
     }
@@ -136,7 +139,7 @@ galUni_leader_back_button_effect = {
         inline_script = {
             script = galUni_trait_inline
             trait_tool = leader_trait_eager
-            #trait_tool = galUni_trait_tooltip_leader_trait_basic_eager
+            #                trait_tool = leader_trait_eager
             flag = galUni_trait_BASIC_EAGER_selected
             type = BASIC
             trait_name = EAGER
@@ -410,7 +413,7 @@ galUni_leader_back_button_effect = {
         inline_script = {
             script = galUni_trait_inline
             trait_tool = trait_imperial_heir
-            # trait_tool = imperial_bloodline
+            #                 trait_tool = trait_imperial_heir
             flag = galUni_trait_BASIC_IMPERIAL_HEIR_selected
             type = BASIC
             trait_name = IMPERIAL_HEIR
@@ -569,10 +572,6 @@ galUni_leader_back_button_effect = {
         potential = {
             has_global_flag = galUni_trait_SPECIALISED_ARCHITECTURAL_INTEREST_selected
             has_global_flag = galUni_hiring_phase_two
-            OR = {
-                check_variable = {which = galUni_leader_type value = 0}
-                check_variable = {which = galUni_leader_type value = 2}
-            }
         }
         allow = {always = yes}
         }
@@ -581,7 +580,7 @@ galUni_leader_back_button_effect = {
         potential = {
             has_global_flag = galUni_hiring_phase_two
             OR = {
-                always = no
+                check_variable = {which = galUni_leader_type value = 1}
             }
             NOT = {has_global_flag = galUni_trait_SPECIALISED_ARCHITECTURAL_INTEREST_selected}
         }
@@ -589,6 +588,14 @@ galUni_leader_back_button_effect = {
         }
 
         galUni_trait_main_body_specialised_architectural_interest_button_effect = {
+        potential = {
+            has_global_flag = galUni_hiring_phase_two
+            OR = {
+                check_variable = {which = galUni_leader_type value = 0}
+                check_variable = {which = galUni_leader_type value = 2}
+            }
+        }
+        allow = {always = yes}
         inline_script = {
             script = galUni_trait_inline
             trait_tool = leader_trait_architectural_interest
@@ -596,7 +603,6 @@ galUni_leader_back_button_effect = {
             type = SPECIALISED
             trait_name = ARCHITECTURAL_INTEREST
             trait_id = galUni_specialised_architectural_interest
-            leader_type = ""
             cost = 1000
         }
         }
@@ -663,114 +669,75 @@ galUni_leader_back_button_effect = {
    
         # Finally, Create leader...
     galUni_leader_create_button_effect = {
-        potential = {
-            # has_resource = {type = energy amount > @galUni_hiringCost}
-            has_global_flag = galUni_hiring_phase_two
-            # check_variable = {which = galUni_hiringCost value > 0}
-        }
-        allow = {
-            # custom_tooltip = "work..?"
-            resource_stockpile_compare = {
-				resource = energy
-				value >= galUni_hiringCost
+	potential = {
+		has_global_flag = galUni_hiring_phase_two
+	}
+	allow = {
+		resource_stockpile_compare = {
+			resource = energy
+			value >= galUni_hiringCost
+		}
+	}
+	effect = {
+		custom_tooltip = "Hire this leader"
+		custom_tooltip = "totalCost"
+		if = { limit = { check_variable = { which = galUni_basic_adaptable value >= 1 } } tooltip = { add_trait = leader_trait_adaptable } }
+		if = { limit = { check_variable = { which = galUni_basic_eager value >= 1 } } tooltip = { add_trait = leader_trait_eager } }
+		if = { limit = { check_variable = { which = galUni_basic_resilient value >= 1 } } tooltip = { add_trait = leader_trait_resilient } }
+		if = { limit = { check_variable = { which = galUni_basic_politician value >= 1 } } tooltip = { add_trait = leader_trait_politician } }
+		if = { limit = { check_variable = { which = galUni_basic_capitalist value >= 1 } } tooltip = { add_trait = leader_trait_capitalist } }
+		if = { limit = { check_variable = { which = galUni_basic_private_mines value >= 1 } } tooltip = { add_trait = leader_trait_private_mines } }
+		if = { limit = { check_variable = { which = galUni_basic_homesteader value >= 1 } } tooltip = { add_trait = leader_trait_homesteader } }
+		if = { limit = { check_variable = { which = galUni_basic_champion_of_the_people value >= 1 } } tooltip = { add_trait = trait_ruler_champion_of_the_people } }
+		if = { limit = { check_variable = { which = galUni_basic_gifted value >= 1 } } tooltip = { add_trait = leader_trait_gifted } }
+		if = { limit = { check_variable = { which = galUni_basic_imperial_heir value >= 1 } } tooltip = { add_trait = trait_imperial_heir } }
+		if = { limit = { check_variable = { which = galUni_basic_scrapper value >= 1 } } tooltip = { add_trait = leader_trait_scrapper } }
+		if = { limit = { check_variable = { which = galUni_basic_entrepreneur value >= 1 } } tooltip = { add_trait = leader_trait_entrepreneur } }
+		if = { limit = { check_variable = { which = galUni_basic_venerated value >= 1 } } tooltip = { add_trait = leader_trait_venerated } }
+		if = { limit = { check_variable = { which = galUni_basic_emotional_support_pet value >= 1 } } tooltip = { add_trait = leader_trait_emotional_support_pet } }
+		if = { limit = { check_variable = { which = galUni_specialised_architectural_interest value >= 1 } } tooltip = { add_trait = leader_trait_architectural_interest } }
+		if = { limit = { check_variable = { which = galUni_basic_adventurous_spirit value >= 1 } } tooltip = { add_trait = leader_trait_adventurous_spirit } }
+		hidden_effect = {
+			from = {
+				add_resource = { energy = -1 mult = galUni_hiringCost }
+				create_leader = {
+					name = random
+					species = owner_main_species
+					class = random
+					randomize_traits = no
+				}
+				last_created_leader = {
+					set_variable_to_random_value = { which = galUni_new_leader_skill min = 1 max = 3 rounded = yes }
+					set_variable_to_random_value = { which = galUni_new_leader_age min = 20 max = 30 rounded = yes }
+					set_skill = galUni_new_leader_skill
+					set_age = galUni_new_leader_age
+					if = { limit = { owner = { check_variable = { which = galUni_leader_type value = 0 } } } change_leader_class = scientist }
+					else_if = { limit = { owner = { check_variable = { which = galUni_leader_type value = 1 } } } change_leader_class = commander }
+					else_if = { limit = { owner = { check_variable = { which = galUni_leader_type value = 2 } } } change_leader_class = official }
+					if = { limit = { owner = { check_variable = { which = galUni_basic_adaptable value >= 1 } } } add_trait = leader_trait_adaptable }
+					if = { limit = { owner = { check_variable = { which = galUni_basic_eager value >= 1 } } } add_trait = leader_trait_eager }
+					if = { limit = { owner = { check_variable = { which = galUni_basic_resilient value >= 1 } } } add_trait = leader_trait_resilient }
+					if = { limit = { owner = { check_variable = { which = galUni_basic_politician value >= 1 } } } add_trait = leader_trait_politician }
+					if = { limit = { owner = { check_variable = { which = galUni_basic_capitalist value >= 1 } } } add_trait = leader_trait_capitalist }
+					if = { limit = { owner = { check_variable = { which = galUni_basic_private_mines value >= 1 } } } add_trait = leader_trait_private_mines }
+					if = { limit = { owner = { check_variable = { which = galUni_basic_homesteader value >= 1 } } } add_trait = leader_trait_homesteader }
+					if = { limit = { owner = { check_variable = { which = galUni_basic_champion_of_the_people value >= 1 } } } add_trait = trait_ruler_champion_of_the_people }
+					if = { limit = { owner = { check_variable = { which = galUni_basic_gifted value >= 1 } } } add_trait = leader_trait_gifted }
+					if = { limit = { owner = { check_variable = { which = galUni_basic_imperial_heir value >= 1 } } } add_trait = trait_imperial_heir }
+					if = { limit = { owner = { check_variable = { which = galUni_basic_scrapper value >= 1 } } } add_trait = leader_trait_scrapper }
+					if = { limit = { owner = { check_variable = { which = galUni_basic_entrepreneur value >= 1 } } } add_trait = leader_trait_entrepreneur }
+					if = { limit = { owner = { check_variable = { which = galUni_basic_venerated value >= 1 } } } add_trait = leader_trait_venerated }
+					if = { limit = { owner = { check_variable = { which = galUni_basic_emotional_support_pet value >= 1 } } } add_trait = leader_trait_emotional_support_pet }
+					if = { limit = { owner = { check_variable = { which = galUni_specialised_architectural_interest value >= 1 } } } add_trait = leader_trait_architectural_interest }
+					if = { limit = { owner = { check_variable = { which = galUni_basic_adventurous_spirit value >= 1 } } } add_trait = leader_trait_adventurous_spirit }
+				}
+				galUni_reset_hiring_menu = yes
 			}
-            # custom_tooltip = {
-                # fail_text = totalCost
-                # fail_text = "Not enough energy..."
-                # hidden_trigger = {has_resource = {type = energy amount < @galUni_hiringCost}}
-                # hidden_trigger = {check_variable = {which = galUni_hiringCost value > 0}}
-            # }
-        }
-    
-        effect = {
-            custom_tooltip = "Hire this leader"
-            # custom_tooltip = "[from.galUni_hiringCost] Energy"
+		}
+	}
+}
 
-            from = {add_resource = { energy = -1 mult = galUni_hiringCost}}
-            # hidden_effect = {
-                    create_leader = {name = random
-                        species = owner_main_species
-                    class = random
-                    randomize_traits = no
-                }
-
-                last_created_leader = {
-                    set_variable_to_random_value = {which = leader_skill min = 1 max = 3 rounded = yes}
-                    set_variable_to_random_value = {which = leader_age min = 20 max = 30 rounded = yes}
-                    set_skill = leader_skill
-                    set_age = leader_age
-                    
-                    owner = {
-                    if = {limit = { check_variable = {which = galUni_leader_type value = 0}} 
-                        last_created_leader = {change_leader_class = scientist}
-                    }  else_if = {limit = { check_variable = {which = galUni_leader_type value = 1}}
-                        last_created_leader = {change_leader_class = commander}
-                    } else_if = {limit = { check_variable = {which = galUni_leader_type value = 2}}
-                        last_created_leader = {change_leader_class = official}
-                    } 
-                    # }
-
-                # Add traits...
-                # owner = {
-                    if = {limit = { check_variable = {which = galUni_basic_adaptable value = 1}}
-                        last_created_leader = {add_trait = leader_trait_adaptable}
-                        subtract_variable = {which = galUni_basic_adaptable value = 1}}
-                    if = {limit = {check_variable = {which = galUni_basic_eager value = 1}}
-                        last_created_leader = {add_trait = leader_trait_eager}
-                        subtract_variable = {which = galUni_basic_eager value = 1}}
-                    if = {limit = {check_variable = {which = galUni_basic_resilient value = 1}}
-                        last_created_leader = {add_trait = leader_trait_resilient}
-                        subtract_variable = {which = galUni_basic_resilient value = 1}}
-                    if = {limit = {check_variable = {which = galUni_basic_politician value = 1}}
-                        last_created_leader = {add_trait = leader_trait_politician}
-                        subtract_variable = {which = galUni_basic_politician value = 1}}
-                    if = {limit = {check_variable = {which = galUni_basic_capitalist value = 1}}
-                        last_created_leader = {add_trait = leader_trait_capitalist}
-                        subtract_variable = {which = galUni_basic_capitalist value = 1}}
-                    if = {limit = {check_variable = {which = galUni_basic_private_mines value = 1}}
-                        last_created_leader = {add_trait = leader_trait_private_mines}
-                        subtract_variable = {which = galUni_basic_private_mines value = 1}}
-                    if = {limit = {check_variable = {which = galUni_basic_homesteader value = 1}}
-                        last_created_leader = {add_trait = leader_trait_homesteader}
-                        subtract_variable = {which = galUni_basic_homesteader value = 1}}
-                    if = {limit = {check_variable = {which = galUni_basic_champion_of_the_people value = 1}}
-                        last_created_leader = {add_trait = trait_ruler_champion_of_the_people}
-                        subtract_variable = {which = galUni_basic_champion_of_the_people value = 1}}
-                    if = {limit = {check_variable = {which = galUni_basic_gifted value = 1}}
-                        last_created_leader = {add_trait = leader_trait_gifted}
-                        subtract_variable = {which = galUni_basic_gifted value = 1}}
-                    if = {limit = {check_variable = {which = galUni_basic_imperial_heir value = 1}}
-                        last_created_leader = {add_trait = trait_imperial_heir}
-                        subtract_variable = {which = galUni_basic_imperial_heir value = 1}}}
-                    if = {limit = {check_variable = {which = galUni_basic_scrapper value = 1}}
-                        last_created_leader = {add_trait = leader_trait_scrapper}
-                        subtract_variable = {which = galUni_basic_scrapper value = 1}}
-                    if = {limit = {check_variable = {which = galUni_basic_entrepreneur value = 1}}
-                        last_created_leader = {add_trait = leader_trait_entrepreneur}
-                        subtract_variable = {which = galUni_basic_entrepreneur value = 1}}
-                    if = {limit = {check_variable = {which = galUni_basic_venerated value = 1}}
-                        last_created_leader = {add_trait = leader_trait_venerated}
-                        subtract_variable = {which = galUni_basic_venerated value = 1}}
-                    if = {limit = {check_variable = {which = galUni_basic_emotional_support_pet value = 1}}
-                        last_created_leader = {add_trait = leader_trait_emotional_support_pet}
-                        subtract_variable = {which = galUni_basic_emotional_support_pet value = 1}}
-                    # Same thing for.......every single trait
-                    # Specialised Traits
-                    if = {limit = { check_variable = {which = galUni_specialised_architectural_interest value = 1}}
-                        last_created_leader = {add_trait = leader_trait_architectural_interest}
-                        subtract_variable = {which = galUni_specialised_architectural_interest value = 1}}
-                    # Veteran Traits
-                    if = {limit = { check_variable = {which = galUni_basic_adventurous_spirit value = 1}}
-                        last_created_leader = {add_trait = leader_trait_adventurous_spirit}
-                        subtract_variable = {which = galUni_basic_adventurous_spirit value = 1}}
-                }
-                # }
-                galUni_reset_hiring_menu = yes
-            # }
-        }
-    }
-
-    # fakeLeaderThingy = {
+# fakeLeaderThingy = {
     #     potential = { always = yes }
 
     #     allow = { always = yes }
