@@ -13,8 +13,6 @@ galUni_trait_storage = {
 	ai = { enabled = no }
 	faction = {
 		hostile = no
-		neutral = no
-		hostile_when_attacked = no
 		needs_border_access = no
 		generate_borders = no
 		needs_colony = no
@@ -22,6 +20,8 @@ galUni_trait_storage = {
 	}
 	modules = {
 		standard_event_module = {}
-		exclusive_diplomacy_module = {}
+		exclusive_diplomacy_module = {
+			contact_rule = on_action_only
+		}
 	}
 }

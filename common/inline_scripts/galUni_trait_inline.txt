@@ -3,10 +3,12 @@ potential = {
 }
 allow = { always = yes }
 effect = {
-	global_event_target:galUni_storage = {
-		every_owned_leader = {
-			limit = { has_leader_flag = galUni_preview }
-			tooltip = { add_trait = $trait_tool$ }
+	if = { limit = { has_global_flag = galUni_storage_created }
+		event_target:galUni_storage = {
+			every_owned_leader = {
+				limit = { has_leader_flag = galUni_preview }
+				tooltip = { add_trait = $trait_tool$ }
+			}
 		}
 	}
 	custom_tooltip = "galUni_trait_tooltip_separator"
