@@ -43,30 +43,30 @@ galUni_reset_hiring_menu = {
 	optimize_memory
 	galUni_destroy_preview_leader_effect = yes
 	set_variable = {which = galUni_hiringCost value = 0}
-	set_global_flag = galUni_hiring_phase_one
-	set_global_flag = galUni_hiring_menu_opened
-	remove_global_flag = galUni_hiring_phase_two
+	set_country_flag = galUni_hiring_phase_one
+	set_country_flag = galUni_hiring_menu_opened
+	remove_country_flag = galUni_hiring_phase_two
 
-	galUni_move_to_phase_two = {EFFECT = remove_global_flag NAME = PHASE_TWO TYPE = official}
-	galUni_move_to_phase_two = {EFFECT = remove_global_flag NAME = PHASE_TWO TYPE = commander}
-	galUni_move_to_phase_two = {EFFECT = remove_global_flag NAME = PHASE_TWO TYPE = scientist}
+	galUni_move_to_phase_two = {EFFECT = remove_country_flag NAME = PHASE_TWO TYPE = official}
+	galUni_move_to_phase_two = {EFFECT = remove_country_flag NAME = PHASE_TWO TYPE = commander}
+	galUni_move_to_phase_two = {EFFECT = remove_country_flag NAME = PHASE_TWO TYPE = scientist}
 
-	galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = ADAPTABLE}
-	galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = EAGER}
-	galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = RESILIENT}
-	galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = POLITICIAN}
-	galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = CAPITALIST}
-	galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = PRIVATE_MINES}
-	galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = HOMESTEADER}
-	galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = CHAMPION_OF_THE_PEOPLE}
-	galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = GIFTED}
-	galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = IMPERIAL_HEIR}
-	galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = SCRAPPER}
-	galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = ENTREPRENEUR}
-	galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = VENERATED}
-	galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = EMOTIONAL_SUPPORT_PET}
-	galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = SPECIALISED NAME = ARCHITECTURAL_INTEREST}
-	galUni_trait_enable_disable_effect = {EFFECT = remove_global_flag TYPE = BASIC NAME = ADVENTUROUS_SPIRIT}
+	galUni_trait_enable_disable_effect = {EFFECT = remove_country_flag TYPE = BASIC NAME = ADAPTABLE}
+	galUni_trait_enable_disable_effect = {EFFECT = remove_country_flag TYPE = BASIC NAME = EAGER}
+	galUni_trait_enable_disable_effect = {EFFECT = remove_country_flag TYPE = BASIC NAME = RESILIENT}
+	galUni_trait_enable_disable_effect = {EFFECT = remove_country_flag TYPE = BASIC NAME = POLITICIAN}
+	galUni_trait_enable_disable_effect = {EFFECT = remove_country_flag TYPE = BASIC NAME = CAPITALIST}
+	galUni_trait_enable_disable_effect = {EFFECT = remove_country_flag TYPE = BASIC NAME = PRIVATE_MINES}
+	galUni_trait_enable_disable_effect = {EFFECT = remove_country_flag TYPE = BASIC NAME = HOMESTEADER}
+	galUni_trait_enable_disable_effect = {EFFECT = remove_country_flag TYPE = BASIC NAME = CHAMPION_OF_THE_PEOPLE}
+	galUni_trait_enable_disable_effect = {EFFECT = remove_country_flag TYPE = BASIC NAME = GIFTED}
+	galUni_trait_enable_disable_effect = {EFFECT = remove_country_flag TYPE = BASIC NAME = IMPERIAL_HEIR}
+	galUni_trait_enable_disable_effect = {EFFECT = remove_country_flag TYPE = BASIC NAME = SCRAPPER}
+	galUni_trait_enable_disable_effect = {EFFECT = remove_country_flag TYPE = BASIC NAME = ENTREPRENEUR}
+	galUni_trait_enable_disable_effect = {EFFECT = remove_country_flag TYPE = BASIC NAME = VENERATED}
+	galUni_trait_enable_disable_effect = {EFFECT = remove_country_flag TYPE = BASIC NAME = EMOTIONAL_SUPPORT_PET}
+	galUni_trait_enable_disable_effect = {EFFECT = remove_country_flag TYPE = SPECIALISED NAME = ARCHITECTURAL_INTEREST}
+	galUni_trait_enable_disable_effect = {EFFECT = remove_country_flag TYPE = BASIC NAME = ADVENTUROUS_SPIRIT}
 
 	clear_variable = galUni_basic_adaptable
 	clear_variable = galUni_basic_eager

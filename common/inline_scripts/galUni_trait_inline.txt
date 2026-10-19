@@ -1,5 +1,5 @@
 potential = {
-	has_global_flag = galUni_hiring_phase_two
+	from = { has_country_flag = galUni_hiring_phase_two }
 }
 allow = { always = yes }
 effect = {
@@ -10,12 +10,12 @@ effect = {
 	custom_tooltip = "galUni_trait_tooltip_separator"
 	custom_tooltip = "$trait_tool$_desc"
 	hidden_effect = {
-		if = { limit = { has_global_flag = $flag$ }
-			root = { galUni_trait_enable_disable_effect = { EFFECT = remove_global_flag TYPE = $type$ NAME = $trait_name$ } }
+		if = { limit = { from = { has_country_flag = $flag$ } }
+			root = { galUni_trait_enable_disable_effect = { EFFECT = remove_country_flag TYPE = $type$ NAME = $trait_name$ } }
 			root = { subtract_variable = { which = galUni_hiringCost value = $cost$ } }
 			root = { set_variable = { which = $trait_id$ value = 0 } }
 		} else = {
-			root = { galUni_trait_enable_disable_effect = { EFFECT = set_global_flag TYPE = $type$ NAME = $trait_name$ } }
+			root = { galUni_trait_enable_disable_effect = { EFFECT = set_country_flag TYPE = $type$ NAME = $trait_name$ } }
 			root = { change_variable = { which = galUni_hiringCost value = $cost$ } }
 			root = { set_variable = { which = $trait_id$ value = 1 } }
 		}

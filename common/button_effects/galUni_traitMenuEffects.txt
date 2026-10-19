@@ -1,27 +1,27 @@
 # Phase 0 - Close Button
 galUni_close_button_effect = {
-    potential = {has_global_flag = galUni_hiring_menu_opened}
+    potential = { from = { has_country_flag = galUni_hiring_menu_opened } }
     allow = {}
     effect = {
         custom_tooltip = "Close the menu"
         # hidden_effect = {
             galUni_reset_hiring_menu = yes
-            remove_global_flag = galUni_hiring_phase_one
-            remove_global_flag = galUni_hiring_menu_opened
+            from = { remove_country_flag = galUni_hiring_phase_one }
+            from = { remove_country_flag = galUni_hiring_menu_opened }
         # }
     }
 }
 
 # Phase 1 - Selecting Leader Class
 galUni_leader_official_button_effect = {
-    potential = {has_global_flag = galUni_hiring_phase_one}
+    potential = { from = { has_country_flag = galUni_hiring_phase_one } }
     allow = {}
     effect = {
         custom_tooltip = "Hire an official"
         # hidden_effect = {
-            remove_global_flag = galUni_hiring_phase_one
-            set_global_flag = galUni_hiring_phase_two
-            galUni_move_to_phase_two = {EFFECT = set_global_flag NAME = PHASE_TWO TYPE = official}            
+            from = { remove_country_flag = galUni_hiring_phase_one }
+            from = { set_country_flag = galUni_hiring_phase_two }
+            galUni_move_to_phase_two = {EFFECT = set_country_flag NAME = PHASE_TWO TYPE = official}            
             set_variable = {which = galUni_leader_type value = 2}
             hidden_effect = { galUni_create_preview_leader_effect = yes }
         # }
@@ -29,14 +29,14 @@ galUni_leader_official_button_effect = {
 }
 
 galUni_leader_commander_button_effect = {
-    potential = {has_global_flag = galUni_hiring_phase_one}
+    potential = { from = { has_country_flag = galUni_hiring_phase_one } }
     allow = {}
     effect = {
         custom_tooltip = "Hire a commander"
         # hidden_effect = {
-            remove_global_flag = galUni_hiring_phase_one
-            set_global_flag = galUni_hiring_phase_two
-            galUni_move_to_phase_two = {EFFECT = set_global_flag NAME = PHASE_TWO TYPE = commander}            
+            from = { remove_country_flag = galUni_hiring_phase_one }
+            from = { set_country_flag = galUni_hiring_phase_two }
+            galUni_move_to_phase_two = {EFFECT = set_country_flag NAME = PHASE_TWO TYPE = commander}            
             set_variable = {which = galUni_leader_type value = 1}
             hidden_effect = { galUni_create_preview_leader_effect = yes }
         # }
@@ -44,14 +44,14 @@ galUni_leader_commander_button_effect = {
     }
 
 galUni_leader_scientist_button_effect = {
-    potential = {has_global_flag = galUni_hiring_phase_one}
+    potential = { from = { has_country_flag = galUni_hiring_phase_one } }
     allow = {}
     effect = {
         custom_tooltip = "Hire a scientist"
         # hidden_effect = {
-            remove_global_flag = galUni_hiring_phase_one
-            set_global_flag = galUni_hiring_phase_two
-            galUni_move_to_phase_two = {EFFECT = set_global_flag NAME = PHASE_TWO TYPE = scientist} 
+            from = { remove_country_flag = galUni_hiring_phase_one }
+            from = { set_country_flag = galUni_hiring_phase_two }
+            galUni_move_to_phase_two = {EFFECT = set_country_flag NAME = PHASE_TWO TYPE = scientist} 
             set_variable = {which = galUni_leader_type value = 0}           
             hidden_effect = { galUni_create_preview_leader_effect = yes }
         # }
@@ -61,39 +61,39 @@ galUni_leader_scientist_button_effect = {
 # Phase 2 - Selecting Traits & Back button
 galUni_leader_back_button_effect = {
     potential = {
-        has_global_flag = galUni_hiring_menu_opened
-        has_global_flag = galUni_hiring_phase_two}
+        from = { has_country_flag = galUni_hiring_menu_opened }
+        from = { has_country_flag = galUni_hiring_phase_two }}
     allow = {}
     effect = {
         custom_tooltip = "Go back to leader selection"
         # hidden_effect = {
             galUni_reset_hiring_menu = yes
-            set_global_flag = galUni_hiring_phase_one
+            from = { set_country_flag = galUni_hiring_phase_one }
         # }
     }
     }
 
     galUni_phase_two_do_nothing_button_effect = {
-        potential = {has_global_flag = galUni_hiring_phase_two}
+        potential = { from = { has_country_flag = galUni_hiring_phase_two } }
         allow = {always = yes}
     }
     
     # Adaptable
         galUni_trait_main_body_basic_adaptable_selected_button_effect = {
             potential = {
-                has_global_flag = galUni_trait_BASIC_ADAPTABLE_selected
-                has_global_flag = galUni_hiring_phase_two
+                from = { has_country_flag = galUni_trait_BASIC_ADAPTABLE_selected }
+                from = { has_country_flag = galUni_hiring_phase_two }
             }
             allow = {always = yes}
         }
 
         galUni_trait_main_body_basic_adaptable_disabled_button_effect = {
             potential = {
-                has_global_flag = galUni_hiring_phase_two
+                from = { has_country_flag = galUni_hiring_phase_two }
                 OR = {
                     always = no
                 }
-                NOT = {has_global_flag = galUni_trait_BASIC_ADAPTABLE_selected}
+                NOT = { from = { has_country_flag = galUni_trait_BASIC_ADAPTABLE_selected } }
             }
             allow = {always = yes}
         }
@@ -118,19 +118,19 @@ galUni_leader_back_button_effect = {
     # Eager
        galUni_trait_main_body_basic_eager_selected_button_effect = {
         potential = {
-            has_global_flag = galUni_trait_BASIC_EAGER_selected
-            has_global_flag = galUni_hiring_phase_two
+            from = { has_country_flag = galUni_trait_BASIC_EAGER_selected }
+            from = { has_country_flag = galUni_hiring_phase_two }
         }
         allow = {always = yes}
         }
 
         galUni_trait_main_body_basic_eager_disabled_button_effect = {
         potential = {
-            has_global_flag = galUni_hiring_phase_two
+            from = { has_country_flag = galUni_hiring_phase_two }
             OR = {
-                has_global_flag = galUni_trait_BASIC_ADVENTUROUS_SPIRIT_selected
+                from = { has_country_flag = galUni_trait_BASIC_ADVENTUROUS_SPIRIT_selected }
             }
-            NOT = {has_global_flag = galUni_trait_BASIC_EAGER_selected}
+            NOT = { from = { has_country_flag = galUni_trait_BASIC_EAGER_selected } }
         }
         allow = {always = yes}
         }
@@ -151,19 +151,19 @@ galUni_leader_back_button_effect = {
     # Resilient
         galUni_trait_main_body_basic_resilient_selected_button_effect = {
             potential = {
-                has_global_flag = galUni_trait_BASIC_RESILIENT_selected
-                has_global_flag = galUni_hiring_phase_two
+                from = { has_country_flag = galUni_trait_BASIC_RESILIENT_selected }
+                from = { has_country_flag = galUni_hiring_phase_two }
             }
             allow = {always = yes}
         }
 
         galUni_trait_main_body_basic_resilient_disabled_button_effect = {
             potential = {
-                has_global_flag = galUni_hiring_phase_two
+                from = { has_country_flag = galUni_hiring_phase_two }
                 OR = {
                     always = no
                 }
-                NOT = {has_global_flag = galUni_trait_BASIC_RESILIENT_selected}
+                NOT = { from = { has_country_flag = galUni_trait_BASIC_RESILIENT_selected } }
             }
             allow = {always = yes}
         }
@@ -183,19 +183,19 @@ galUni_leader_back_button_effect = {
     # Politician 
         galUni_trait_main_body_basic_politician_selected_button_effect = {
         potential = {
-            has_global_flag = galUni_trait_BASIC_POLITICIAN_selected
-            has_global_flag = galUni_hiring_phase_two
+            from = { has_country_flag = galUni_trait_BASIC_POLITICIAN_selected }
+            from = { has_country_flag = galUni_hiring_phase_two }
         }
         allow = {always = yes}
         }
 
         galUni_trait_main_body_basic_politician_disabled_button_effect = {
         potential = {
-            has_global_flag = galUni_hiring_phase_two
+            from = { has_country_flag = galUni_hiring_phase_two }
             OR = {
                 always = no
             }
-            NOT = {has_global_flag = galUni_trait_BASIC_POLITICIAN_selected}
+            NOT = { from = { has_country_flag = galUni_trait_BASIC_POLITICIAN_selected } }
         }
         allow = {always = yes}
         }
@@ -215,25 +215,25 @@ galUni_leader_back_button_effect = {
     # Capitalist
         galUni_trait_main_body_basic_capitalist_selected_button_effect = {
         potential = {
-            has_global_flag = galUni_trait_BASIC_CAPITALIST_selected
-            has_global_flag = galUni_hiring_phase_two
+            from = { has_country_flag = galUni_trait_BASIC_CAPITALIST_selected }
+            from = { has_country_flag = galUni_hiring_phase_two }
         }
         allow = {always = yes}
         }
 
         galUni_trait_main_body_basic_capitalist_disabled_button_effect = {
         potential = {
-            has_global_flag = galUni_hiring_phase_two
+            from = { has_country_flag = galUni_hiring_phase_two }
             OR = {
                 trait_is_wilderness_check = yes
-                has_global_flag = galUni_trait_BASIC_PRIVATE_MINES_selected
-                has_global_flag = galUni_trait_BASIC_HOMESTEADER_selected
-                has_global_flag = galUni_trait_BASIC_SCRAPPER_selected
-                has_global_flag = galUni_trait_BASIC_ENTREPRENEUR_selected
-                has_global_flag = galUni_trait_BASIC_VENERATED_selected
+                from = { has_country_flag = galUni_trait_BASIC_PRIVATE_MINES_selected }
+                from = { has_country_flag = galUni_trait_BASIC_HOMESTEADER_selected }
+                from = { has_country_flag = galUni_trait_BASIC_SCRAPPER_selected }
+                from = { has_country_flag = galUni_trait_BASIC_ENTREPRENEUR_selected }
+                from = { has_country_flag = galUni_trait_BASIC_VENERATED_selected }
                 
             }
-            NOT = {has_global_flag = galUni_trait_BASIC_CAPITALIST_selected}
+            NOT = { from = { has_country_flag = galUni_trait_BASIC_CAPITALIST_selected } }
         }
         allow = {always = yes}
         }
@@ -253,24 +253,24 @@ galUni_leader_back_button_effect = {
     # Private Mines
         galUni_trait_main_body_basic_private_mines_selected_button_effect = {
             potential = {
-                has_global_flag = galUni_trait_BASIC_PRIVATE_MINES_selected
-                has_global_flag = galUni_hiring_phase_two
+                from = { has_country_flag = galUni_trait_BASIC_PRIVATE_MINES_selected }
+                from = { has_country_flag = galUni_hiring_phase_two }
             }
             allow = {always = yes}
         }
         
         galUni_trait_main_body_basic_private_mines_disabled_button_effect = {
         potential = {
-            has_global_flag = galUni_hiring_phase_two
+            from = { has_country_flag = galUni_hiring_phase_two }
             OR = {
                 trait_is_wilderness_check = yes
-                has_global_flag = galUni_trait_BASIC_CAPITALIST_selected
-                has_global_flag = galUni_trait_BASIC_HOMESTEADER_selected
-                has_global_flag = galUni_trait_BASIC_SCRAPPER_selected
-                has_global_flag = galUni_trait_BASIC_ENTREPRENEUR_selected
-                has_global_flag = galUni_trait_BASIC_VENERATED_selected
+                from = { has_country_flag = galUni_trait_BASIC_CAPITALIST_selected }
+                from = { has_country_flag = galUni_trait_BASIC_HOMESTEADER_selected }
+                from = { has_country_flag = galUni_trait_BASIC_SCRAPPER_selected }
+                from = { has_country_flag = galUni_trait_BASIC_ENTREPRENEUR_selected }
+                from = { has_country_flag = galUni_trait_BASIC_VENERATED_selected }
             }
-            NOT = {has_global_flag = galUni_trait_BASIC_PRIVATE_MINES_selected}
+            NOT = { from = { has_country_flag = galUni_trait_BASIC_PRIVATE_MINES_selected } }
         }
         allow = {always = yes}
         }
@@ -290,25 +290,25 @@ galUni_leader_back_button_effect = {
     # Homesteader
         galUni_trait_main_body_basic_homesteader_selected_button_effect = {
         potential = {
-            has_global_flag = galUni_trait_BASIC_HOMESTEADER_selected
-            has_global_flag = galUni_hiring_phase_two
+            from = { has_country_flag = galUni_trait_BASIC_HOMESTEADER_selected }
+            from = { has_country_flag = galUni_hiring_phase_two }
         }
         allow = {always = yes}
         }
 
         galUni_trait_main_body_basic_homesteader_disabled_button_effect = {
             potential = {
-                has_global_flag = galUni_hiring_phase_two
+                from = { has_country_flag = galUni_hiring_phase_two }
                 OR = {
                 trait_is_wilderness_check = yes
-                has_global_flag = galUni_trait_BASIC_PRIVATE_MINES_selected
-                has_global_flag = galUni_trait_BASIC_CAPITALIST_selected
-                has_global_flag = galUni_trait_BASIC_SCRAPPER_selected
-                has_global_flag = galUni_trait_BASIC_ENTREPRENEUR_selected
-                has_global_flag = galUni_trait_BASIC_VENERATED_selected
+                from = { has_country_flag = galUni_trait_BASIC_PRIVATE_MINES_selected }
+                from = { has_country_flag = galUni_trait_BASIC_CAPITALIST_selected }
+                from = { has_country_flag = galUni_trait_BASIC_SCRAPPER_selected }
+                from = { has_country_flag = galUni_trait_BASIC_ENTREPRENEUR_selected }
+                from = { has_country_flag = galUni_trait_BASIC_VENERATED_selected }
 		        owner = {country_uses_food = no}
                 }
-                NOT = {has_global_flag = galUni_trait_BASIC_HOMESTEADER_selected}
+                NOT = { from = { has_country_flag = galUni_trait_BASIC_HOMESTEADER_selected } }
             }
             allow = {always = yes}
         }
@@ -328,19 +328,19 @@ galUni_leader_back_button_effect = {
     # Champion of the People
         galUni_trait_main_body_basic_champion_of_the_people_selected_button_effect = {
         potential = {
-            has_global_flag = galUni_trait_BASIC_CHAMPION_OF_THE_PEOPLE_selected
-            has_global_flag = galUni_hiring_phase_two
+            from = { has_country_flag = galUni_trait_BASIC_CHAMPION_OF_THE_PEOPLE_selected }
+            from = { has_country_flag = galUni_hiring_phase_two }
         }
         allow = {always = yes}
         }
 
         galUni_trait_main_body_basic_champion_of_the_people_disabled_button_effect = {
             potential = {
-                has_global_flag = galUni_hiring_phase_two
+                from = { has_country_flag = galUni_hiring_phase_two }
                 OR = {
                     owner = {is_machine_empire = yes}
                 }
-                NOT = {has_global_flag = galUni_trait_BASIC_CHAMPION_OF_THE_PEOPLE_selected}
+                NOT = { from = { has_country_flag = galUni_trait_BASIC_CHAMPION_OF_THE_PEOPLE_selected } }
             }
             allow = {always = yes}
         }
@@ -360,19 +360,19 @@ galUni_leader_back_button_effect = {
     # Gifted
         galUni_trait_main_body_basic_gifted_selected_button_effect = {
         potential = {
-            has_global_flag = galUni_trait_BASIC_GIFTED_selected
-            has_global_flag = galUni_hiring_phase_two
+            from = { has_country_flag = galUni_trait_BASIC_GIFTED_selected }
+            from = { has_country_flag = galUni_hiring_phase_two }
         }
         allow = {always = yes}
         }
 
         galUni_trait_main_body_basic_gifted_disabled_button_effect = {
             potential = {
-                has_global_flag = galUni_hiring_phase_two
+                from = { has_country_flag = galUni_hiring_phase_two }
                 OR = {
                     always = no
                 }
-                NOT = {has_global_flag = galUni_trait_BASIC_GIFTED_selected}
+                NOT = { from = { has_country_flag = galUni_trait_BASIC_GIFTED_selected } }
             }
             allow = {always = yes}
         }
@@ -392,19 +392,19 @@ galUni_leader_back_button_effect = {
     # Imperial Heir
         galUni_trait_main_body_basic_imperial_heir_selected_button_effect = {
         potential = {
-            has_global_flag = galUni_trait_BASIC_IMPERIAL_HEIR_selected
-            has_global_flag = galUni_hiring_phase_two
+            from = { has_country_flag = galUni_trait_BASIC_IMPERIAL_HEIR_selected }
+            from = { has_country_flag = galUni_hiring_phase_two }
         }
         allow = {always = yes}
         }
 
         galUni_trait_main_body_basic_imperial_heir_disabled_button_effect = {
         potential = {
-            has_global_flag = galUni_hiring_phase_two
+            from = { has_country_flag = galUni_hiring_phase_two }
             OR = {
                 always = no
             }
-            NOT = {has_global_flag = galUni_trait_BASIC_IMPERIAL_HEIR_selected}
+            NOT = { from = { has_country_flag = galUni_trait_BASIC_IMPERIAL_HEIR_selected } }
         }
         allow = {always = yes}
         }
@@ -425,24 +425,24 @@ galUni_leader_back_button_effect = {
     # Scrapper
         galUni_trait_main_body_basic_scrapper_selected_button_effect = {
         potential = {
-            has_global_flag = galUni_trait_BASIC_SCRAPPER_selected
-            has_global_flag = galUni_hiring_phase_two
+            from = { has_country_flag = galUni_trait_BASIC_SCRAPPER_selected }
+            from = { has_country_flag = galUni_hiring_phase_two }
         }
         allow = {always = yes}
         }
 
         galUni_trait_main_body_basic_scrapper_disabled_button_effect = {
         potential = {
-            has_global_flag = galUni_hiring_phase_two
+            from = { has_country_flag = galUni_hiring_phase_two }
             OR = {
                 trait_is_wilderness_check = yes
-                has_global_flag = galUni_trait_BASIC_PRIVATE_MINES_selected
-                has_global_flag = galUni_trait_BASIC_HOMESTEADER_selected
-                has_global_flag = galUni_trait_BASIC_CAPITALIST_selected
-                has_global_flag = galUni_trait_BASIC_ENTREPRENEUR_selected
-                has_global_flag = galUni_trait_BASIC_VENERATED_selected
+                from = { has_country_flag = galUni_trait_BASIC_PRIVATE_MINES_selected }
+                from = { has_country_flag = galUni_trait_BASIC_HOMESTEADER_selected }
+                from = { has_country_flag = galUni_trait_BASIC_CAPITALIST_selected }
+                from = { has_country_flag = galUni_trait_BASIC_ENTREPRENEUR_selected }
+                from = { has_country_flag = galUni_trait_BASIC_VENERATED_selected }
             }
-            NOT = {has_global_flag = galUni_trait_BASIC_SCRAPPER_selected}
+            NOT = { from = { has_country_flag = galUni_trait_BASIC_SCRAPPER_selected } }
         }
         allow = {always = yes}
         }
@@ -462,25 +462,25 @@ galUni_leader_back_button_effect = {
     # Entrepreneur
         galUni_trait_main_body_basic_entrepreneur_selected_button_effect = {
         potential = {
-            has_global_flag = galUni_trait_BASIC_ENTREPRENEUR_selected
-            has_global_flag = galUni_hiring_phase_two
+            from = { has_country_flag = galUni_trait_BASIC_ENTREPRENEUR_selected }
+            from = { has_country_flag = galUni_hiring_phase_two }
         }
         allow = {always = yes}
         }
 
         galUni_trait_main_body_basic_entrepreneur_disabled_button_effect = {
         potential = {
-            has_global_flag = galUni_hiring_phase_two
+            from = { has_country_flag = galUni_hiring_phase_two }
             OR = {
                 trait_is_wilderness_check = yes
-                has_global_flag = galUni_trait_BASIC_PRIVATE_MINES_selected
-                has_global_flag = galUni_trait_BASIC_HOMESTEADER_selected
-                has_global_flag = galUni_trait_BASIC_SCRAPPER_selected
-                has_global_flag = galUni_trait_BASIC_CAPITALIST_selected
-                has_global_flag = galUni_trait_BASIC_VENERATED_selected
+                from = { has_country_flag = galUni_trait_BASIC_PRIVATE_MINES_selected }
+                from = { has_country_flag = galUni_trait_BASIC_HOMESTEADER_selected }
+                from = { has_country_flag = galUni_trait_BASIC_SCRAPPER_selected }
+                from = { has_country_flag = galUni_trait_BASIC_CAPITALIST_selected }
+                from = { has_country_flag = galUni_trait_BASIC_VENERATED_selected }
                 owner = {country_uses_consumer_goods = no}
             }
-            NOT = {has_global_flag = galUni_trait_BASIC_ENTREPRENEUR_selected}
+            NOT = { from = { has_country_flag = galUni_trait_BASIC_ENTREPRENEUR_selected } }
         }
         allow = {always = yes}
         }
@@ -500,24 +500,24 @@ galUni_leader_back_button_effect = {
     # Venerated
         galUni_trait_main_body_basic_venerated_selected_button_effect = {
         potential = {
-            has_global_flag = galUni_trait_BASIC_VENERATED_selected
-            has_global_flag = galUni_hiring_phase_two
+            from = { has_country_flag = galUni_trait_BASIC_VENERATED_selected }
+            from = { has_country_flag = galUni_hiring_phase_two }
         }
         allow = {always = yes}
         }
 
         galUni_trait_main_body_basic_venerated_disabled_button_effect = {
         potential = {
-            has_global_flag = galUni_hiring_phase_two
+            from = { has_country_flag = galUni_hiring_phase_two }
             OR = {
                 trait_is_wilderness_check = yes
-                has_global_flag = galUni_trait_BASIC_PRIVATE_MINES_selected
-                has_global_flag = galUni_trait_BASIC_HOMESTEADER_selected
-                has_global_flag = galUni_trait_BASIC_SCRAPPER_selected
-                has_global_flag = galUni_trait_BASIC_ENTREPRENEUR_selected
-                has_global_flag = galUni_trait_BASIC_CAPITALIST_selected
+                from = { has_country_flag = galUni_trait_BASIC_PRIVATE_MINES_selected }
+                from = { has_country_flag = galUni_trait_BASIC_HOMESTEADER_selected }
+                from = { has_country_flag = galUni_trait_BASIC_SCRAPPER_selected }
+                from = { has_country_flag = galUni_trait_BASIC_ENTREPRENEUR_selected }
+                from = { has_country_flag = galUni_trait_BASIC_CAPITALIST_selected }
             }
-            NOT = {has_global_flag = galUni_trait_BASIC_VENERATED_selected}
+            NOT = { from = { has_country_flag = galUni_trait_BASIC_VENERATED_selected } }
         }
         allow = {always = yes}
         }
@@ -537,19 +537,19 @@ galUni_leader_back_button_effect = {
     # Emotional Support Pet
         galUni_trait_main_body_basic_emotional_support_pet_selected_button_effect = {
         potential = {
-            has_global_flag = galUni_trait_BASIC_EMOTIONAL_SUPPORT_PET_selected
-            has_global_flag = galUni_hiring_phase_two
+            from = { has_country_flag = galUni_trait_BASIC_EMOTIONAL_SUPPORT_PET_selected }
+            from = { has_country_flag = galUni_hiring_phase_two }
         }
         allow = {always = yes}
         }
 
         galUni_trait_main_body_basic_emotional_support_pet_disabled_button_effect = {
         potential = {
-            has_global_flag = galUni_hiring_phase_two
+            from = { has_country_flag = galUni_hiring_phase_two }
             OR = {
                 owner = { is_machine_empire = yes }
             }
-            NOT = {has_global_flag = galUni_trait_BASIC_EMOTIONAL_SUPPORT_PET_selected}
+            NOT = { from = { has_country_flag = galUni_trait_BASIC_EMOTIONAL_SUPPORT_PET_selected } }
         }
         allow = {always = yes}
         }
@@ -570,26 +570,26 @@ galUni_leader_back_button_effect = {
     # Architectural Interest
         galUni_trait_main_body_specialised_architectural_interest_selected_button_effect = {
         potential = {
-            has_global_flag = galUni_trait_SPECIALISED_ARCHITECTURAL_INTEREST_selected
-            has_global_flag = galUni_hiring_phase_two
+            from = { has_country_flag = galUni_trait_SPECIALISED_ARCHITECTURAL_INTEREST_selected }
+            from = { has_country_flag = galUni_hiring_phase_two }
         }
         allow = {always = yes}
         }
 
         galUni_trait_main_body_specialised_architectural_interest_disabled_button_effect = {
         potential = {
-            has_global_flag = galUni_hiring_phase_two
+            from = { has_country_flag = galUni_hiring_phase_two }
             OR = {
                 check_variable = {which = galUni_leader_type value = 1}
             }
-            NOT = {has_global_flag = galUni_trait_SPECIALISED_ARCHITECTURAL_INTEREST_selected}
+            NOT = { from = { has_country_flag = galUni_trait_SPECIALISED_ARCHITECTURAL_INTEREST_selected } }
         }
         allow = {always = yes}
         }
 
         galUni_trait_main_body_specialised_architectural_interest_button_effect = {
         potential = {
-            has_global_flag = galUni_hiring_phase_two
+            from = { has_country_flag = galUni_hiring_phase_two }
             OR = {
                 check_variable = {which = galUni_leader_type value = 0}
                 check_variable = {which = galUni_leader_type value = 2}
@@ -611,19 +611,19 @@ galUni_leader_back_button_effect = {
     # Adventurous Spirit
         galUni_trait_main_body_basic_adventurous_spirit_selected_button_effect = {
         potential = {
-            has_global_flag = galUni_trait_BASIC_ADVENTUROUS_SPIRIT_selected
-            has_global_flag = galUni_hiring_phase_two
+            from = { has_country_flag = galUni_trait_BASIC_ADVENTUROUS_SPIRIT_selected }
+            from = { has_country_flag = galUni_hiring_phase_two }
         }
         allow = {always = yes}
         }
     
         galUni_trait_main_body_basic_adventurous_spirit_disabled_button_effect = {
         potential = {
-            has_global_flag = galUni_hiring_phase_two
+            from = { has_country_flag = galUni_hiring_phase_two }
             OR = {
-                has_global_flag = galUni_trait_BASIC_EAGER_selected
+                from = { has_country_flag = galUni_trait_BASIC_EAGER_selected }
             }
-            NOT = {has_global_flag = galUni_trait_BASIC_ADVENTUROUS_SPIRIT_selected}
+            NOT = { from = { has_country_flag = galUni_trait_BASIC_ADVENTUROUS_SPIRIT_selected } }
         }
         allow = {always = yes}
         }
@@ -670,7 +670,7 @@ galUni_leader_back_button_effect = {
         # Finally, Create leader...
     galUni_leader_create_button_effect = {
 	potential = {
-		has_global_flag = galUni_hiring_phase_two
+		from = { has_country_flag = galUni_hiring_phase_two }
 	}
 	allow = {
 		resource_stockpile_compare = {

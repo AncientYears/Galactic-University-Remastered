@@ -44,7 +44,9 @@ After any run, read `Documents\Paradox Interactive\Stellaris\logs\error.log`.
 - **Scope trap that broke trait application**: inside `last_created_leader = { … }` (leader scope), `check_variable = { which = galUni_basic_adaptable … }` reads a variable *on the leader*, not the country → never matches → no traits applied. Wrap with `owner = { check_variable = … }`. Same for the class check (`galUni_leader_type`).
 - `kill_leader` requires block form: `kill_leader = { }` (NOT `kill_leader = yes`).
 - `create_leader = { name = random … }` is valid vanilla syntax.
-- Trait picker state is stored in **global flags** (`set_global_flag galUni_trait_*_selected`) → shared across all countries. For per-empire state use `set_country_flag`/`has_country_flag` (docs: `set_global_flag` is "Supported Scopes: all"). Migration pending.
+- Per-empire menu state uses **country flags** (migrated from global flags). All menu flags (`galUni_hiring_phase_one`/`_two`, `galUni_hiring_menu_opened`, `galUni_trait_<TYPE>_<NAME>_selected`, `galUni_PHASE_TWO_<class>`) are set via `set_country_flag`/`remove_country_flag` and checked via `has_country_flag`.
+- Scope convention after migration: in button-effect `potential`/`allow` (THIS may be a non-country selected object) and inline-script trigger checks, reference flags as `from = { has_country_flag = X }` (FROM = player country). In `effect` top-level setters, wrap as `from = { set_country_flag/remove_country_flag = X }`. Inside `galUni_reset_hiring_menu` and inside `root = { }` blocks the scope is already the country → bare `set_country_flag`/`remove_country_flag`.
+- Country-flag migration verified in-game (class select, trait toggle, create, reopen; plus a second empire — no leakage).
 - `ADD_TRAIT` loc (`triggers_effects_l_english.yml:1412`) always prefixes `$LEADER$`; preview leader named "Student" so hover reads "Student: Student gains the … trait". Accepted for now.
 - When using `String.replace`/generators, note `$'`, `$&`, `$$` are special in the replacement string — in JS use a function replacer; elsewhere escape appropriately.
 
