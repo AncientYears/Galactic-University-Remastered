@@ -3,28 +3,32 @@ galUni_create_preview_leader_effect = {
 	if = { limit = { check_variable = { which = galUni_preview_leader_exists value >= 1 } }
 		galUni_destroy_preview_leader_effect = yes
 	}
-	create_leader = {
-		name = random
-		species = owner_main_species
-		class = random
-		randomize_traits = no
-		event_leader = yes
-	}
-	last_created_leader = {
-		set_leader_flag = galUni_preview
-		set_name = "Student"
-		if = { limit = { check_variable = { which = galUni_leader_type value = 0 } } change_leader_class = scientist }
-		else_if = { limit = { check_variable = { which = galUni_leader_type value = 1 } } change_leader_class = commander }
-		else_if = { limit = { check_variable = { which = galUni_leader_type value = 2 } } change_leader_class = official }
+	global_event_target:galUni_storage = {
+		create_leader = {
+			name = random
+			species = random
+			class = random
+			randomize_traits = no
+			event_leader = yes
+		}
+		last_created_leader = {
+			set_leader_flag = galUni_preview
+			set_name = "Student"
+			if = { limit = { from = { check_variable = { which = galUni_leader_type value = 0 } } } change_leader_class = scientist }
+			else_if = { limit = { from = { check_variable = { which = galUni_leader_type value = 1 } } } change_leader_class = commander }
+			else_if = { limit = { from = { check_variable = { which = galUni_leader_type value = 2 } } } change_leader_class = official }
+		}
 	}
 	set_variable = { which = galUni_preview_leader_exists value = 1 }
 }
 
 galUni_destroy_preview_leader_effect = {
 	optimize_memory
-	every_owned_leader = {
-		limit = { has_leader_flag = galUni_preview }
-		kill_leader = { }
+	global_event_target:galUni_storage = {
+		every_owned_leader = {
+			limit = { has_leader_flag = galUni_preview }
+			kill_leader = { }
+		}
 	}
 	clear_variable = galUni_preview_leader_exists
 }

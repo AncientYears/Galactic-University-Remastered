@@ -124,3 +124,19 @@ country_event = {
 	}
 }
 
+event = { # spawn hidden storage country for the leader-maker preview leader
+	id = galuni.100
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		create_country = {
+			name = "galUni_storage_country"
+			type = galUni_trait_storage
+			effect = {
+				save_global_event_target_as = galUni_storage
+			}
+		}
+	}
+}
+
