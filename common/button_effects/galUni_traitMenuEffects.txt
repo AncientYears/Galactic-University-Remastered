@@ -1,6 +1,5 @@
 # Phase 0 - Close Button
-galUni_close_button_effect = {
-    potential = { from = { has_country_flag = galUni_hiring_menu_opened } }
+galUni_close_button_effect = {    potential = { from = { has_country_flag = galUni_hiring_menu_opened } }
     allow = {}
     effect = {
         custom_tooltip = "Close the menu"
@@ -85,7 +84,17 @@ galUni_leader_back_button_effect = {
                 from = { has_country_flag = galUni_hiring_phase_two }
             }
             allow = {always = yes}
-        }
+       
+            inline_script = {
+                script = galUni_trait_inline
+                trait_tool = leader_trait_adaptable
+                flag = galUni_trait_BASIC_ADAPTABLE_selected
+                type = BASIC
+                trait_name = ADAPTABLE
+                trait_id = galUni_basic_adaptable
+                cost = 1000
+            }
+         }
 
         galUni_trait_main_body_basic_adaptable_disabled_button_effect = {
             potential = {
@@ -122,7 +131,18 @@ galUni_leader_back_button_effect = {
             from = { has_country_flag = galUni_hiring_phase_two }
         }
         allow = {always = yes}
+       
+            inline_script = {
+            script = galUni_trait_inline
+            trait_tool = leader_trait_eager
+            #                trait_tool = leader_trait_eager
+            flag = galUni_trait_BASIC_EAGER_selected
+            type = BASIC
+            trait_name = EAGER
+            trait_id = galUni_basic_eager
+            cost = 1000
         }
+         }
 
         galUni_trait_main_body_basic_eager_disabled_button_effect = {
         potential = {
@@ -155,7 +175,17 @@ galUni_leader_back_button_effect = {
                 from = { has_country_flag = galUni_hiring_phase_two }
             }
             allow = {always = yes}
+       
+            inline_script = {
+            script = galUni_trait_inline
+            trait_tool = leader_trait_resilient
+            flag = galUni_trait_BASIC_RESILIENT_selected
+            type = BASIC
+            trait_name = RESILIENT
+            trait_id = galUni_basic_resilient
+            cost = 1000
         }
+         }
 
         galUni_trait_main_body_basic_resilient_disabled_button_effect = {
             potential = {
@@ -187,7 +217,17 @@ galUni_leader_back_button_effect = {
             from = { has_country_flag = galUni_hiring_phase_two }
         }
         allow = {always = yes}
+       
+            inline_script = {
+            script = galUni_trait_inline
+            trait_tool = leader_trait_politician
+            flag = galUni_trait_BASIC_POLITICIAN_selected
+            type = BASIC
+            trait_name = POLITICIAN
+            trait_id = galUni_basic_politician
+            cost = 1000
         }
+         }
 
         galUni_trait_main_body_basic_politician_disabled_button_effect = {
         potential = {
@@ -219,7 +259,17 @@ galUni_leader_back_button_effect = {
             from = { has_country_flag = galUni_hiring_phase_two }
         }
         allow = {always = yes}
+       
+            inline_script = {
+            script = galUni_trait_inline
+            trait_tool = leader_trait_capitalist
+            flag = galUni_trait_BASIC_CAPITALIST_selected
+            type = BASIC
+            trait_name = CAPITALIST
+            trait_id = galUni_basic_capitalist
+            cost = 1000
         }
+         }
 
         galUni_trait_main_body_basic_capitalist_disabled_button_effect = {
         potential = {
@@ -257,7 +307,17 @@ galUni_leader_back_button_effect = {
                 from = { has_country_flag = galUni_hiring_phase_two }
             }
             allow = {always = yes}
+       
+            inline_script = {
+            script = galUni_trait_inline
+            trait_tool = leader_trait_private_mines
+            flag = galUni_trait_BASIC_PRIVATE_MINES_selected
+            type = BASIC
+            trait_name = PRIVATE_MINES
+            trait_id = galUni_basic_private_mines
+            cost = 1000
         }
+         }
         
         galUni_trait_main_body_basic_private_mines_disabled_button_effect = {
         potential = {
@@ -294,7 +354,17 @@ galUni_leader_back_button_effect = {
             from = { has_country_flag = galUni_hiring_phase_two }
         }
         allow = {always = yes}
+       
+            inline_script = {
+            script = galUni_trait_inline
+            trait_tool = leader_trait_homesteader
+            flag = galUni_trait_BASIC_HOMESTEADER_selected
+            type = BASIC
+            trait_name = HOMESTEADER
+            trait_id = galUni_basic_homesteader
+            cost = 1000
         }
+         }
 
         galUni_trait_main_body_basic_homesteader_disabled_button_effect = {
             potential = {
@@ -332,7 +402,17 @@ galUni_leader_back_button_effect = {
             from = { has_country_flag = galUni_hiring_phase_two }
         }
         allow = {always = yes}
+       
+            inline_script = {
+            script = galUni_trait_inline
+            trait_tool = trait_ruler_champion_of_the_people
+            flag = galUni_trait_BASIC_CHAMPION_OF_THE_PEOPLE_selected
+            type = BASIC
+            trait_name = CHAMPION_OF_THE_PEOPLE
+            trait_id = galUni_basic_champion_of_the_people
+            cost = 1000
         }
+         }
 
         galUni_trait_main_body_basic_champion_of_the_people_disabled_button_effect = {
             potential = {
@@ -364,7 +444,17 @@ galUni_leader_back_button_effect = {
             from = { has_country_flag = galUni_hiring_phase_two }
         }
         allow = {always = yes}
+       
+            inline_script = {
+            script = galUni_trait_inline
+            trait_tool = leader_trait_gifted
+            flag = galUni_trait_BASIC_GIFTED_selected
+            type = BASIC
+            trait_name = GIFTED
+            trait_id = galUni_basic_gifted
+            cost = 1000
         }
+         }
 
         galUni_trait_main_body_basic_gifted_disabled_button_effect = {
             potential = {
@@ -396,7 +486,18 @@ galUni_leader_back_button_effect = {
             from = { has_country_flag = galUni_hiring_phase_two }
         }
         allow = {always = yes}
+       
+            inline_script = {
+            script = galUni_trait_inline
+            trait_tool = trait_imperial_heir
+            #                 trait_tool = trait_imperial_heir
+            flag = galUni_trait_BASIC_IMPERIAL_HEIR_selected
+            type = BASIC
+            trait_name = IMPERIAL_HEIR
+            trait_id = galUni_basic_imperial_heir
+            cost = 1000
         }
+         }
 
         galUni_trait_main_body_basic_imperial_heir_disabled_button_effect = {
         potential = {
@@ -429,7 +530,17 @@ galUni_leader_back_button_effect = {
             from = { has_country_flag = galUni_hiring_phase_two }
         }
         allow = {always = yes}
+       
+            inline_script = {
+            script = galUni_trait_inline
+            trait_tool = leader_trait_scrapper
+            flag = galUni_trait_BASIC_SCRAPPER_selected
+            type = BASIC
+            trait_name = SCRAPPER
+            trait_id = galUni_basic_scrapper
+            cost = 1000
         }
+         }
 
         galUni_trait_main_body_basic_scrapper_disabled_button_effect = {
         potential = {
@@ -466,7 +577,17 @@ galUni_leader_back_button_effect = {
             from = { has_country_flag = galUni_hiring_phase_two }
         }
         allow = {always = yes}
+       
+            inline_script = {
+            script = galUni_trait_inline
+            trait_tool = leader_trait_entrepreneur
+            flag = galUni_trait_BASIC_ENTREPRENEUR_selected
+            type = BASIC
+            trait_name = ENTREPRENEUR
+            trait_id = galUni_basic_entrepreneur
+            cost = 1000
         }
+         }
 
         galUni_trait_main_body_basic_entrepreneur_disabled_button_effect = {
         potential = {
@@ -504,7 +625,17 @@ galUni_leader_back_button_effect = {
             from = { has_country_flag = galUni_hiring_phase_two }
         }
         allow = {always = yes}
+       
+            inline_script = {
+            script = galUni_trait_inline
+            trait_tool = leader_trait_venerated
+            flag = galUni_trait_BASIC_VENERATED_selected
+            type = BASIC
+            trait_name = VENERATED
+            trait_id = galUni_basic_venerated
+            cost = 1000
         }
+         }
 
         galUni_trait_main_body_basic_venerated_disabled_button_effect = {
         potential = {
@@ -541,7 +672,17 @@ galUni_leader_back_button_effect = {
             from = { has_country_flag = galUni_hiring_phase_two }
         }
         allow = {always = yes}
+       
+            inline_script = {
+            script = galUni_trait_inline
+            trait_tool = leader_trait_emotional_support_pet
+            flag = galUni_trait_BASIC_EMOTIONAL_SUPPORT_PET_selected
+            type = BASIC
+            trait_name = EMOTIONAL_SUPPORT_PET
+            trait_id = galUni_basic_emotional_support_pet
+            cost = 1000
         }
+         }
 
         galUni_trait_main_body_basic_emotional_support_pet_disabled_button_effect = {
         potential = {
@@ -574,7 +715,17 @@ galUni_leader_back_button_effect = {
             from = { has_country_flag = galUni_hiring_phase_two }
         }
         allow = {always = yes}
+       
+            inline_script = {
+            script = galUni_trait_inline
+            trait_tool = leader_trait_architectural_interest
+            flag = galUni_trait_SPECIALISED_ARCHITECTURAL_INTEREST_selected
+            type = SPECIALISED
+            trait_name = ARCHITECTURAL_INTEREST
+            trait_id = galUni_specialised_architectural_interest
+            cost = 1000
         }
+         }
 
         galUni_trait_main_body_specialised_architectural_interest_disabled_button_effect = {
         potential = {
@@ -615,7 +766,17 @@ galUni_leader_back_button_effect = {
             from = { has_country_flag = galUni_hiring_phase_two }
         }
         allow = {always = yes}
+       
+            inline_script = {
+            script = galUni_trait_inline
+            trait_tool = leader_trait_adventurous_spirit
+            flag = galUni_trait_BASIC_ADVENTUROUS_SPIRIT_selected
+            type = BASIC
+            trait_name = ADVENTUROUS_SPIRIT
+            trait_id = galUni_basic_adventurous_spirit
+            cost = 1000
         }
+         }
     
         galUni_trait_main_body_basic_adventurous_spirit_disabled_button_effect = {
         potential = {

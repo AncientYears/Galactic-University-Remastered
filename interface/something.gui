@@ -1,601 +1,340 @@
 guiTypes = {
 
 	@hidden_ui_element_position = 10000
-	
+	@galUni_win_w = 1100
+	@galUni_win_h = 700
+
 	containerWindowType = {
 		name = "someContainerDiplo"
 		moveable = yes
-		size = { width = 800 height = 690 } # 974 680 
+		size = { width = @galUni_win_w height = @galUni_win_h }
 		position = {x = 0 y = 0}
 		show_sound = "interface"
-		# animation_time = 2 animation_type = smoothstep
 		orientation = center
 		origo = center
-		background = {	name = "galUni_trait_background" quadTextureSprite = "GFX_tile_large_bg_curator"}
+		background = { name = "galUni_trait_background" quadTextureSprite = "GFX_tile_large_bg_curator" }
 
-#####################################################################################################################
-################################################ VISIBLE UI #########################################################
-#####################################################################################################################
+		instantTextBoxType = {name = "galUni_trait_title" font = "malgun_goth_24" text = "GALACTIC UNIVERSITY" text_color_code = "H"
+			position = { x = 24 y = 14 } maxWidth = 520 maxHeight = 30 fixedSize = yes format = left }
+		iconType = {name = "empire_header_line" quadTextureSprite = "GFX_line_long_curator" alwaysTransparent = yes
+			position = { x = 20 y = 46 } }
+		effectButtonType = {name = "galUni_back_button" quadTextureSprite = "GFX_standard_button_200_34_button" buttonFont = "cg_16b" buttonText = "BACK"
+			position = {x = -260 y = 16} orientation = UPPER_RIGHT effect = "galUni_leader_back_button_effect" }
+		effectButtonType = {name = "close" quadTextureSprite = "GFX_close" position = { x = -34 y = 14 } orientation = UPPER_RIGHT
+			shortcut = "ESCAPE" clicksound = "back_click" effect = "galUni_close_button_effect" }
 
-instantTextBoxType = {
-	name = "galUni_trait_title" 
-	font = "malgun_goth_24" 
-	text = "Galactic University"
-	position = { x = 25 y = 0 } 
-}
-effectButtonType = {
-	name = "galUni_back_button"
-	quadTextureSprite = "GFX_standard_button_200_34_button"
-	buttonFont = "cg_16b"
-	buttonText = "BACK"
-	position = {x = 200 y = 0}
-	orientation = UPPER_LEFT
-	effect = "galUni_leader_back_button_effect"
-}
-effectButtonType = {
-			name = "close" #do not change this name #or it will not function at all #which means players won't be able to close this ui
-			quadTextureSprite = "GFX_close"
-			position = { x = 756 y = 0 }
-			shortcut = "ESCAPE" #someone asked me to disable this
-			clicksound = "back_click"
-			effect = "galUni_close_button_effect"
+		containerWindowType = {
+			name = "galUni_class_rail"
+			position = {x = 16 y = 56}
+			size = {width = 244 height = 250}
+			background = {name = "galUni_trait_main_background" quadTextureSprite = "GFX_tiles_dark_area_cut_8" alwaysTransparent = no}
+			instantTextBoxType = {name = "galUni_class_rail_title" font = "cg_16b" text = "SELECT CLASS" text_color_code = "Y" position = { x = 12 y = 10 } maxWidth = 220 maxHeight = 20 fixedSize = yes format = left }
+			effectButtonType = {name = "galUni_leader_scientist_button" quadTextureSprite = "GFX_standard_button_200_34_button" buttonFont = "cg_16b" buttonText = "SCIENTIST"
+				position = {x = 10 y = 44} size = {x = 224 y = 58} orientation = UPPER_LEFT effect = "galUni_leader_scientist_button_effect" }
+			effectButtonType = {name = "galUni_leader_commander_button" quadTextureSprite = "GFX_standard_button_200_34_button" buttonFont = "cg_16b" buttonText = "COMMANDER"
+				position = {x = 10 y = 90} size = {x = 224 y = 58} orientation = UPPER_LEFT effect = "galUni_leader_commander_button_effect" }
+			effectButtonType = {name = "galUni_leader_official_button" quadTextureSprite = "GFX_standard_button_200_34_button" buttonFont = "cg_16b" buttonText = "OFFICIAL"
+				position = {x = 10 y = 136} size = {x = 224 y = 58} orientation = UPPER_LEFT effect = "galUni_leader_official_button_effect" }
 		}
 
-# Phase 1 - Selecting Leader Type
- @galUni_phase_one_options_x = 0
- @galUni_phase_one_options_y = 50
-
-# Phase 2 - Selecting Traits
-
- @galUni_trait_main_pos_x = 0
- @galUni_trait_main_pos_y = 50
-
- effectButtonType = {
-	# Get tooltip to display from galUni.txt event file...
-	# name = "close"
-	name =  "galUni_leader_create_button" # "confirm_button"
-	quadTextureSprite = "GFX_standard_button_200_34_button"
-	buttonFont = "cg_16b"
-	buttonText = "Create"
-	position = {x = -100 y = -58}
-	orientation = CENTER_DOWN
-	effect = "galUni_leader_create_button_effect"
-}
-
-containerWindowType = {
-	name = "galUni_trait_main"
-	position = {x = @galUni_trait_main_pos_x y = @galUni_trait_main_pos_y} # 10 64
-	size = {width = 800 height = 500}
-	verticalScrollbar = "right_vertical_slider"
-	clipping = yes
-	background = { name = "galUni_trait_main_background" quadTextureSprite = "GFX_invisible" alwaysTransparent = no}
-	gridBoxType = {
-		name = "galUni_trait_main_box"
-		size = {width = 780 height = 800} # 500 = no scroll bar 
-		slotSize = {width = 780 height = 1400}
-		format = UPPER_LEFT
-	}
-	
-	effectButtonType = {
-		name = "galUni_leader_official_button"
-		quadTextureSprite = "GFX_standard_button_200_34_button"
-		buttonFont = "cg_16b"
-		buttonText = "Official"
-		position = {x = 50 y = -17}
-		orientation = CENTER
-		effect = "galUni_leader_official_button_effect"
-	}
-
-	effectButtonType = {
-		name = "galUni_leader_scientist_button"
-		quadTextureSprite = "GFX_standard_button_200_34_button"
-		buttonFont = "cg_16b"
-		buttonText = "Scientist"
-		position = {x = -100 y = -85}
-		orientation = CENTER
-		effect = "galUni_leader_scientist_button_effect"
-	}
-
-	effectButtonType = {
-		name = "galUni_leader_commander_button"
-		quadTextureSprite = "GFX_standard_button_200_34_button"
-		buttonFont = "cg_16b"
-		buttonText = "Commander"
-		position = {x = -250 y = -17}
-		orientation = CENTER
-		effect = "galUni_leader_commander_button_effect"
-	}
-
-containerWindowType = {
-	name = "galUni_trait_main_body"
-	# BASIC VANILLA TRAITS
-	effectButtonType = {name = "basicCategoryText" spriteType = "basic"	position = {x = 20 y = 0} alwaysTransparent = yes no_clicksound = yes
-		effect = "galUni_phase_two_do_nothing_button_effect"}
-
-		containerWindowType = {name = "galUni_trait_main_body_type_name"
-			# background = {name = "soooooooooooooooo" quadTextureSprite = "GFX_invisible"} # to see basic trait container in guibounds
-			size = {width = 760 height = 100}
-			position = {x = 20 y = 50}
-		
-			# Adaptable
-			effectButtonType = {name = "galUni_trait_main_body_basic_adaptable_blank" position = {x = 0 y = 0} spriteType = "blank_trait" scale = 1
-				effect = "galUni_trait_main_body_basic_adaptable_button_effect"}
-				# effect = "fakeLeaderThingy"}
-	
-			effectButtonType = {name = "galUni_trait_main_body_basic_adaptable" position = {x = 0 y = 0} spriteType = "GFX_leader_trait_adaptable" scale = 1 alwaysTransparent = yes
-				effect = "galUni_phase_two_do_nothing_button_effect"}
-
-			effectButtonType = {name = "galUni_trait_main_body_basic_adaptable_selected" position = {x = 0 y = 0} spriteType = "GFX_traits_selected" scale = 0.85
-				effect = "galUni_trait_main_body_basic_adaptable_selected_button_effect"}
-
-			effectButtonType = {name = "galUni_trait_main_body_basic_adaptable_disabled" position = {x = 0 y = 0} spriteType = "GFX_trait_disabled" scale = 1.1
-				effect = "galUni_trait_main_body_basic_adaptable_disabled_button_effect"}
-
-			# Eager 
-			effectButtonType = {name = "galUni_trait_main_body_basic_eager_blank" position = {x = 40 y = 0} spriteType = "blank_trait" scale = 1
-			effect = "galUni_trait_main_body_basic_eager_button_effect"}
-
-			effectButtonType = {name = "galUni_trait_main_body_basic_eager" position = {x = 40 y = 0} spriteType = "GFX_leader_trait_eager" scale = 1 alwaysTransparent = yes
-			effect = "galUni_phase_two_do_nothing_button_effect"}
-
-			effectButtonType = {name = "galUni_trait_main_body_basic_eager_selected" position = {x = 40 y = 0} spriteType = "GFX_traits_selected" scale = 0.85
-			effect = "galUni_trait_main_body_basic_eager_selected_button_effect"}
-
-			effectButtonType = {name = "galUni_trait_main_body_basic_eager_disabled" position = {x = 40 y = 0} spriteType = "GFX_trait_disabled" scale = 1.1
-			effect = "galUni_trait_main_body_basic_eager_disabled_button_effect"}
-
-			# Resilient
-			effectButtonType = {name = "galUni_trait_main_body_basic_resilient_blank" position = {x = 80 y = 0} spriteType = "blank_trait" scale = 1
-			effect = "galUni_trait_main_body_basic_resilient_button_effect"}
-
-			effectButtonType = {name = "galUni_trait_main_body_basic_resilient" position = {x = 80 y = 0} spriteType = "GFX_leader_trait_resilient" scale = 1 alwaysTransparent = yes
-			effect = "galUni_phase_two_do_nothing_button_effect"}
-
-			effectButtonType = {name = "galUni_trait_main_body_basic_resilient_selected" position = {x = 80 y = 0} spriteType = "GFX_traits_selected" scale = 0.85
-			effect = "galUni_trait_main_body_basic_resilient_selected_button_effect"}
-
-				effectButtonType = {name = "galUni_trait_main_body_basic_resilient_disabled" position = {x = 80 y = 0} spriteType = "GFX_trait_disabled" scale = 1.1
-			effect = "galUni_trait_main_body_basic_resilient_disabled_button_effect"}
-
-			# Politician
-			effectButtonType = {name = "galUni_trait_main_body_basic_politician_blank" position = {x = 120 y = 0} spriteType = "blank_trait" scale = 1
-			effect = "galUni_trait_main_body_basic_politician_button_effect"}
-
-			effectButtonType = {name = "galUni_trait_main_body_basic_politician" position = {x = 120 y = 0} spriteType = "GFX_leader_trait_politician" scale = 1 alwaysTransparent = yes
-			effect = "galUni_phase_two_do_nothing_button_effect"}
-
-			effectButtonType = {name = "galUni_trait_main_body_basic_politician_selected" position = {x = 120 y = 0} spriteType = "GFX_traits_selected" scale = 0.85
-			effect = "galUni_trait_main_body_basic_politician_selected_button_effect"}
-
-			effectButtonType = {name = "galUni_trait_main_body_basic_politician_disabled" position = {x = 120 y = 0} spriteType = "GFX_trait_disabled" scale = 1.1
-			effect = "galUni_trait_main_body_basic_politician_disabled_button_effect"}
-
-			# Capitalist
-			effectButtonType = {name = "galUni_trait_main_body_basic_capitalist_blank" position = {x = 160 y = 0} spriteType = "blank_trait" scale = 1
-			effect = "galUni_trait_main_body_basic_capitalist_button_effect"}
-
-			effectButtonType = {name = "galUni_trait_main_body_basic_capitalist" position = {x = 160 y = 0} spriteType = "GFX_leader_trait_capitalist" scale = 1 alwaysTransparent = yes
-			effect = "galUni_phase_two_do_nothing_button_effect"}
-
-			effectButtonType = {name = "galUni_trait_main_body_basic_capitalist_selected" position = {x = 160 y = 0} spriteType = "GFX_traits_selected" scale = 0.85
-			effect = "galUni_trait_main_body_basic_capitalist_selected_button_effect"}
-
-				effectButtonType = {name = "galUni_trait_main_body_basic_capitalist_disabled" position = {x = 160 y = 0} spriteType = "GFX_trait_disabled" scale = 1.1
-			effect = "galUni_trait_main_body_basic_capitalist_disabled_button_effect"}
-
-			# Private Mines
-			effectButtonType = {name = "galUni_trait_main_body_basic_private_mines_blank" position = {x = 200 y = 0} spriteType = "blank_trait" scale = 1
-			effect = "galUni_trait_main_body_basic_private_mines_button_effect"}
-
-			effectButtonType = {name = "galUni_trait_main_body_basic_private_mines" position = {x = 200 y = 0} spriteType = "GFX_leader_trait_private_mines" scale = 1 alwaysTransparent = yes
-			effect = "galUni_phase_two_do_nothing_button_effect"}
-
-			effectButtonType = {name = "galUni_trait_main_body_basic_private_mines_selected" position = {x = 200 y = 0} spriteType = "GFX_traits_selected" scale = 0.85
-			effect = "galUni_trait_main_body_basic_private_mines_selected_button_effect"}
-
-				effectButtonType = {name = "galUni_trait_main_body_basic_private_mines_disabled" position = {x = 200 y = 0} spriteType = "GFX_trait_disabled" scale = 1.1
-			effect = "galUni_trait_main_body_basic_private_mines_disabled_button_effect"}
-
-			# Homesteader 
-			effectButtonType = {name = "galUni_trait_main_body_basic_homesteader_blank" position = {x = 240 y = 0} spriteType = "blank_trait" scale = 1
-			effect = "galUni_trait_main_body_basic_homesteader_button_effect"}
-
-			effectButtonType = {name = "galUni_trait_main_body_basic_homesteader" position = {x = 240 y = 0} spriteType = "GFX_leader_trait_homesteader" scale = 1 alwaysTransparent = yes
-			effect = "galUni_phase_two_do_nothing_button_effect"}
-
-			effectButtonType = {name = "galUni_trait_main_body_basic_homesteader_selected" position = {x = 240 y = 0} spriteType = "GFX_traits_selected" scale = 0.85
-			effect = "galUni_trait_main_body_basic_homesteader_selected_button_effect"}
-
-				effectButtonType = {name = "galUni_trait_main_body_basic_homesteader_disabled" position = {x = 240 y = 0} spriteType = "GFX_trait_disabled" scale = 1.1
-			effect = "galUni_trait_main_body_basic_homesteader_disabled_button_effect"}
-
-			# Champion of the people
-			effectButtonType = {name = "galUni_trait_main_body_basic_champion_of_the_people_blank" position = {x = 280 y = 0} spriteType = "blank_trait" scale = 1
-			effect = "galUni_trait_main_body_basic_champion_of_the_people_button_effect"}
-
-			effectButtonType = {name = "galUni_trait_main_body_basic_champion_of_the_people" position = {x = 280 y = 0} spriteType = "GFX_leader_trait_champion_of_the_people" scale = 1 alwaysTransparent = yes
-			effect = "galUni_phase_two_do_nothing_button_effect"}
-
-			effectButtonType = {name = "galUni_trait_main_body_basic_champion_of_the_people_selected" position = {x = 280 y = 0} spriteType = "GFX_traits_selected" scale = 0.85
-			effect = "galUni_trait_main_body_basic_champion_of_the_people_selected_button_effect"}
-
-				effectButtonType = {name = "galUni_trait_main_body_basic_champion_of_the_people_disabled" position = {x = 280 y = 0} spriteType = "GFX_trait_disabled" scale = 1.1
-			effect = "galUni_trait_main_body_basic_champion_of_the_people_disabled_button_effect"}
-
-			# Gifted
-			effectButtonType = {name = "galUni_trait_main_body_basic_gifted_blank" position = {x = 320 y = 0} spriteType = "blank_trait" scale = 1
-			effect = "galUni_trait_main_body_basic_gifted_button_effect"}
-
-			effectButtonType = {name = "galUni_trait_main_body_basic_gifted" position = {x = 320 y = 0} spriteType = "GFX_leader_trait_gifted" scale = 1 alwaysTransparent = yes
-			effect = "galUni_phase_two_do_nothing_button_effect"}
-
-			effectButtonType = {name = "galUni_trait_main_body_basic_gifted_selected" position = {x = 320 y = 0} spriteType = "GFX_traits_selected" scale = 0.85
-			effect = "galUni_trait_main_body_basic_gifted_selected_button_effect"}
-
-			effectButtonType = {name = "galUni_trait_main_body_basic_gifted_disabled" position = {x = 320 y = 0} spriteType = "GFX_trait_disabled" scale = 1.1
-			effect = "galUni_trait_main_body_basic_gifted_disabled_button_effect"}
-
-			# Imperial Heir
-			effectButtonType = {name = "galUni_trait_main_body_basic_imperial_heir_blank" position = {x = 360 y = 0} spriteType = "blank_trait" scale = 1
-			effect = "galUni_trait_main_body_basic_imperial_heir_button_effect"}
-
-			effectButtonType = {name = "galUni_trait_main_body_basic_imperial_heir" position = {x = 360 y = 0} spriteType = "GFX_leader_trait_imperial_heir" scale = 1 alwaysTransparent = yes
-			effect = "galUni_phase_two_do_nothing_button_effect"}
-
-			effectButtonType = {name = "galUni_trait_main_body_basic_imperial_heir_selected" position = {x = 360 y = 0} spriteType = "GFX_traits_selected" scale = 0.85
-			effect = "galUni_trait_main_body_basic_imperial_heir_selected_button_effect"}
-
-			effectButtonType = {name = "galUni_trait_main_body_basic_imperial_heir_disabled" position = {x = 360 y = 0} spriteType = "GFX_trait_disabled" scale = 1.1
-			effect = "galUni_trait_main_body_basic_imperial_heir_disabled_button_effect"}
-
-			# Scrapper
-			effectButtonType = {name = "galUni_trait_main_body_basic_scrapper_blank" position = {x = 400 y = 0} spriteType = "blank_trait" scale = 1
-			effect = "galUni_trait_main_body_basic_scrapper_button_effect"}
-
-			effectButtonType = {name = "galUni_trait_main_body_basic_scrapper" position = {x = 400 y = 0} spriteType = "GFX_leader_trait_scrapper" scale = 1 alwaysTransparent = yes
-			effect = "galUni_phase_two_do_nothing_button_effect"}
-
-			effectButtonType = {name = "galUni_trait_main_body_basic_scrapper_selected" position = {x = 400 y = 0} spriteType = "GFX_traits_selected" scale = 0.85
-			effect = "galUni_trait_main_body_basic_scrapper_selected_button_effect"}
-
-			effectButtonType = {name = "galUni_trait_main_body_basic_scrapper_disabled" position = {x = 400 y = 0} spriteType = "GFX_trait_disabled" scale = 1.1
-			effect = "galUni_trait_main_body_basic_scrapper_disabled_button_effect"}
-
-			# Entrepreneur
-			effectButtonType = {name = "galUni_trait_main_body_basic_entrepreneur_blank" position = {x = 440 y = 0} spriteType = "blank_trait" scale = 1
-			effect = "galUni_trait_main_body_basic_entrepreneur_button_effect"}
-
-			effectButtonType = {name = "galUni_trait_main_body_basic_entrepreneur" position = {x = 440 y = 0} spriteType = "GFX_leader_trait_entrepreneur" scale = 1 alwaysTransparent = yes
-			effect = "galUni_phase_two_do_nothing_button_effect"}
-
-			effectButtonType = {name = "galUni_trait_main_body_basic_entrepreneur_selected" position = {x = 440 y = 0} spriteType = "GFX_traits_selected" scale = 0.85
-			effect = "galUni_trait_main_body_basic_entrepreneur_selected_button_effect"}
-
-			effectButtonType = {name = "galUni_trait_main_body_basic_entrepreneur_disabled" position = {x = 440 y = 0} spriteType = "GFX_trait_disabled" scale = 1.1
-			effect = "galUni_trait_main_body_basic_entrepreneur_disabled_button_effect"}
-
-			# Venerated
-			effectButtonType = {name = "galUni_trait_main_body_basic_venerated_blank" position = {x = 480 y = 0} spriteType = "blank_trait" scale = 1
-			effect = "galUni_trait_main_body_basic_venerated_button_effect"}
-
-			effectButtonType = {name = "galUni_trait_main_body_basic_venerated" position = {x = 480 y = 0} spriteType = "GFX_leader_trait_venerated" scale = 1 alwaysTransparent = yes
-			effect = "galUni_phase_two_do_nothing_button_effect"}
-
-			effectButtonType = {name = "galUni_trait_main_body_basic_venerated_selected" position = {x = 480 y = 0} spriteType = "GFX_traits_selected" scale = 0.85
-			effect = "galUni_trait_main_body_basic_venerated_selected_button_effect"}
-
-			effectButtonType = {name = "galUni_trait_main_body_basic_venerated_disabled" position = {x = 480 y = 0} spriteType = "GFX_trait_disabled" scale = 1.1
-			effect = "galUni_trait_main_body_basic_venerated_disabled_button_effect"}
-
-			# Emotional Support Pet
-			effectButtonType = {name = "galUni_trait_main_body_basic_emotional_support_pet_blank" position = {x = 520 y = 0} spriteType = "blank_trait" scale = 1
-			effect = "galUni_trait_main_body_basic_emotional_support_pet_button_effect"}
-
-			effectButtonType = {name = "galUni_trait_main_body_basic_emotional_support_pet" position = {x = 520 y = 0} spriteType = "GFX_leader_trait_emotional_support_pet" scale = 1 alwaysTransparent = yes
-			effect = "galUni_phase_two_do_nothing_button_effect"}
-
-			effectButtonType = {name = "galUni_trait_main_body_basic_emotional_support_pet_selected" position = {x = 520 y = 0} spriteType = "GFX_traits_selected" scale = 0.85
-			effect = "galUni_trait_main_body_basic_emotional_support_pet_selected_button_effect"}
-
-			effectButtonType = {name = "galUni_trait_main_body_basic_emotional_support_pet_disabled" position = {x = 520 y = 0} spriteType = "GFX_trait_disabled" scale = 1.1
-			effect = "galUni_trait_main_body_basic_emotional_support_pet_disabled_button_effect"}
-
-			# Environmental Engineer
-			# Righteous
-			# Agrarian Upbringing
-			# Unifier
-			# Whispering Mind (shroud whispering void 30 rep)
-			# Rift Warped
-			# Neurological Firewall
-			# Ancient Knowledge
-			# Increased Lifespan
-			# Second Chance
-
-			### Council
-			# Home in the sky
-			# Space Miner
-			# Battleship Production Focus
-			# Cruiser Production Focus
-			# Destroyer Production Focus
-			# Corvette Production Focus
-			# Frontier Spirit
-			# Spark of Genius
-			# Warlike
-			# Fleet Organizer
-			# Defense Engineer
-			# Skirmisher
-			# Eye for talent
-			# Logistic Understanding
-			# Feedback Loop (gesalt)
-			# Charismatic
-			# Mining Rush
-			# Spycraft
-			# Principled
-			# Shipwright
-			# Fertility Preacher
-			# Retired Fleet Officer
-			# Army Veteran
-			# Planar Theorist
-			# Shroud-touched Scientist
-			# Inspired Researcher
-			# Percussive Maintainer
-			# Treasure Hoarder
-			# Trailblazer
-			# Buccaneer
-
-			# GESALT COUNCIL
-			# Shroud-Touched Command Drone (2 different traits??)
-			# Shroud-Touched Logistician
-			# Shroud-Touched Architect
-			# Shroud-Touched Assault Drone (x2 again...)
-			# Shroud-Touched Naval Drone (x2 again...)
-			# Shroud-Touched Research Drone
-			# Chairman
-
-			# Commander
-			# Aggressive
-			# Cautious
-			# Unyielding
-			# Engineer
-			# Trickster
-			# Butcher
-			# Careful
-			# Iron Fist
-			# Enlister
-			# Void hunter
-			# Fleet Logistician
-			# Cybrex Databases
-			# Dimensional Stutter
-			# Ethereal
-			# Hive Affinity
-			# Sentinel Training
-			# Plague-Hardeneded Commander
-			# Cunning (council global trait too?)
-			# Caravan Counter
-			# Foredoomed to a Rendezvous
-			# Ascendant Clone Army Commander
-			# Decendant Clone Army Commander
-			# Clone Army Commander
-			# Dragonslayer
-			# Shroud-warped
-			# Storm Rider (multiple?)
-			# Sanitary Drone Assistant
-			# Mercenary Warrior
-			# Genetic Purist
-			# Backup Clone
-			# Ritualistic Implants
-			# Robotic Surrogate
-			# Limited Cyborg
-			# Brain Slug Host
-			# Virtual Leader
-			# Synthetic
-			# Cyborg
-			# Cyborg Soldier
-			# Erudite
-			# Imperial Bloodline/Imperial heir more research...
-			# Shroud-Touched Commander (x4 wtf)
-
-			# Official
-			# Trade Focused
-			# Fervent Believer
-			# Business Mind
-			# Oracle
-			# Merchant of Numa
-			# Waste Management Specialist
-			# Shroud Prophet
-			# Intellectual
-			# Enclave Trader
-
-			# Scientist
-			# Carefree
-			# Roamer
-			# Archaelogist
-			# Meticulous
-			# Void Tracker
-			# Custom AI Assistant
-			# Sapient AI Assistant
-			# Inspired Surveyor
-			# Inspired Archeologist
-			# Guided
-			# Towel-Bearer
-			# Shroud-Touched Scientist
-
-	effectButtonType = {name = "specialisedCategoryText" spriteType = "specialised" position = {x = 20 y = 150} alwaysTransparent = yes no_clicksound = yes
-		effect = "galUni_phase_two_do_nothing_button_effect"}
-
-		containerWindowType = {name = "galUni_trait_main_body_specialised_type_name"
-		# background = {name = "soooooooooooooooo" quadTextureSprite = "GFX_invisible"} # to see basic trait container in guibounds
-		size = {width = 760 height = 100} position = {x = 20 y = 200}
-		
-		# probably 3 different container windows or something for each class? idk
-		
-		# Architectural Interest
-			effectButtonType = {name = "galUni_trait_main_body_specialised_architectural_interest_blank" position = {x = 0 y = 0} spriteType = "blank_trait" scale = 1
-			effect = "galUni_trait_main_body_specialised_architectural_interest_button_effect"}
-
-			effectButtonType = {name = "galUni_trait_main_body_specialised_architectural_interest" position = {x = 0 y = 0} spriteType = "GFX_leader_trait_architectural_interest" scale = 1 alwaysTransparent = yes
-			effect = "galUni_phase_two_do_nothing_button_effect"}
-
-			effectButtonType = {name = "galUni_trait_main_body_specialised_architectural_interest_selected" position = {x = 0 y = 0} spriteType = "GFX_traits_selected" scale = 0.85
-			effect = "galUni_trait_main_body_specialised_architectural_interest_selected_button_effect"}
-
-				effectButtonType = {name = "galUni_trait_main_body_specialised_architectural_interest_disabled" position = {x = 0 y = 0} spriteType = "GFX_trait_disabled" scale = 1.1
-			effect = "galUni_trait_main_body_specialised_architectural_interest_disabled_button_effect"}
-
-	}
-
-		effectButtonType = {name = "veteranCategoryText" spriteType = "veteran" position = { x = 20 y = 300 } alwaysTransparent = yes no_clicksound = yes
-		effect = "galUni_phase_two_do_nothing_button_effect"}
-		
-		containerWindowType = {name = "galUni_trait_main_body_veteran_type_name"
-		# background = {name = "soooooooooooooooo" quadTextureSprite = "GFX_invisible"} # to see basic trait container in guibounds
-		size = {width = 760 height = 100}
-			position = {x = 20 y = 350}	
-
-			# Adventurous Spirit (not with eager todo)
-			effectButtonType = {name = "galUni_trait_main_body_basic_adventurous_spirit_blank" position = {x = 0 y = 0} spriteType = "blank_trait" scale = 1
-			effect = "galUni_trait_main_body_basic_adventurous_spirit_button_effect"}
-	
-			effectButtonType = {name = "galUni_trait_main_body_basic_adventurous_spirit" position = {x = 0 y = 0} spriteType = "GFX_leader_trait_adventurous_spirit" scale = 1 alwaysTransparent = yes
-			effect = "galUni_phase_two_do_nothing_button_effect"}
-	
-			effectButtonType = {name = "galUni_trait_main_body_basic_adventurous_spirit_selected" position = {x = 0 y = 0} spriteType = "GFX_traits_selected" scale = 0.85
-			effect = "galUni_trait_main_body_basic_adventurous_spirit_selected_button_effect"}
-
-				effectButtonType = {name = "galUni_trait_main_body_basic_adventurous_spirit_disabled" position = {x = 0 y = 0} spriteType = "GFX_trait_disabled" scale = 1.1
-			effect = "galUni_trait_main_body_basic_adventurous_spirit_disabled_button_effect"}
+		containerWindowType = {
+			name = "galUni_trait_main"
+			position = {x = 272 y = 56}
+			size = {width = 564 height = 588}
+			clipping = yes
+			verticalScrollbar = "right_vertical_slider"
+			background = { name = "galUni_trait_main_bg" quadTextureSprite = "GFX_tiles_dark_area_cut_8" alwaysTransparent = no }
+			containerWindowType = {
+				name = "galUni_trait_main_box"
+				position = {x = 12 y = 8}
+				size = {width = 536 height = 588}
+			containerWindowType = {
+				name = "galUni_trait_main_body"
+				position = {x = 0 y = 0}
+			containerWindowType = {name = "galUni_trait_main_body_basic_type_name"
+				position = {x = 0 y = 0} size = {width = 760 height = 40}
+				effectButtonType = {name = "basicCategoryText" spriteType = "basic" position = {x = 0 y = 0} alwaysTransparent = yes no_clicksound = yes
+					effect = "galUni_phase_two_do_nothing_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_adaptable_blank" position = {x = 0 y = 30} spriteType = "GFX_tiling_button_standard"
+					size = {x = 52 y = 52} effect = "galUni_trait_main_body_basic_adaptable_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_adaptable_plate" position = {x = 12 y = 42} spriteType = "blank_trait" scale = 1 alwaysTransparent = yes
+					effect = "galUni_phase_two_do_nothing_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_adaptable" position = {x = 12 y = 42} spriteType = "GFX_leader_trait_adaptable" scale = 1 alwaysTransparent = yes
+					effect = "galUni_phase_two_do_nothing_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_adaptable_selected" position = {x = 9 y = 39} spriteType = "GFX_traits_selected"
+					effect = "galUni_trait_main_body_basic_adaptable_selected_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_adaptable_disabled" position = {x = 0 y = 30} spriteType = "GFX_invisible"
+					size = {x = 52 y = 52} effect = "galUni_trait_main_body_basic_adaptable_disabled_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_adaptable_disabled_icon" position = {x = 12 y = 42} spriteType = "GFX_trait_disabled" scale = 1.1 alwaysTransparent = yes
+					effect = "galUni_trait_main_body_basic_adaptable_disabled_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_eager_blank" position = {x = 60 y = 30} spriteType = "GFX_tiling_button_standard"
+					size = {x = 52 y = 52} effect = "galUni_trait_main_body_basic_eager_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_eager_plate" position = {x = 72 y = 42} spriteType = "blank_trait" scale = 1 alwaysTransparent = yes
+					effect = "galUni_phase_two_do_nothing_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_eager" position = {x = 72 y = 42} spriteType = "GFX_leader_trait_eager" scale = 1 alwaysTransparent = yes
+					effect = "galUni_phase_two_do_nothing_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_eager_selected" position = {x = 69 y = 39} spriteType = "GFX_traits_selected"
+					effect = "galUni_trait_main_body_basic_eager_selected_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_eager_disabled" position = {x = 60 y = 30} spriteType = "GFX_invisible"
+					size = {x = 52 y = 52} effect = "galUni_trait_main_body_basic_eager_disabled_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_eager_disabled_icon" position = {x = 72 y = 42} spriteType = "GFX_trait_disabled" scale = 1.1 alwaysTransparent = yes
+					effect = "galUni_trait_main_body_basic_eager_disabled_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_resilient_blank" position = {x = 120 y = 30} spriteType = "GFX_tiling_button_standard"
+					size = {x = 52 y = 52} effect = "galUni_trait_main_body_basic_resilient_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_resilient_plate" position = {x = 132 y = 42} spriteType = "blank_trait" scale = 1 alwaysTransparent = yes
+					effect = "galUni_phase_two_do_nothing_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_resilient" position = {x = 132 y = 42} spriteType = "GFX_leader_trait_resilient" scale = 1 alwaysTransparent = yes
+					effect = "galUni_phase_two_do_nothing_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_resilient_selected" position = {x = 129 y = 39} spriteType = "GFX_traits_selected"
+					effect = "galUni_trait_main_body_basic_resilient_selected_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_resilient_disabled" position = {x = 120 y = 30} spriteType = "GFX_invisible"
+					size = {x = 52 y = 52} effect = "galUni_trait_main_body_basic_resilient_disabled_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_resilient_disabled_icon" position = {x = 132 y = 42} spriteType = "GFX_trait_disabled" scale = 1.1 alwaysTransparent = yes
+					effect = "galUni_trait_main_body_basic_resilient_disabled_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_politician_blank" position = {x = 180 y = 30} spriteType = "GFX_tiling_button_standard"
+					size = {x = 52 y = 52} effect = "galUni_trait_main_body_basic_politician_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_politician_plate" position = {x = 192 y = 42} spriteType = "blank_trait" scale = 1 alwaysTransparent = yes
+					effect = "galUni_phase_two_do_nothing_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_politician" position = {x = 192 y = 42} spriteType = "GFX_leader_trait_politician" scale = 1 alwaysTransparent = yes
+					effect = "galUni_phase_two_do_nothing_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_politician_selected" position = {x = 189 y = 39} spriteType = "GFX_traits_selected"
+					effect = "galUni_trait_main_body_basic_politician_selected_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_politician_disabled" position = {x = 180 y = 30} spriteType = "GFX_invisible"
+					size = {x = 52 y = 52} effect = "galUni_trait_main_body_basic_politician_disabled_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_politician_disabled_icon" position = {x = 192 y = 42} spriteType = "GFX_trait_disabled" scale = 1.1 alwaysTransparent = yes
+					effect = "galUni_trait_main_body_basic_politician_disabled_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_capitalist_blank" position = {x = 240 y = 30} spriteType = "GFX_tiling_button_standard"
+					size = {x = 52 y = 52} effect = "galUni_trait_main_body_basic_capitalist_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_capitalist_plate" position = {x = 252 y = 42} spriteType = "blank_trait" scale = 1 alwaysTransparent = yes
+					effect = "galUni_phase_two_do_nothing_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_capitalist" position = {x = 252 y = 42} spriteType = "GFX_leader_trait_capitalist" scale = 1 alwaysTransparent = yes
+					effect = "galUni_phase_two_do_nothing_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_capitalist_selected" position = {x = 249 y = 39} spriteType = "GFX_traits_selected"
+					effect = "galUni_trait_main_body_basic_capitalist_selected_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_capitalist_disabled" position = {x = 240 y = 30} spriteType = "GFX_invisible"
+					size = {x = 52 y = 52} effect = "galUni_trait_main_body_basic_capitalist_disabled_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_capitalist_disabled_icon" position = {x = 252 y = 42} spriteType = "GFX_trait_disabled" scale = 1.1 alwaysTransparent = yes
+					effect = "galUni_trait_main_body_basic_capitalist_disabled_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_private_mines_blank" position = {x = 300 y = 30} spriteType = "GFX_tiling_button_standard"
+					size = {x = 52 y = 52} effect = "galUni_trait_main_body_basic_private_mines_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_private_mines_plate" position = {x = 312 y = 42} spriteType = "blank_trait" scale = 1 alwaysTransparent = yes
+					effect = "galUni_phase_two_do_nothing_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_private_mines" position = {x = 312 y = 42} spriteType = "GFX_leader_trait_private_mines" scale = 1 alwaysTransparent = yes
+					effect = "galUni_phase_two_do_nothing_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_private_mines_selected" position = {x = 309 y = 39} spriteType = "GFX_traits_selected"
+					effect = "galUni_trait_main_body_basic_private_mines_selected_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_private_mines_disabled" position = {x = 300 y = 30} spriteType = "GFX_invisible"
+					size = {x = 52 y = 52} effect = "galUni_trait_main_body_basic_private_mines_disabled_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_private_mines_disabled_icon" position = {x = 312 y = 42} spriteType = "GFX_trait_disabled" scale = 1.1 alwaysTransparent = yes
+					effect = "galUni_trait_main_body_basic_private_mines_disabled_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_homesteader_blank" position = {x = 360 y = 30} spriteType = "GFX_tiling_button_standard"
+					size = {x = 52 y = 52} effect = "galUni_trait_main_body_basic_homesteader_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_homesteader_plate" position = {x = 372 y = 42} spriteType = "blank_trait" scale = 1 alwaysTransparent = yes
+					effect = "galUni_phase_two_do_nothing_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_homesteader" position = {x = 372 y = 42} spriteType = "GFX_leader_trait_homesteader" scale = 1 alwaysTransparent = yes
+					effect = "galUni_phase_two_do_nothing_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_homesteader_selected" position = {x = 369 y = 39} spriteType = "GFX_traits_selected"
+					effect = "galUni_trait_main_body_basic_homesteader_selected_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_homesteader_disabled" position = {x = 360 y = 30} spriteType = "GFX_invisible"
+					size = {x = 52 y = 52} effect = "galUni_trait_main_body_basic_homesteader_disabled_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_homesteader_disabled_icon" position = {x = 372 y = 42} spriteType = "GFX_trait_disabled" scale = 1.1 alwaysTransparent = yes
+					effect = "galUni_trait_main_body_basic_homesteader_disabled_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_champion_of_the_people_blank" position = {x = 0 y = 92} spriteType = "GFX_tiling_button_standard"
+					size = {x = 52 y = 52} effect = "galUni_trait_main_body_basic_champion_of_the_people_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_champion_of_the_people_plate" position = {x = 12 y = 104} spriteType = "blank_trait" scale = 1 alwaysTransparent = yes
+					effect = "galUni_phase_two_do_nothing_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_champion_of_the_people" position = {x = 12 y = 104} spriteType = "GFX_leader_trait_champion_of_the_people" scale = 1 alwaysTransparent = yes
+					effect = "galUni_phase_two_do_nothing_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_champion_of_the_people_selected" position = {x = 9 y = 101} spriteType = "GFX_traits_selected"
+					effect = "galUni_trait_main_body_basic_champion_of_the_people_selected_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_champion_of_the_people_disabled" position = {x = 0 y = 92} spriteType = "GFX_invisible"
+					size = {x = 52 y = 52} effect = "galUni_trait_main_body_basic_champion_of_the_people_disabled_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_champion_of_the_people_disabled_icon" position = {x = 12 y = 104} spriteType = "GFX_trait_disabled" scale = 1.1 alwaysTransparent = yes
+					effect = "galUni_trait_main_body_basic_champion_of_the_people_disabled_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_gifted_blank" position = {x = 60 y = 92} spriteType = "GFX_tiling_button_standard"
+					size = {x = 52 y = 52} effect = "galUni_trait_main_body_basic_gifted_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_gifted_plate" position = {x = 72 y = 104} spriteType = "blank_trait" scale = 1 alwaysTransparent = yes
+					effect = "galUni_phase_two_do_nothing_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_gifted" position = {x = 72 y = 104} spriteType = "GFX_leader_trait_gifted" scale = 1 alwaysTransparent = yes
+					effect = "galUni_phase_two_do_nothing_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_gifted_selected" position = {x = 69 y = 101} spriteType = "GFX_traits_selected"
+					effect = "galUni_trait_main_body_basic_gifted_selected_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_gifted_disabled" position = {x = 60 y = 92} spriteType = "GFX_invisible"
+					size = {x = 52 y = 52} effect = "galUni_trait_main_body_basic_gifted_disabled_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_gifted_disabled_icon" position = {x = 72 y = 104} spriteType = "GFX_trait_disabled" scale = 1.1 alwaysTransparent = yes
+					effect = "galUni_trait_main_body_basic_gifted_disabled_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_imperial_heir_blank" position = {x = 120 y = 92} spriteType = "GFX_tiling_button_standard"
+					size = {x = 52 y = 52} effect = "galUni_trait_main_body_basic_imperial_heir_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_imperial_heir_plate" position = {x = 132 y = 104} spriteType = "blank_trait" scale = 1 alwaysTransparent = yes
+					effect = "galUni_phase_two_do_nothing_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_imperial_heir" position = {x = 132 y = 104} spriteType = "GFX_leader_trait_imperial_heir" scale = 1 alwaysTransparent = yes
+					effect = "galUni_phase_two_do_nothing_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_imperial_heir_selected" position = {x = 129 y = 101} spriteType = "GFX_traits_selected"
+					effect = "galUni_trait_main_body_basic_imperial_heir_selected_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_imperial_heir_disabled" position = {x = 120 y = 92} spriteType = "GFX_invisible"
+					size = {x = 52 y = 52} effect = "galUni_trait_main_body_basic_imperial_heir_disabled_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_imperial_heir_disabled_icon" position = {x = 132 y = 104} spriteType = "GFX_trait_disabled" scale = 1.1 alwaysTransparent = yes
+					effect = "galUni_trait_main_body_basic_imperial_heir_disabled_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_scrapper_blank" position = {x = 180 y = 92} spriteType = "GFX_tiling_button_standard"
+					size = {x = 52 y = 52} effect = "galUni_trait_main_body_basic_scrapper_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_scrapper_plate" position = {x = 192 y = 104} spriteType = "blank_trait" scale = 1 alwaysTransparent = yes
+					effect = "galUni_phase_two_do_nothing_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_scrapper" position = {x = 192 y = 104} spriteType = "GFX_leader_trait_scrapper" scale = 1 alwaysTransparent = yes
+					effect = "galUni_phase_two_do_nothing_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_scrapper_selected" position = {x = 189 y = 101} spriteType = "GFX_traits_selected"
+					effect = "galUni_trait_main_body_basic_scrapper_selected_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_scrapper_disabled" position = {x = 180 y = 92} spriteType = "GFX_invisible"
+					size = {x = 52 y = 52} effect = "galUni_trait_main_body_basic_scrapper_disabled_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_scrapper_disabled_icon" position = {x = 192 y = 104} spriteType = "GFX_trait_disabled" scale = 1.1 alwaysTransparent = yes
+					effect = "galUni_trait_main_body_basic_scrapper_disabled_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_entrepreneur_blank" position = {x = 240 y = 92} spriteType = "GFX_tiling_button_standard"
+					size = {x = 52 y = 52} effect = "galUni_trait_main_body_basic_entrepreneur_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_entrepreneur_plate" position = {x = 252 y = 104} spriteType = "blank_trait" scale = 1 alwaysTransparent = yes
+					effect = "galUni_phase_two_do_nothing_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_entrepreneur" position = {x = 252 y = 104} spriteType = "GFX_leader_trait_entrepreneur" scale = 1 alwaysTransparent = yes
+					effect = "galUni_phase_two_do_nothing_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_entrepreneur_selected" position = {x = 249 y = 101} spriteType = "GFX_traits_selected"
+					effect = "galUni_trait_main_body_basic_entrepreneur_selected_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_entrepreneur_disabled" position = {x = 240 y = 92} spriteType = "GFX_invisible"
+					size = {x = 52 y = 52} effect = "galUni_trait_main_body_basic_entrepreneur_disabled_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_entrepreneur_disabled_icon" position = {x = 252 y = 104} spriteType = "GFX_trait_disabled" scale = 1.1 alwaysTransparent = yes
+					effect = "galUni_trait_main_body_basic_entrepreneur_disabled_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_venerated_blank" position = {x = 300 y = 92} spriteType = "GFX_tiling_button_standard"
+					size = {x = 52 y = 52} effect = "galUni_trait_main_body_basic_venerated_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_venerated_plate" position = {x = 312 y = 104} spriteType = "blank_trait" scale = 1 alwaysTransparent = yes
+					effect = "galUni_phase_two_do_nothing_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_venerated" position = {x = 312 y = 104} spriteType = "GFX_leader_trait_venerated" scale = 1 alwaysTransparent = yes
+					effect = "galUni_phase_two_do_nothing_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_venerated_selected" position = {x = 309 y = 101} spriteType = "GFX_traits_selected"
+					effect = "galUni_trait_main_body_basic_venerated_selected_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_venerated_disabled" position = {x = 300 y = 92} spriteType = "GFX_invisible"
+					size = {x = 52 y = 52} effect = "galUni_trait_main_body_basic_venerated_disabled_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_venerated_disabled_icon" position = {x = 312 y = 104} spriteType = "GFX_trait_disabled" scale = 1.1 alwaysTransparent = yes
+					effect = "galUni_trait_main_body_basic_venerated_disabled_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_emotional_support_pet_blank" position = {x = 360 y = 92} spriteType = "GFX_tiling_button_standard"
+					size = {x = 52 y = 52} effect = "galUni_trait_main_body_basic_emotional_support_pet_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_emotional_support_pet_plate" position = {x = 372 y = 104} spriteType = "blank_trait" scale = 1 alwaysTransparent = yes
+					effect = "galUni_phase_two_do_nothing_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_emotional_support_pet" position = {x = 372 y = 104} spriteType = "GFX_leader_trait_emotional_support_pet" scale = 1 alwaysTransparent = yes
+					effect = "galUni_phase_two_do_nothing_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_emotional_support_pet_selected" position = {x = 369 y = 101} spriteType = "GFX_traits_selected"
+					effect = "galUni_trait_main_body_basic_emotional_support_pet_selected_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_emotional_support_pet_disabled" position = {x = 360 y = 92} spriteType = "GFX_invisible"
+					size = {x = 52 y = 52} effect = "galUni_trait_main_body_basic_emotional_support_pet_disabled_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_emotional_support_pet_disabled_icon" position = {x = 372 y = 104} spriteType = "GFX_trait_disabled" scale = 1.1 alwaysTransparent = yes
+					effect = "galUni_trait_main_body_basic_emotional_support_pet_disabled_button_effect"}
+			}
+			containerWindowType = {name = "galUni_trait_main_body_specialised_type_name"
+				position = {x = 0 y = 168} size = {width = 760 height = 40}
+				effectButtonType = {name = "specialisedCategoryText" spriteType = "specialised" position = {x = 0 y = 0} alwaysTransparent = yes no_clicksound = yes
+					effect = "galUni_phase_two_do_nothing_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_specialised_architectural_interest_blank" position = {x = 0 y = 30} spriteType = "GFX_tiling_button_standard"
+					size = {x = 52 y = 52} effect = "galUni_trait_main_body_specialised_architectural_interest_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_specialised_architectural_interest_plate" position = {x = 12 y = 42} spriteType = "blank_trait" scale = 1 alwaysTransparent = yes
+					effect = "galUni_phase_two_do_nothing_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_specialised_architectural_interest" position = {x = 12 y = 42} spriteType = "GFX_leader_trait_architectural_interest" scale = 1 alwaysTransparent = yes
+					effect = "galUni_phase_two_do_nothing_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_specialised_architectural_interest_selected" position = {x = 9 y = 39} spriteType = "GFX_traits_selected"
+					effect = "galUni_trait_main_body_specialised_architectural_interest_selected_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_specialised_architectural_interest_disabled" position = {x = 0 y = 30} spriteType = "GFX_invisible"
+					size = {x = 52 y = 52} effect = "galUni_trait_main_body_specialised_architectural_interest_disabled_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_specialised_architectural_interest_disabled_icon" position = {x = 12 y = 42} spriteType = "GFX_trait_disabled" scale = 1.1 alwaysTransparent = yes
+					effect = "galUni_trait_main_body_specialised_architectural_interest_disabled_button_effect"}
+			}
+			containerWindowType = {name = "galUni_trait_main_body_veteran_type_name"
+				position = {x = 0 y = 274} size = {width = 760 height = 40}
+				effectButtonType = {name = "veteranCategoryText" spriteType = "veteran" position = {x = 0 y = 0} alwaysTransparent = yes no_clicksound = yes
+					effect = "galUni_phase_two_do_nothing_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_adventurous_spirit_blank" position = {x = 0 y = 30} spriteType = "GFX_tiling_button_standard"
+					size = {x = 52 y = 52} effect = "galUni_trait_main_body_basic_adventurous_spirit_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_adventurous_spirit_plate" position = {x = 12 y = 42} spriteType = "blank_trait" scale = 1 alwaysTransparent = yes
+					effect = "galUni_phase_two_do_nothing_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_adventurous_spirit" position = {x = 12 y = 42} spriteType = "GFX_leader_trait_adventurous_spirit" scale = 1 alwaysTransparent = yes
+					effect = "galUni_phase_two_do_nothing_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_adventurous_spirit_selected" position = {x = 9 y = 39} spriteType = "GFX_traits_selected"
+					effect = "galUni_trait_main_body_basic_adventurous_spirit_selected_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_adventurous_spirit_disabled" position = {x = 0 y = 30} spriteType = "GFX_invisible"
+					size = {x = 52 y = 52} effect = "galUni_trait_main_body_basic_adventurous_spirit_disabled_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_basic_adventurous_spirit_disabled_icon" position = {x = 12 y = 42} spriteType = "GFX_trait_disabled" scale = 1.1 alwaysTransparent = yes
+					effect = "galUni_trait_main_body_basic_adventurous_spirit_disabled_button_effect"}
+			}
+			}
+			}
 		}
 
-	effectButtonType = {name = "destinyCategoryText" spriteType = "destiny" position = { x = 20 y = 450 } alwaysTransparent = yes no_clicksound = yes 
-		effect = "galUni_phase_two_do_nothing_button_effect"}
-		# containerwindow...
-}
-}
-}
+		containerWindowType = {
+			name = "galUni_preview_panel"
+			position = {x = -236 y = 56}
+			orientation = upper_right
+			size = {width = 220 height = 588}
+			background = {name = "preview_bg" quadTextureSprite = "GFX_tiles_dark_area_cut_8" alwaysTransparent = no}
+			iconType = {name = "empire_header_line" quadTextureSprite = "GFX_line_horizontal" alwaysTransparent = yes position = { x = 30 y = 34 } }
+			instantTextBoxType = {name = "preview_title" font = "cg_16b" text = "YOUR NEW LEADER" text_color_code = "Y" position = { x = 12 y = 10 } maxWidth = 196 maxHeight = 20 fixedSize = yes format = center }
+			instantTextBoxType = {name = "preview_leader_name" font = "malgun_goth_24" text = "New Leader" text_color_code = "E" position = { x = 12 y = 50 } maxWidth = 196 maxHeight = 30 fixedSize = yes format = center }
+			instantTextBoxType = {name = "preview_class" font = "cg_16b" text = "Class" text_color_code = "T" position = { x = 12 y = 84 } maxWidth = 196 maxHeight = 40 fixedSize = no format = center }
+			instantTextBoxType = {name = "preview_cost" font = "cg_16b" text = "galUni_preview_cost" position = { x = 12 y = 518 } maxWidth = 196 maxHeight = 70 fixedSize = no format = center }
+		}
 
-#############################################################################################
-################################## HIDDEN UI ################################################
-#############################################################################################
+		effectButtonType = {name = "galUni_leader_create_button" quadTextureSprite = "GFX_standard_button_200_34_button" buttonFont = "cg_16b" buttonText = "CREATE LEADER"
+			position = {x = 438 y = 648} size = {x = 224 y = 58} effect = "galUni_leader_create_button_effect" }
 
-		# background = {
-		# 	name = "background"
-		# 	quadTextureSprite ="GFX_tile_large_bg_curator"
-		# }
-
-		# iconType = {
-		# 	name = "hex_bg"
-		# 	spriteType = "GFX_hex_bg_curator"
-		# 	position = { x = -10 y = -14 } # -10 -14
-		# 	alwaysTransparent = yes
-		# }
-
-		iconType = {name = "empire_header_line" quadTextureSprite = "GFX_line_long_curator" alwaysTransparent = yes 
-			position = { x = @hidden_ui_element_position y = @hidden_ui_element_position }} # 6 22
-		buttonType = {name = "focus_button" orientation = "UPPER_RIGHT" spriteType = "GFX_fleetview_focus_curator" buttonFont = "cg_16b" shortcut = "q" 
-			position = { x = @hidden_ui_element_position y = @hidden_ui_element_position }} # -80 16
-
-		# buttonType = {
-		# 	name = "close"
-		# 	quadTextureSprite = "GFX_main_close_button_curator"
-		# 	position = { x= -45 y = 16 }
-		# 	Orientation = "UPPER_RIGHT"
-		# 	clicksound = "back_click"
-		# }
-
-		instantTextBoxType = {name = "heading" font = "malgun_goth_24" text = "DIPLOMACY" fixedSize = yes alwaysTransparent = yes
-			maxWidth = 543 maxHeight = 22 position = { x = @hidden_ui_element_position y = @hidden_ui_element_position }} # 20 5
-
-		buttonType = {name = "tts_button" spriteType = "GFX_button_tts_start" buttonFont = "cg_16b" shortCut = "t"
-			position = { x = @hidden_ui_element_position y = @hidden_ui_element_position }} # 466 639
-
-		buttonType = { name = "alien_message_background" spriteType = "GFX_tiles_dark_area_cut_8" alwaysTransparent = yes
-			size = { x = 950 y = 210 } # y = 485, 240 default # 950, 210 CURRENT (I SET)
-			position = { x = @hidden_ui_element_position y = @hidden_ui_element_position }} # 11 429
-
-		instantTextBoxType = {name = "alien_message" font = "cg_16b" format = left scrollbartype = "standardtext_slider"
-			position = { x = @hidden_ui_element_position y = @hidden_ui_element_position } # 20 440
-			maxHeight = 220 maxWidth = 930} # originally 465		
-		
+		iconType = {name = "empire_info_bg" spriteType = "GFX_diplomacy_dark_fade_bg" alwaysTransparent = yes
+			position = { x = @hidden_ui_element_position y = @hidden_ui_element_position }}
+		instantTextBoxType={name = "empire_name" font = "malgun_goth_24" text = "Kammarian Galactic Concordat" format = LEFT text_color_code = "E" fixedsize = yes
+			maxWidth = 450 maxHeight = 16 position = { x = @hidden_ui_element_position y = @hidden_ui_element_position }}
+		instantTextBoxType={name = "empire_government_type" font = "cg_16b" text = "Autocracy" format = LEFT fixedsize = yes text_color_code = "Y"
+			maxWidth = 250 maxHeight = 16 position = { x = @hidden_ui_element_position y = @hidden_ui_element_position} }
+		instantTextBoxType={name = "empire_personality_type" font = "cg_16b" text = "Despicable Neutrals" format = LEFT fixedsize = yes
+			maxWidth = 250 maxHeight = 16 position = { x = @hidden_ui_element_position y = @hidden_ui_element_position}}
+		OverlappingElementsBoxType = {name = "empire_ethics_icons" spacing = 2.0 format = left
+			size = { x = 240 y = 30 } position = { x = @hidden_ui_element_position y = @hidden_ui_element_position }}
+		buttonType = {name = "empire_flag" quadTextureSprite = "GFX_empire_flag_128_curator" orientation = UPPER_LEFT
+			position = { x = @hidden_ui_element_position y = @hidden_ui_element_position }}
+		buttonType = {name = "focus_button" orientation = "UPPER_RIGHT" spriteType = "GFX_fleetview_focus_curator" buttonFont = "cg_16b" shortcut = "q"
+			position = { x = @hidden_ui_element_position y = @hidden_ui_element_position }}
+		containerWindowType = {name = "leader_details"
+			position = { x = @hidden_ui_element_position y = @hidden_ui_element_position }
+			containerWindowType = {name = "empire_traits_box" background = {name = "ethics_bg" spriteType = "GFX_tiles_dark_area_cut_8"}
+				position = {x = 0 y = -5} size = {width = 210 height = 75}}
+			instantTextBoxType = {name = "empire_traits_label" font = "cg_16b" fixedSize = yes format = left text = "RULER_TRAITS" alwaysTransparent = yes
+				position = {x = 214 y = 37} maxWidth = 230 maxHeight = 20}
+			overlappingElementsBoxType = {name = "leader_traits" position = {x = 215 y = 55} size = {x = 125 y = 330}}
+			instantTextBoxType = {name = "leader_name" font = "cg_16b" fixedSize = yes format = left text = "Leader Name" text_color_code = "E"
+				position = {x = 10 y = 0} maxWidth = 330 maxHeight = 20}
+			instantTextBoxType = {name = "leader_species" font = "cg_16b" fixedSize = yes text = "Leader Species" format = left
+				position = {x = 10 y = 18} maxWidth = 330 maxHeight = 20}}
+		containerWindowType = {name = "opinion_window" size = {width = 94 height = 30}
+			position = {x = @hidden_ui_element_position y = @hidden_ui_element_position}
+			background = {name = "opinion_bg" spriteType = "GFX_tiled_window_transparent"}
+			iconType = {name = "their_opinion_icon" spriteType = "GFX_diplomacy_opinion" alwaysTransparent = yes position = {x = 7 y = 4}}
+			instantTextBoxType = {name = "their_opinion" font = "cg_16b" format = left text = "100" alwaysTransparent = yes maxWidth = 40 position = { x = 40 y = 7 }}}
 		buttonType = {name = "confirm_button" quadTextureSprite = "GFX_standard_button_142_34_button" Orientation = "UPPER_RIGHT" font = "cg_16b" text = "MESSAGE_OK" clicksound = "confirmation"
-			position = { x = @hidden_ui_element_position y = @hidden_ui_element_position  } # -175 564
-		}
-
-		### PORTRAIT ###
+			position = { x = @hidden_ui_element_position y = @hidden_ui_element_position  } }
+		buttonType = {name = "tts_button" spriteType = "GFX_button_tts_start" buttonFont = "cg_16b" shortCut = "t"
+			position = { x = @hidden_ui_element_position y = @hidden_ui_element_position }}
+		buttonType = { name = "alien_message_background" spriteType = "GFX_tiles_dark_area_cut_8" alwaysTransparent = yes size = { x = 950 y = 210 }
+			position = { x = @hidden_ui_element_position y = @hidden_ui_element_position }}
+		instantTextBoxType = {name = "alien_message" font = "cg_16b" format = left scrollbartype = "standardtext_slider"
+			position = { x = @hidden_ui_element_position y = @hidden_ui_element_position } maxHeight = 220 maxWidth = 930}
+		instantTextBoxType = {name = "heading" font = "malgun_goth_24" text = "DIPLOMACY" fixedSize = yes alwaysTransparent = yes
+			maxWidth = 543 maxHeight = 22 position = { x = @hidden_ui_element_position y = @hidden_ui_element_position }}
 		containerWindowType = {name = "portrait_background" clipping = yes
 			iconType = { name = "event_picture" spriteType = "GFX_diplomacy_portrait_frame" position = { x = -6 y = -5 }}
-			iconType = {name = "portrait" position = { x = 250 y = 0 } spriteType = "GFX_portrait_character"}	
-			position = { x = @hidden_ui_element_position y = @hidden_ui_element_position } # 17 45
-			size = { width = 964 height = 350 }}
-
+			iconType = {name = "portrait" position = { x = 250 y = 0 } spriteType = "GFX_portrait_character"}
+			position = { x = @hidden_ui_element_position y = @hidden_ui_element_position } size = { width = 964 height = 350 }}
 		containerWindowType = {name = "portrait" clipping = yes
 			iconType = {name = "portrait" spriteType = "GFX_portrait_gamesetup_mask" alwaysTransparent = yes}
 			iconType = {name = "black_frame" spriteType = "GFX_diplomacy_portrait_shadow_frame" position = { x = -4 y = -5} alwaysTransparent = yes}
 			iconType = {name = "stripes_1" spriteType = "GFX_diplomacy_stripes_2" alwaysTransparent = yes}
-			iconType = {name = "city_frame" spriteType = "GFX_diplomacy_portrait_frame_curator" position = { x = -6 y = -5 } alwaysTransparent = yes}	
-			position = { x = @hidden_ui_element_position y = @hidden_ui_element_position } # 11 50
-			size = { width = 964 height = 350 }}
-
-		### EMPIRE INFO ###
-
-		iconType = {name = "empire_info_bg" spriteType = "GFX_diplomacy_dark_fade_bg" alwaysTransparent = yes
-			position = { x = @hidden_ui_element_position y = @hidden_ui_element_position }} # 33 69
-
-		instantTextBoxType={name = "empire_name" font = "malgun_goth_24" text = "Kammarian Galactic Concordat" format = LEFT text_color_code = "E" fixedsize = yes
-			maxWidth = 450 maxHeight = 16 position = { x = @hidden_ui_element_position y = @hidden_ui_element_position }} # 45 75
-
-		instantTextBoxType={name = "empire_government_type" font = "cg_16b" text = "Autocracy" format = LEFT fixedsize = yes text_color_code = "Y"
-			maxWidth = 250 maxHeight = 16 position = { x = @hidden_ui_element_position y = @hidden_ui_element_position} } # 45 100
-
-		instantTextBoxType={name = "empire_personality_type" font = "cg_16b"text = "Despicable Neutrals" format = LEFT fixedsize = yes 
-			maxWidth = 250 maxHeight = 16 position = { x = @hidden_ui_element_position y = @hidden_ui_element_position}} # 45 117
-
-		OverlappingElementsBoxType = {name = "empire_ethics_icons" spacing = 2.0 format = left
-			size = { x = 240 y = 30 } position = { x = @hidden_ui_element_position y = @hidden_ui_element_position }} # 45 143
-
-		buttonType = {name = "empire_flag" quadTextureSprite = "GFX_empire_flag_128_curator" orientation = UPPER_LEFT
-			position = { x = @hidden_ui_element_position y = @hidden_ui_element_position }} # 25 240
-
-		containerWindowType = {name = "leader_details"
-			position = { x = @hidden_ui_element_position y = @hidden_ui_element_position } # 25 75
-
-			containerWindowType = {name = "empire_traits_box" background = {name = "ethics_bg" spriteType = "GFX_tiles_dark_area_cut_8"}
-				position = {x = 0 y = -5} size = {width = 210 height = 75}}
-
-			instantTextBoxType = {name = "empire_traits_label" font = "cg_16b" fixedSize = yes format = left text = "RULER_TRAITS" alwaysTransparent = yes
-				position = {x = 214 y = 37} maxWidth = 230 maxHeight = 20}
-
-			overlappingElementsBoxType = {name = "leader_traits" position = {x = 215 y = 55} size = {x = 125 y = 330}}
-
-			instantTextBoxType = {name = "leader_name" font = "cg_16b" fixedSize = yes format = left text = "Leader Name" text_color_code = "E"
-				position = {x = 10 y = 0} maxWidth = 330 maxHeight = 20}
-
-			instantTextBoxType = {name = "leader_species" font = "cg_16b" fixedSize = yes text = "Leader Species" format = left
-				position = {x = 10 y = 18} maxWidth = 330 maxHeight = 20}}
-
-		### OPINION
-		containerWindowType = {name = "opinion_window"
-			size = {width = 94 height = 30} position = {x = @hidden_ui_element_position y = @hidden_ui_element_position} # 27 110
-			
-			# Use this for tooltip area, picture comes from somewhere else
-			background = {name = "opinion_bg" spriteType = "GFX_tiled_window_transparent"}
-
-			iconType = {name = "their_opinion_icon" spriteType = "GFX_diplomacy_opinion" alwaysTransparent = yes
-				position = {x = 7 y = 4}}
-
-			instantTextBoxType = {name = "their_opinion" font = "cg_16b" format = left text = "100" alwaysTransparent = yes
-				maxWidth = 40 position = { x = 40 y = 7 }}}
-
-		### EVENT DIPLO ###
-
+			iconType = {name = "city_frame" spriteType = "GFX_diplomacy_portrait_frame_curator" position = { x = -6 y = -5 } alwaysTransparent = yes}
+			position = { x = @hidden_ui_element_position y = @hidden_ui_element_position } size = { width = 964 height = 350 }}
 		containerWindowType = {name = "EVENT_DIPLO" moveable = no
-			size = { width=563 height=280 } position = {x = @hidden_ui_element_position y = @hidden_ui_element_position} # 0 400
-			
-			instantTextBoxType = {name = "action_title" font = "malgun_goth_24" format = center alwaysTransparent = yes
-				position = { x = 0 y = 0 } maxWidth = 974}
-
-			instantTextBoxType = {name = "action_desc"font = "malgun_goth_24" Orientation = "UPPER_LEFT" format = center alwaysTransparent = yes text_color_code = "H"
+			size = { width=563 height=280 } position = {x = @hidden_ui_element_position y = @hidden_ui_element_position}
+			instantTextBoxType = {name = "action_title" font = "malgun_goth_24" format = center alwaysTransparent = yes position = { x = 0 y = 0 } maxWidth = 974}
+			instantTextBoxType = {name = "action_desc" font = "malgun_goth_24" Orientation = "UPPER_LEFT" format = center alwaysTransparent = yes text_color_code = "H"
 				position = { x = 490 y = 0 } maxWidth = 500 maxHeight = 180}
-
 			listboxType = {name = "option_list" spacing = 1 scrollbartype = "standardlistbox_slider" Orientation = "UPPER_LEFT"
-			size = {x=450 y=240} borderSize = {x = 0 y = 0} position = {x = 0 y = 240}}}} # pos 500, 20
+				size = {x=450 y=240} borderSize = {x = 0 y = 0} position = {x = 0 y = 240}}}
+		iconType = {name = "hex_bg" spriteType = "GFX_hex_bg_curator" position = { x = @hidden_ui_element_position y = @hidden_ui_element_position } alwaysTransparent = yes }
+	}
 }
