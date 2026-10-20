@@ -236,7 +236,9 @@ guiTypes = {
 					effect = "galUni_phase_two_do_nothing_button_effect"}
 				effectButtonType = {name = "galUni_trait_main_body_specialised_architectural_interest_selected" position = {x = 9 y = 39} spriteType = "GFX_traits_selected"
 					effect = "galUni_trait_main_body_specialised_architectural_interest_selected_button_effect"}
-				effectButtonType = {name = "galUni_trait_main_body_specialised_architectural_interest_disabled" position = {x = 0 y = 30} spriteType = "GFX_tiling_button_standard" alwaysTransparent = yes
+				effectButtonType = {name = "galUni_trait_main_body_specialised_architectural_interest_disabled_tile" position = {x = 0 y = 30} spriteType = "GFX_tiling_button_standard" alwaysTransparent = yes
+					size = {x = 52 y = 52} effect = "galUni_trait_main_body_specialised_architectural_interest_disabled_button_effect"}
+				effectButtonType = {name = "galUni_trait_main_body_specialised_architectural_interest_disabled" position = {x = 0 y = 30} spriteType = "GFX_invisible"
 					size = {x = 52 y = 52} effect = "galUni_trait_main_body_specialised_architectural_interest_disabled_button_effect"}
 				effectButtonType = {name = "galUni_trait_main_body_specialised_architectural_interest_disabled_icon" position = {x = 12 y = 42} spriteType = "GFX_trait_disabled" scale = 1.1 alwaysTransparent = yes
 					effect = "galUni_trait_main_body_specialised_architectural_interest_disabled_button_effect"}
