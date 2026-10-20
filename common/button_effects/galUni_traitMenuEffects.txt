@@ -86,7 +86,7 @@ galUni_leader_back_button_effect = {
             allow = {always = yes}
        
             inline_script = {
-                script = galUni_trait_inline_selected
+                script = galUni_trait_inline
                 trait_tool = leader_trait_adaptable
                 flag = galUni_trait_BASIC_ADAPTABLE_selected
                 type = BASIC
@@ -108,6 +108,8 @@ galUni_leader_back_button_effect = {
         }
     
          galUni_trait_main_body_basic_adaptable_button_effect = {
+             potential = { from = { has_country_flag = galUni_hiring_phase_two } }
+             allow = { always = yes }
             # effect = {            
                 # tooltip = {add_trait = leader_trait_adaptable} 
                 # custom_tooltip = "[§L]$leader_trait_adaptable_desc$[§!]"
@@ -133,7 +135,7 @@ galUni_leader_back_button_effect = {
         allow = {always = yes}
        
             inline_script = {
-            script = galUni_trait_inline_selected
+            script = galUni_trait_inline
             trait_tool = leader_trait_eager
             #                trait_tool = leader_trait_eager
             flag = galUni_trait_BASIC_EAGER_selected
@@ -156,6 +158,8 @@ galUni_leader_back_button_effect = {
         }
 
         galUni_trait_main_body_basic_eager_button_effect = {
+            potential = { from = { has_country_flag = galUni_hiring_phase_two } }
+            allow = { always = yes }
         inline_script = {
             script = galUni_trait_inline
             trait_tool = leader_trait_eager
@@ -177,7 +181,7 @@ galUni_leader_back_button_effect = {
             allow = {always = yes}
        
             inline_script = {
-            script = galUni_trait_inline_selected
+            script = galUni_trait_inline
             trait_tool = leader_trait_resilient
             flag = galUni_trait_BASIC_RESILIENT_selected
             type = BASIC
@@ -199,6 +203,8 @@ galUni_leader_back_button_effect = {
         }
 
         galUni_trait_main_body_basic_resilient_button_effect = {
+            potential = { from = { has_country_flag = galUni_hiring_phase_two } }
+            allow = { always = yes }
         inline_script = {
             script = galUni_trait_inline
             trait_tool = leader_trait_resilient
@@ -219,7 +225,7 @@ galUni_leader_back_button_effect = {
         allow = {always = yes}
        
             inline_script = {
-            script = galUni_trait_inline_selected
+            script = galUni_trait_inline
             trait_tool = leader_trait_politician
             flag = galUni_trait_BASIC_POLITICIAN_selected
             type = BASIC
@@ -241,6 +247,8 @@ galUni_leader_back_button_effect = {
         }
 
         galUni_trait_main_body_basic_politician_button_effect = {
+            potential = { from = { has_country_flag = galUni_hiring_phase_two } }
+            allow = { always = yes }
         inline_script = {
             script = galUni_trait_inline
             trait_tool = leader_trait_politician
@@ -261,7 +269,7 @@ galUni_leader_back_button_effect = {
         allow = {always = yes}
        
             inline_script = {
-            script = galUni_trait_inline_selected
+            script = galUni_trait_inline
             trait_tool = leader_trait_capitalist
             flag = galUni_trait_BASIC_CAPITALIST_selected
             type = BASIC
@@ -289,6 +297,8 @@ galUni_leader_back_button_effect = {
         }
 
         galUni_trait_main_body_basic_capitalist_button_effect = {
+            potential = { from = { has_country_flag = galUni_hiring_phase_two } }
+            allow = { always = yes }
         inline_script = {
             script = galUni_trait_inline
             trait_tool = leader_trait_capitalist
@@ -309,7 +319,7 @@ galUni_leader_back_button_effect = {
             allow = {always = yes}
        
             inline_script = {
-            script = galUni_trait_inline_selected
+            script = galUni_trait_inline
             trait_tool = leader_trait_private_mines
             flag = galUni_trait_BASIC_PRIVATE_MINES_selected
             type = BASIC
@@ -336,6 +346,8 @@ galUni_leader_back_button_effect = {
         }
 
         galUni_trait_main_body_basic_private_mines_button_effect = {
+            potential = { from = { has_country_flag = galUni_hiring_phase_two } }
+            allow = { always = yes }
         inline_script = {
             script = galUni_trait_inline
             trait_tool = leader_trait_private_mines
@@ -356,7 +368,7 @@ galUni_leader_back_button_effect = {
         allow = {always = yes}
        
             inline_script = {
-            script = galUni_trait_inline_selected
+            script = galUni_trait_inline
             trait_tool = leader_trait_homesteader
             flag = galUni_trait_BASIC_HOMESTEADER_selected
             type = BASIC
@@ -384,6 +396,8 @@ galUni_leader_back_button_effect = {
         }
 
         galUni_trait_main_body_basic_homesteader_button_effect = {
+            potential = { from = { has_country_flag = galUni_hiring_phase_two } }
+            allow = { always = yes }
         inline_script = {
             script = galUni_trait_inline
             trait_tool = leader_trait_homesteader
@@ -404,7 +418,7 @@ galUni_leader_back_button_effect = {
         allow = {always = yes}
        
             inline_script = {
-            script = galUni_trait_inline_selected
+            script = galUni_trait_inline
             trait_tool = trait_ruler_champion_of_the_people
             flag = galUni_trait_BASIC_CHAMPION_OF_THE_PEOPLE_selected
             type = BASIC
@@ -426,6 +440,8 @@ galUni_leader_back_button_effect = {
         }
 
         galUni_trait_main_body_basic_champion_of_the_people_button_effect = {
+            potential = { from = { has_country_flag = galUni_hiring_phase_two } }
+            allow = { always = yes }
         inline_script = {
             script = galUni_trait_inline
             trait_tool = trait_ruler_champion_of_the_people
@@ -446,7 +462,7 @@ galUni_leader_back_button_effect = {
         allow = {always = yes}
        
             inline_script = {
-            script = galUni_trait_inline_selected
+            script = galUni_trait_inline
             trait_tool = leader_trait_gifted
             flag = galUni_trait_BASIC_GIFTED_selected
             type = BASIC
@@ -468,6 +484,8 @@ galUni_leader_back_button_effect = {
         }
 
         galUni_trait_main_body_basic_gifted_button_effect = {
+            potential = { from = { has_country_flag = galUni_hiring_phase_two } }
+            allow = { always = yes }
         inline_script = {
             script = galUni_trait_inline
             trait_tool = leader_trait_gifted
@@ -488,7 +506,7 @@ galUni_leader_back_button_effect = {
         allow = {always = yes}
        
             inline_script = {
-            script = galUni_trait_inline_selected
+            script = galUni_trait_inline
             trait_tool = trait_imperial_heir
             #                 trait_tool = trait_imperial_heir
             flag = galUni_trait_BASIC_IMPERIAL_HEIR_selected
@@ -511,6 +529,8 @@ galUni_leader_back_button_effect = {
         }
 
         galUni_trait_main_body_basic_imperial_heir_button_effect = {
+            potential = { from = { has_country_flag = galUni_hiring_phase_two } }
+            allow = { always = yes }
         inline_script = {
             script = galUni_trait_inline
             trait_tool = trait_imperial_heir
@@ -532,7 +552,7 @@ galUni_leader_back_button_effect = {
         allow = {always = yes}
        
             inline_script = {
-            script = galUni_trait_inline_selected
+            script = galUni_trait_inline
             trait_tool = leader_trait_scrapper
             flag = galUni_trait_BASIC_SCRAPPER_selected
             type = BASIC
@@ -559,6 +579,8 @@ galUni_leader_back_button_effect = {
         }
 
         galUni_trait_main_body_basic_scrapper_button_effect = {
+            potential = { from = { has_country_flag = galUni_hiring_phase_two } }
+            allow = { always = yes }
         inline_script = {
             script = galUni_trait_inline
             trait_tool = leader_trait_scrapper
@@ -579,7 +601,7 @@ galUni_leader_back_button_effect = {
         allow = {always = yes}
        
             inline_script = {
-            script = galUni_trait_inline_selected
+            script = galUni_trait_inline
             trait_tool = leader_trait_entrepreneur
             flag = galUni_trait_BASIC_ENTREPRENEUR_selected
             type = BASIC
@@ -607,6 +629,8 @@ galUni_leader_back_button_effect = {
         }
 
         galUni_trait_main_body_basic_entrepreneur_button_effect = {
+            potential = { from = { has_country_flag = galUni_hiring_phase_two } }
+            allow = { always = yes }
         inline_script = {
             script = galUni_trait_inline
             trait_tool = leader_trait_entrepreneur
@@ -627,7 +651,7 @@ galUni_leader_back_button_effect = {
         allow = {always = yes}
        
             inline_script = {
-            script = galUni_trait_inline_selected
+            script = galUni_trait_inline
             trait_tool = leader_trait_venerated
             flag = galUni_trait_BASIC_VENERATED_selected
             type = BASIC
@@ -654,6 +678,8 @@ galUni_leader_back_button_effect = {
         }
 
         galUni_trait_main_body_basic_venerated_button_effect = {
+            potential = { from = { has_country_flag = galUni_hiring_phase_two } }
+            allow = { always = yes }
         inline_script = {
             script = galUni_trait_inline
             trait_tool = leader_trait_venerated
@@ -674,7 +700,7 @@ galUni_leader_back_button_effect = {
         allow = {always = yes}
        
             inline_script = {
-            script = galUni_trait_inline_selected
+            script = galUni_trait_inline
             trait_tool = leader_trait_emotional_support_pet
             flag = galUni_trait_BASIC_EMOTIONAL_SUPPORT_PET_selected
             type = BASIC
@@ -696,6 +722,8 @@ galUni_leader_back_button_effect = {
         }
 
         galUni_trait_main_body_basic_emotional_support_pet_button_effect = {
+            potential = { from = { has_country_flag = galUni_hiring_phase_two } }
+            allow = { always = yes }
         inline_script = {
             script = galUni_trait_inline
             trait_tool = leader_trait_emotional_support_pet
@@ -717,7 +745,7 @@ galUni_leader_back_button_effect = {
         allow = {always = yes}
        
             inline_script = {
-            script = galUni_trait_inline_selected
+            script = galUni_trait_inline
             trait_tool = leader_trait_architectural_interest
             flag = galUni_trait_SPECIALISED_ARCHITECTURAL_INTEREST_selected
             type = SPECIALISED
@@ -739,6 +767,8 @@ galUni_leader_back_button_effect = {
         }
 
         galUni_trait_main_body_specialised_architectural_interest_button_effect = {
+            potential = { from = { has_country_flag = galUni_hiring_phase_two } }
+            allow = { always = yes }
         potential = {
             from = { has_country_flag = galUni_hiring_phase_two }
             OR = {
@@ -768,7 +798,7 @@ galUni_leader_back_button_effect = {
         allow = {always = yes}
        
             inline_script = {
-            script = galUni_trait_inline_selected
+            script = galUni_trait_inline
             trait_tool = leader_trait_adventurous_spirit
             flag = galUni_trait_BASIC_ADVENTUROUS_SPIRIT_selected
             type = BASIC
@@ -790,6 +820,8 @@ galUni_leader_back_button_effect = {
         }
 
         galUni_trait_main_body_basic_adventurous_spirit_button_effect = {
+            potential = { from = { has_country_flag = galUni_hiring_phase_two } }
+            allow = { always = yes }
         inline_script = {
             script = galUni_trait_inline
             trait_tool = leader_trait_adventurous_spirit

@@ -1,7 +1,3 @@
-potential = {
-	from = { has_country_flag = galUni_hiring_phase_two }
-}
-allow = { always = yes }
 effect = {
 	if = { limit = { has_global_flag = galUni_storage_created }
 		event_target:galUni_storage = {
