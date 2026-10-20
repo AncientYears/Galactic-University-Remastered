@@ -18,8 +18,6 @@ guiTypes = {
 			position = { x = 24 y = 14 } maxWidth = 520 maxHeight = 30 fixedSize = yes format = left }
 		iconType = {name = "empire_header_line" quadTextureSprite = "GFX_line_long_curator" alwaysTransparent = yes
 			position = { x = 20 y = 46 } }
-		effectButtonType = {name = "galUni_back_button" quadTextureSprite = "GFX_standard_button_200_34_button" buttonFont = "cg_16b" buttonText = "BACK"
-			position = {x = -260 y = 16} orientation = UPPER_RIGHT effect = "galUni_leader_back_button_effect" }
 		effectButtonType = {name = "close" quadTextureSprite = "GFX_close" position = { x = -34 y = 14 } orientation = UPPER_RIGHT
 			shortcut = "ESCAPE" clicksound = "back_click" effect = "galUni_close_button_effect" }
 
@@ -31,10 +29,16 @@ guiTypes = {
 			instantTextBoxType = {name = "galUni_class_rail_title" font = "cg_16b" text = "SELECT CLASS" text_color_code = "Y" position = { x = 12 y = 10 } maxWidth = 220 maxHeight = 20 fixedSize = yes format = left }
 			effectButtonType = {name = "galUni_leader_scientist_button" quadTextureSprite = "GFX_standard_button_200_34_button" buttonFont = "cg_16b" buttonText = "SCIENTIST"
 				position = {x = 10 y = 44} size = {x = 224 y = 58} orientation = UPPER_LEFT effect = "galUni_leader_scientist_button_effect" }
+			effectButtonType = {name = "galUni_class_highlight_scientist" quadTextureSprite = "GFX_galUni_class_selected"
+				position = {x = 15 y = 48} scale = 0.94 effect = "galUni_class_highlight_scientist_effect" }
 			effectButtonType = {name = "galUni_leader_commander_button" quadTextureSprite = "GFX_standard_button_200_34_button" buttonFont = "cg_16b" buttonText = "COMMANDER"
 				position = {x = 10 y = 90} size = {x = 224 y = 58} orientation = UPPER_LEFT effect = "galUni_leader_commander_button_effect" }
+			effectButtonType = {name = "galUni_class_highlight_commander" quadTextureSprite = "GFX_galUni_class_selected"
+				position = {x = 15 y = 94} scale = 0.94 effect = "galUni_class_highlight_commander_effect" }
 			effectButtonType = {name = "galUni_leader_official_button" quadTextureSprite = "GFX_standard_button_200_34_button" buttonFont = "cg_16b" buttonText = "OFFICIAL"
 				position = {x = 10 y = 136} size = {x = 224 y = 58} orientation = UPPER_LEFT effect = "galUni_leader_official_button_effect" }
+			effectButtonType = {name = "galUni_class_highlight_official" quadTextureSprite = "GFX_galUni_class_selected"
+				position = {x = 15 y = 140} scale = 0.94 effect = "galUni_class_highlight_official_effect" }
 		}
 
 		containerWindowType = {
@@ -274,11 +278,16 @@ guiTypes = {
 		instantTextBoxType = {name = "preview_title" font = "cg_16b" text = "OFFICE OF THE DEAN" text_color_code = "Y" position = { x = @hidden_ui_element_position y = @hidden_ui_element_position } maxWidth = 196 maxHeight = 20 fixedSize = yes format = center }
 		instantTextBoxType = {name = "preview_leader_name" font = "malgun_goth_24" text = "The Dean" text_color_code = "E" position = { x = 12 y = 20 } maxWidth = 196 maxHeight = 30 fixedSize = yes format = center }
 		instantTextBoxType = {name = "preview_class" font = "cg_16b" text = "Head of the Galactic University" text_color_code = "T" position = { x = 12 y = 54 } maxWidth = 196 maxHeight = 40 fixedSize = no format = center }
-			instantTextBoxType = {name = "preview_cost" font = "cg_16b" text = "galUni_preview_cost" position = { x = 12 y = 518 } maxWidth = 196 maxHeight = 70 fixedSize = no format = center }
 		}
 
-		effectButtonType = {name = "galUni_leader_create_button" quadTextureSprite = "GFX_standard_button_200_34_button" buttonFont = "cg_16b" buttonText = "CREATE LEADER"
-			position = {x = 438 y = 648} size = {x = 224 y = 58} effect = "galUni_leader_create_button_effect" }
+		instantTextBoxType = {name = "preview_cost" font = "cg_16b" text = "galUni_preview_cost" position = { x = 864 y = 350 } maxWidth = 220 maxHeight = 70 fixedSize = no format = center }
+		effectButtonType = {name = "galUni_dean_dummy_button_1" quadTextureSprite = "GFX_standard_button_200_34_button" buttonFont = "cg_16b" buttonText = "ASK ABOUT TRAITS"
+			position = {x = 864 y = 524} size = {x = 220 y = 44} effect = "galUni_phase_two_do_nothing_button_effect" }
+		effectButtonType = {name = "galUni_dean_dummy_button_2" quadTextureSprite = "GFX_standard_button_200_34_button" buttonFont = "cg_16b" buttonText = "ASK ABOUT COSTS"
+			position = {x = 864 y = 572} size = {x = 220 y = 44} effect = "galUni_phase_two_do_nothing_button_effect" }
+
+		effectButtonType = {name = "galUni_leader_create_button" quadTextureSprite = "GFX_standard_button_200_34_button" buttonFont = "cg_16b" buttonText = "ORDER LEADER"
+			position = {x = 26 y = 620} size = {x = 224 y = 58} effect = "galUni_leader_create_button_effect" }
 
 		iconType = {name = "empire_info_bg" spriteType = "GFX_diplomacy_dark_fade_bg" alwaysTransparent = yes
 			position = { x = @hidden_ui_element_position y = @hidden_ui_element_position }}

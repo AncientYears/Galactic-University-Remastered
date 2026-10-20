@@ -90,13 +90,34 @@ galUni_move_to_phase_two = {
 	$EFFECT$ = galUni_$NAME$_$TYPE$
 }
 
+galUni_clear_invalid_traits_effect = {
+	optimize_memory
+	if = { limit = { check_variable = { which = galUni_leader_type value = 1 } }
+		if = { limit = { has_country_flag = galUni_trait_SPECIALISED_ARCHITECTURAL_INTEREST_selected }
+			galUni_trait_enable_disable_effect = {EFFECT = remove_country_flag TYPE = SPECIALISED NAME = ARCHITECTURAL_INTEREST}
+			subtract_variable = { which = galUni_hiringCost value = 1000 }
+			clear_variable = galUni_specialised_architectural_interest
+		}
+	}
+}
+
+galUni_set_class_effect = {
+	optimize_memory
+	set_variable = { which = galUni_leader_type value = $TYPE$ }
+	remove_country_flag = galUni_hiring_phase_one
+	set_country_flag = galUni_hiring_phase_two
+	galUni_clear_invalid_traits_effect = yes
+	hidden_effect = { galUni_create_preview_leader_effect = yes }
+}
+
 galUni_reset_hiring_menu = {
 	optimize_memory
 	galUni_destroy_preview_leader_effect = yes
 	set_variable = {which = galUni_hiringCost value = 0}
-	set_country_flag = galUni_hiring_phase_one
+	set_country_flag = galUni_hiring_phase_two
 	set_country_flag = galUni_hiring_menu_opened
-	remove_country_flag = galUni_hiring_phase_two
+	remove_country_flag = galUni_hiring_phase_one
+	set_variable = { which = galUni_leader_type value = 0 }
 
 	galUni_move_to_phase_two = {EFFECT = remove_country_flag NAME = PHASE_TWO TYPE = official}
 	galUni_move_to_phase_two = {EFFECT = remove_country_flag NAME = PHASE_TWO TYPE = commander}
@@ -135,4 +156,6 @@ galUni_reset_hiring_menu = {
 	clear_variable = galUni_basic_emotional_support_pet
 	clear_variable = galUni_specialised_architectural_interest
 	clear_variable = galUni_basic_adventurous_spirit
+
+	hidden_effect = { galUni_create_preview_leader_effect = yes }
 }

@@ -13,49 +13,56 @@ galUni_close_button_effect = {    potential = { from = { has_country_flag = galU
 
 # Phase 1 - Selecting Leader Class
 galUni_leader_official_button_effect = {
-    potential = { from = { has_country_flag = galUni_hiring_phase_one } }
+    potential = { from = { has_country_flag = galUni_hiring_menu_opened } }
     allow = {}
     effect = {
         custom_tooltip = "Hire an official"
-        # hidden_effect = {
-            from = { remove_country_flag = galUni_hiring_phase_one }
-            from = { set_country_flag = galUni_hiring_phase_two }
-            galUni_move_to_phase_two = {EFFECT = set_country_flag NAME = PHASE_TWO TYPE = official}            
-            set_variable = {which = galUni_leader_type value = 2}
-            hidden_effect = { galUni_create_preview_leader_effect = yes }
-        # }
+        galUni_set_class_effect = { TYPE = 2 }
     }
 }
 
 galUni_leader_commander_button_effect = {
-    potential = { from = { has_country_flag = galUni_hiring_phase_one } }
+    potential = { from = { has_country_flag = galUni_hiring_menu_opened } }
     allow = {}
     effect = {
         custom_tooltip = "Hire a commander"
-        # hidden_effect = {
-            from = { remove_country_flag = galUni_hiring_phase_one }
-            from = { set_country_flag = galUni_hiring_phase_two }
-            galUni_move_to_phase_two = {EFFECT = set_country_flag NAME = PHASE_TWO TYPE = commander}            
-            set_variable = {which = galUni_leader_type value = 1}
-            hidden_effect = { galUni_create_preview_leader_effect = yes }
-        # }
+        galUni_set_class_effect = { TYPE = 1 }
     }
     }
 
 galUni_leader_scientist_button_effect = {
-    potential = { from = { has_country_flag = galUni_hiring_phase_one } }
+    potential = { from = { has_country_flag = galUni_hiring_menu_opened } }
     allow = {}
     effect = {
         custom_tooltip = "Hire a scientist"
-        # hidden_effect = {
-            from = { remove_country_flag = galUni_hiring_phase_one }
-            from = { set_country_flag = galUni_hiring_phase_two }
-            galUni_move_to_phase_two = {EFFECT = set_country_flag NAME = PHASE_TWO TYPE = scientist} 
-            set_variable = {which = galUni_leader_type value = 0}           
-            hidden_effect = { galUni_create_preview_leader_effect = yes }
-        # }
+        galUni_set_class_effect = { TYPE = 0 }
     }
     }
+
+galUni_class_highlight_scientist_effect = {
+    potential = {
+        from = { has_country_flag = galUni_hiring_menu_opened }
+        from = { check_variable = { which = galUni_leader_type value < 1 } }
+    }
+    allow = { always = yes }
+}
+
+galUni_class_highlight_commander_effect = {
+    potential = {
+        from = { has_country_flag = galUni_hiring_menu_opened }
+        from = { check_variable = { which = galUni_leader_type value = 1 } }
+        from = { check_variable = { which = galUni_leader_type value < 2 } }
+    }
+    allow = { always = yes }
+}
+
+galUni_class_highlight_official_effect = {
+    potential = {
+        from = { has_country_flag = galUni_hiring_menu_opened }
+        from = { check_variable = { which = galUni_leader_type value = 2 } }
+    }
+    allow = { always = yes }
+}
 
 # Phase 2 - Selecting Traits & Back button
 galUni_leader_back_button_effect = {

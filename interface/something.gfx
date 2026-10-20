@@ -45,4 +45,9 @@ quadTextureSprite = {
 	name = "GFX_quad_charimatic"
 	texturefile = "gfx/interface/icons/traits/leader_trait_icons/charismatic.dds"
 }
+
+spriteType = {
+	name = "GFX_galUni_class_selected"
+	texturefile = "gfx/interface/buttons/tutorial_mission_topic_button_selection_frame.dds"
+}
 }
