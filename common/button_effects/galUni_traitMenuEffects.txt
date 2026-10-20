@@ -759,7 +759,7 @@ galUni_leader_back_button_effect = {
         potential = {
             from = { has_country_flag = galUni_hiring_phase_two }
             OR = {
-                check_variable = {which = galUni_leader_type value = 1}
+                from = { check_variable = {which = galUni_leader_type value = 1} }
             }
             NOT = { from = { has_country_flag = galUni_trait_SPECIALISED_ARCHITECTURAL_INTEREST_selected } }
         }
@@ -767,13 +767,11 @@ galUni_leader_back_button_effect = {
         }
 
         galUni_trait_main_body_specialised_architectural_interest_button_effect = {
-            potential = { from = { has_country_flag = galUni_hiring_phase_two } }
-            allow = { always = yes }
         potential = {
             from = { has_country_flag = galUni_hiring_phase_two }
             OR = {
-                check_variable = {which = galUni_leader_type value = 0}
-                check_variable = {which = galUni_leader_type value = 2}
+                from = { check_variable = {which = galUni_leader_type value = 0} }
+                from = { check_variable = {which = galUni_leader_type value = 2} }
             }
         }
         allow = {always = yes}
