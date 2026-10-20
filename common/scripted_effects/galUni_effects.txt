@@ -10,6 +10,34 @@ galUni_ensure_storage_effect = {
 		}
 		set_global_flag = galUni_storage_created
 	}
+	event_target:galUni_storage = {
+		if = { limit = { NOT = { has_global_flag = galUni_dean_created } }
+			create_species = {
+				name = "Dean's Kind"
+				plural = "Dean's Kind"
+				class = "HUM"
+				portrait = galUni_elf_dean
+				gender = female
+				can_be_modified = no
+				traits = { trait = trait_pc_gaia_preference }
+			}
+			save_event_target_as = galUni_dean_species
+			create_leader = {
+				name = "Dean"
+				species = event_target:galUni_dean_species
+				class = official
+				skill = 3
+				set_age = 45
+				event_leader = yes
+			}
+			last_created_leader = {
+				change_leader_portrait = galUni_elf_dean
+				set_leader_flag = galUni_dean
+				save_global_event_target_as = galUni_dean
+			}
+			set_global_flag = galUni_dean_created
+		}
+	}
 }
 
 galUni_create_preview_leader_effect = {

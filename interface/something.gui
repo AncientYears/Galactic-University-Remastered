@@ -268,10 +268,10 @@ guiTypes = {
 			orientation = upper_right
 			size = {width = 220 height = 588}
 			background = {name = "preview_bg" quadTextureSprite = "GFX_tiles_dark_area_cut_8" alwaysTransparent = no}
-			iconType = {name = "empire_header_line" quadTextureSprite = "GFX_line_horizontal" alwaysTransparent = yes position = { x = 30 y = 34 } }
-			instantTextBoxType = {name = "preview_title" font = "cg_16b" text = "YOUR NEW LEADER" text_color_code = "Y" position = { x = 12 y = 10 } maxWidth = 196 maxHeight = 20 fixedSize = yes format = center }
-			instantTextBoxType = {name = "preview_leader_name" font = "malgun_goth_24" text = "New Leader" text_color_code = "E" position = { x = 12 y = 50 } maxWidth = 196 maxHeight = 30 fixedSize = yes format = center }
-			instantTextBoxType = {name = "preview_class" font = "cg_16b" text = "Class" text_color_code = "T" position = { x = 12 y = 84 } maxWidth = 196 maxHeight = 40 fixedSize = no format = center }
+			iconType = {name = "empire_header_line" quadTextureSprite = "GFX_line_horizontal" alwaysTransparent = yes position = { x = @hidden_ui_element_position y = @hidden_ui_element_position } }
+		instantTextBoxType = {name = "preview_title" font = "cg_16b" text = "OFFICE OF THE DEAN" text_color_code = "Y" position = { x = @hidden_ui_element_position y = @hidden_ui_element_position } maxWidth = 196 maxHeight = 20 fixedSize = yes format = center }
+		instantTextBoxType = {name = "preview_leader_name" font = "malgun_goth_24" text = "The Dean" text_color_code = "E" position = { x = 12 y = 20 } maxWidth = 196 maxHeight = 30 fixedSize = yes format = center }
+		instantTextBoxType = {name = "preview_class" font = "cg_16b" text = "Head of the Galactic University" text_color_code = "T" position = { x = 12 y = 54 } maxWidth = 196 maxHeight = 40 fixedSize = no format = center }
 			instantTextBoxType = {name = "preview_cost" font = "cg_16b" text = "galUni_preview_cost" position = { x = 12 y = 518 } maxWidth = 196 maxHeight = 70 fixedSize = no format = center }
 		}
 
@@ -319,15 +319,16 @@ guiTypes = {
 		instantTextBoxType = {name = "heading" font = "malgun_goth_24" text = "DIPLOMACY" fixedSize = yes alwaysTransparent = yes
 			maxWidth = 543 maxHeight = 22 position = { x = @hidden_ui_element_position y = @hidden_ui_element_position }}
 		containerWindowType = {name = "portrait_background" clipping = yes
-			iconType = { name = "event_picture" spriteType = "GFX_diplomacy_portrait_frame" position = { x = -6 y = -5 }}
-			iconType = {name = "portrait" position = { x = 250 y = 0 } spriteType = "GFX_portrait_character"}
-			position = { x = @hidden_ui_element_position y = @hidden_ui_element_position } size = { width = 964 height = 350 }}
+			iconType = {name = "dean_bg" spriteType = "GFX_leader_bg_official" position = { x = @hidden_ui_element_position y = @hidden_ui_element_position }}
+			iconType = { name = "event_picture" spriteType = "GFX_diplomacy_portrait_frame" position = { x = @hidden_ui_element_position y = @hidden_ui_element_position }}
+			iconType = {name = "portrait" position = { x = -60 y = 22 } scale = 0.5 spriteType = "GFX_portrait_character"}
+			position = { x = 864 y = 140 } size = { width = 220 height = 300 }}
 		containerWindowType = {name = "portrait" clipping = yes
-			iconType = {name = "portrait" spriteType = "GFX_portrait_gamesetup_mask" alwaysTransparent = yes}
-			iconType = {name = "black_frame" spriteType = "GFX_diplomacy_portrait_shadow_frame" position = { x = -4 y = -5} alwaysTransparent = yes}
-			iconType = {name = "stripes_1" spriteType = "GFX_diplomacy_stripes_2" alwaysTransparent = yes}
-			iconType = {name = "city_frame" spriteType = "GFX_diplomacy_portrait_frame_curator" position = { x = -6 y = -5 } alwaysTransparent = yes}
-			position = { x = @hidden_ui_element_position y = @hidden_ui_element_position } size = { width = 964 height = 350 }}
+			iconType = {name = "portrait" position = { x = -60 y = 22 } scale = 0.5 spriteType = "GFX_portrait_gamesetup_mask" alwaysTransparent = yes}
+			iconType = {name = "black_frame" spriteType = "GFX_diplomacy_portrait_shadow_frame" position = { x = -115 y = 20 } scale = 0.5 alwaysTransparent = yes}
+			iconType = {name = "stripes_1" spriteType = "GFX_diplomacy_stripes_2" position = { x = @hidden_ui_element_position y = @hidden_ui_element_position } alwaysTransparent = yes}
+			iconType = {name = "city_frame" spriteType = "GFX_diplomacy_portrait_frame_curator" position = { x = -100 y = 20 } scale = 0.5 alwaysTransparent = yes}
+			position = { x = 864 y = 140 } size = { width = 220 height = 300 }}
 		containerWindowType = {name = "EVENT_DIPLO" moveable = no
 			size = { width=563 height=280 } position = {x = @hidden_ui_element_position y = @hidden_ui_element_position}
 			instantTextBoxType = {name = "action_title" font = "malgun_goth_24" format = center alwaysTransparent = yes position = { x = 0 y = 0 } maxWidth = 974}

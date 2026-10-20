@@ -16,6 +16,7 @@
  galUni_trait_tooltip_leader: "§L$leader_trait_$trait_tool$_desc$§!"
 
  totalCost: "§Y[This.galUni_hiringCost]§! §YEnergy§! is needed to hire this leader."
+ galUni_preview_cost: "§YEnergy§! is deducted from your stockpile\nwhen you hire this leader."
  # Regular Traits
  # galUni_trait_tooltip_leader_trait_basic_adaptable:0 "Thou shalt get.. ['building:building_system_capital']"
  #  galUni_trait_tooltip_leader_trait_basic_adaptable:0 "Thou shalt get.. ['leader_trait_adaptable']"

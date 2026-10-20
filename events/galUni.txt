@@ -28,9 +28,10 @@ country_event = { # impossible to close menu
 	diplomatic = yes
 	custom_gui = "someContainerDiplo"
 
-	picture_event_data = { portrait = root.ruler }
+	picture_event_data = { portrait = event_target:galUni_dean }
 
 	immediate = {
+		galUni_ensure_storage_effect = yes
 		galUni_reset_hiring_menu = yes
 		# set_global_flag = galUni_hiring_menu_opened
 		# set_global_flag = galUni_hiring_phase_one
@@ -130,13 +131,7 @@ event = { # spawn hidden storage country for the leader-maker preview leader
 	is_triggered_only = yes
 
 	immediate = {
-		create_country = {
-			name = "galUni_storage_country"
-			type = galUni_trait_storage
-			effect = {
-				save_global_event_target_as = galUni_storage
-			}
-		}
+		galUni_ensure_storage_effect = yes
 	}
 }
 
